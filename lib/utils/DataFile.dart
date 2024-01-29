@@ -248,61 +248,35 @@ class DataFile {
     return imgList;
   }
 
-  // static List<ListModel> getList() {
-  //   List<ListModel> introList = [];
-  //
-  //   ListModel mainModel = new ListModel();
-  //   mainModel.name = "All";
-  //   mainModel.image = "icon_1.png";
-  //   introList.add(mainModel);
-  //
-  //   mainModel = new ListModel();
-  //   mainModel.name = "Skin Care";
-  //   mainModel.image = "icon_2.png";
-  //   introList.add(mainModel);
-  //
-  //   mainModel = new ListModel();
-  //   mainModel.name = "MakeUp";
-  //   mainModel.image = "icon_3.png";
-  //   introList.add(mainModel);
-  //
-  //   mainModel = new ListModel();
-  //   mainModel.name = "Hair";
-  //   mainModel.image = "icon_4.png";
-  //   introList.add(mainModel);
-  //
-  //   return introList;
-  // }
-
   static List<IntroModel> getIntroModel() {
     List<IntroModel> introList = [];
 
     IntroModel mainModel = new IntroModel();
     mainModel.id = 1;
-    mainModel.name = "Find The Nearest\nPets From You";
+    mainModel.name = "Lorem ipsum dolor sit amet";
     mainModel.image = "intro_1.png";
-    mainModel.color = "#C6C7E5".toColor();
-    mainModel.endColor = "#C6C7E5".toColor();
+    mainModel.color = "#d5f1f9".toColor();
+    mainModel.endColor = "#d5f1f9".toColor();
     mainModel.desc =
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
     introList.add(mainModel);
 
     mainModel = new IntroModel();
     mainModel.id = 2;
-    mainModel.name = "All Pets Deserves\nMore Care";
-    mainModel.color= "#5EB7CB".toColor();
-    mainModel.endColor= "#9BD0DF".toColor();
-    mainModel.image = "intro_2.png";
+    mainModel.name = "Lorem ipsum dolor sit amet";
+    mainModel.color= "#FED845".toColor();
+    mainModel.endColor= "#FED845".toColor();
+    mainModel.image = "intro_4.jpg";
     mainModel.desc =
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
     introList.add(mainModel);
 
     mainModel = new IntroModel();
     mainModel.id = 3;
-    mainModel.name = "Adopt your own pet\nas a friend";
-    mainModel.color = "#FDD7E4".toColor();
-    mainModel.endColor = "#FED8E5".toColor();
-    mainModel.image = "intro_3.png";
+    mainModel.name = "Lorem ipsum dolor sit amet";
+    mainModel.color = "#d5f1f9".toColor();
+    mainModel.endColor = "#d5f1f9".toColor();
+    mainModel.image = "intro_3.jpg";
 
     mainModel.desc =
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
@@ -311,10 +285,10 @@ class DataFile {
 
     mainModel = new IntroModel();
     mainModel.id = 4;
-    mainModel.name = "All Pets Adopt\nNeeds Are here";
+    mainModel.name = "Lorem ipsum dolor sit amet";
     mainModel.color = "#FED845".toColor();
     mainModel.endColor = "#FED845".toColor();
-    mainModel.image = "intro_4.png";
+    mainModel.image = "intro_2.png";
 
     mainModel.desc =
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
