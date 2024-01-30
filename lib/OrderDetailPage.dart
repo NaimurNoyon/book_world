@@ -27,15 +27,15 @@ class _OrderDetailPage extends State<OrderDetailPage>
     double margin = SizeConfig.safeBlockVertical! * 2;
     double padding = SizeConfig.safeBlockVertical! * 0.9;
 
-
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
             elevation: 0,
             toolbarHeight: 0,
             centerTitle: true,
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             title: getAppBarText(context, 'Order Details'),
             leading: Builder(
               builder: (BuildContext context) {
@@ -51,13 +51,14 @@ class _OrderDetailPage extends State<OrderDetailPage>
 
             child: Column(
               children: [
-
-                getAppBar(context, "Order Details",isBack: true, function: (){
+                getAppBar(context, "Order Details", isBack: true, function: () {
                   _requestPop();
                 }),
-                Expanded(flex: 1,
+                Expanded(
+                  flex: 1,
                   child: ListView(
-                    padding: EdgeInsets.only(top: margin,left: margin,right: margin),
+                    padding: EdgeInsets.only(
+                        top: margin, left: margin, right: margin),
                     children: [
                       Row(
                         children: [
@@ -114,7 +115,6 @@ class _OrderDetailPage extends State<OrderDetailPage>
                         ),
                       ),
                       onDelivery(),
-
                       Padding(
                         padding: EdgeInsets.only(top: margin, bottom: padding),
                         child: getCustomTextWithFontFamilyWidget(
@@ -125,7 +125,6 @@ class _OrderDetailPage extends State<OrderDetailPage>
                             TextAlign.start,
                             1),
                       ),
-
                       getCustomTextWidget(
                           "Rice ,Alo Borda.Bacon Borda.Vegetables,Beef Curry.Dal.",
                           subTextColor,
@@ -133,8 +132,6 @@ class _OrderDetailPage extends State<OrderDetailPage>
                           FontWeight.w400,
                           TextAlign.start,
                           1),
-
-
                       Padding(
                         padding: EdgeInsets.only(top: margin, bottom: padding),
 
@@ -154,7 +151,6 @@ class _OrderDetailPage extends State<OrderDetailPage>
                         //     FontWeight.bold,
                         //     ConstantData.font18Px),
                       ),
-
                       getCustomTextWidget(
                           "12",
                           subTextColor,
@@ -162,23 +158,30 @@ class _OrderDetailPage extends State<OrderDetailPage>
                           FontWeight.w500,
                           TextAlign.start,
                           1),
-
                       Container(
                         height: 0.3,
                         color: textColor,
                         margin: EdgeInsets.only(bottom: 15, top: 15),
                       ),
-
                       Row(
                         children: [
-                          getCustomTextWithFontFamilyWidget('Total Amount', textColor, 16,
-                              FontWeight.w500, TextAlign.start, 1),
+                          getCustomTextWithFontFamilyWidget(
+                              'Total Amount',
+                              textColor,
+                              16,
+                              FontWeight.w500,
+                              TextAlign.start,
+                              1),
                           new Spacer(),
-                          getCustomTextWithFontFamilyWidget("\$24.20", primaryColor, 16,
-                              FontWeight.w500, TextAlign.start, 1),
+                          getCustomTextWithFontFamilyWidget(
+                              "\$24.20",
+                              primaryColor,
+                              16,
+                              FontWeight.w500,
+                              TextAlign.start,
+                              1),
                         ],
                       ),
-
                       SizedBox(
                         height: getScreenPercentSize(context, 2),
                       ),
@@ -188,8 +191,7 @@ class _OrderDetailPage extends State<OrderDetailPage>
               ],
             ),
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 
   Widget onDelivery() {
@@ -239,7 +241,7 @@ class _OrderDetailPage extends State<OrderDetailPage>
                                     getCustomTextWithFontFamilyWidget(
                                         myOrderList[index].name!,
                                         textColor,
-                                        getScreenPercentSize(context,2),
+                                        getScreenPercentSize(context, 2),
                                         FontWeight.w400,
                                         TextAlign.start,
                                         1),
@@ -301,9 +303,7 @@ class _OrderDetailPage extends State<OrderDetailPage>
                     ],
                   ),
                 ),
-                onTap: () {
-
-                },
+                onTap: () {},
               );
             }));
   }

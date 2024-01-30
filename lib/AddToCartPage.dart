@@ -26,10 +26,9 @@ class _AddToCartPage extends State<AddToCartPage> {
   List<ProductModel> cartModelList = [];
 
   _AddToCartPage();
+
   bool _isSignIn = false;
   bool isData = false;
-
-
 
   @override
   void initState() {
@@ -39,142 +38,132 @@ class _AddToCartPage extends State<AddToCartPage> {
     isDataAvailable();
     setState(() {});
   }
+
   isDataAvailable() async {
     isData = await PrefData.getIsCart();
     setState(() {});
   }
 
   Future<bool> _requestPop() {
-    if(widget.function!=null){
+    if (widget.function != null) {
       widget.function!();
-    }else{
+    } else {
       Navigator.of(context).pop();
     }
 
     return new Future.value(true);
   }
+
   void doNothing(BuildContext context) {}
+
   void signInValue() async {
     _isSignIn = await PrefData.getIsSignIn();
-    setState(() {
+    setState(() {});
+  }
 
-    });
+  double leftMargin = 0;
 
-  }double leftMargin=0;
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-     leftMargin =getHorizontalSpace(context);
-
-
+    leftMargin = getHorizontalSpace(context);
 
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             elevation: 0,
             toolbarHeight: 0,
-
           ),
-          body: Container(
-            child: Column(
-              children: [
-
-                getAppBar(context, "Cart",isBack: true,function: (){
-                  _requestPop();
-                }),
-                SizedBox(height: getScreenPercentSize(context, 1.5),)
-,
-                
-                
-
-
-                Expanded(
-                  child: isData?Container(
-                    margin: EdgeInsets.only(
-
-                        bottom: MediaQuery
-                            .of(context)
-                            .size
-                            .width * 0.01),
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: cartModelList.length,
-                        itemBuilder: (context, index) {
-                          return ListItem(
-                              index, cartModelList[index], (){
-                            removeItem(index);
-                          });
-                        }),
-                  ):emptyWidget(),
-                  flex: 1,
-                ),
-                Visibility(
-                  visible: isData,
-                  child: Container(
-                    padding: EdgeInsets.only(top: leftMargin,),
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: leftMargin),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: getCustomTextWithFontFamilyWidget(
-                                    'total',
-                                    textColor,
-                                    getScreenPercentSize(context, 2.3),
-                                    FontWeight.w700,
-                                    TextAlign.start,
-                                    1),
-                                flex: 1,
-                              ),
-                              Expanded(
-                                child: getCustomTextWithFontFamilyWidget(
-                                    "\$104.50",
-                                    primaryColor,
-                                    getScreenPercentSize(context, 2.8),
-                                    FontWeight.w400,
-                                    TextAlign.end,
-                                    1),
-                                flex: 1,
-                              )
-                            ],
-                          ),
-                        ),
-
-                        SizedBox(
-                          height: leftMargin,
-                        ),
-                        getButtonWidget(context, "Continue",primaryColor,(){
-                          if(_isSignIn) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => CheckAddressPage(),
-                                ));
-                          }else{
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SignInPage(),
-                                ));
-                          }
-                        }),
-
-
-                      ],
-                    ),
+          body: Column(
+            children: [
+              getAppBar(context, "Cart", isBack: true, function: () {
+                _requestPop();
+              }),
+              SizedBox(
+                height: getScreenPercentSize(context, 1.5),
+              ),
+              Expanded(
+                child: isData
+                    ? Container(
+                        margin: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).size.width * 0.01),
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: cartModelList.length,
+                            itemBuilder: (context, index) {
+                              return ListItem(index, cartModelList[index], () {
+                                removeItem(index);
+                              });
+                            }),
+                      )
+                    : emptyWidget(),
+                flex: 1,
+              ),
+              Visibility(
+                visible: isData,
+                child: Container(
+                  padding: EdgeInsets.only(
+                    top: leftMargin,
                   ),
-                )
-              ],
-            ),
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: leftMargin),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: getCustomTextWithFontFamilyWidget(
+                                  'total',
+                                  textColor,
+                                  getScreenPercentSize(context, 2.3),
+                                  FontWeight.w700,
+                                  TextAlign.start,
+                                  1),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: getCustomTextWithFontFamilyWidget(
+                                  "\$104.50",
+                                  primaryColor,
+                                  getScreenPercentSize(context, 2.8),
+                                  FontWeight.w400,
+                                  TextAlign.end,
+                                  1),
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: leftMargin,
+                      ),
+                      getButtonWidget(context, "Continue", primaryColor, () {
+                        if (_isSignIn) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CheckAddressPage(),
+                              ));
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SignInPage(),
+                              ));
+                        }
+                      }),
+                    ],
+                  ),
+                ),
+              )
+            ],
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 
   getRoWCell(String s, String s1) {
@@ -183,13 +172,24 @@ class _AddToCartPage extends State<AddToCartPage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(
-          child: getCustomTextWidget(s, textColor, getScreenPercentSize(context, 2), FontWeight.w800, TextAlign.start, 1),
           flex: 1,
+          child: getCustomTextWidget(
+              s,
+              textColor,
+              getScreenPercentSize(context, 2),
+              FontWeight.w800,
+              TextAlign.start,
+              1),
         ),
         Expanded(
-          child: getCustomTextWidget(s1, subTextColor, getScreenPercentSize(context, 2),FontWeight.w500, TextAlign.end,
-               1),
           flex: 1,
+          child: getCustomTextWidget(
+              s1,
+              subTextColor,
+              getScreenPercentSize(context, 2),
+              FontWeight.w500,
+              TextAlign.end,
+              1),
         )
       ],
     );
@@ -201,62 +201,83 @@ class _AddToCartPage extends State<AddToCartPage> {
     });
   }
 
-
-  emptyWidget(){
-double width=getWidthPercentSize(context, 45);
-double height=getScreenPercentSize(context, 7);
+  emptyWidget() {
+    double width = getWidthPercentSize(context, 45);
+    double height = getScreenPercentSize(context, 7);
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(assetsPath+"cart_item.png",height: getScreenPercentSize(context, 20),),
-          SizedBox(height: getScreenPercentSize(context, 3),),
-          getCustomTextWithFontFamilyWidget("Your Cart is Empty Yet!",
-              textColor, getScreenPercentSize(context, 2.5), FontWeight.w500, TextAlign.center, 1),
-          SizedBox(height: getScreenPercentSize(context, 1),),
-
-          getCustomTextWidget("Explore more and shortlist some pets.",
-              textColor, getScreenPercentSize(context, 2), FontWeight.w400, TextAlign.center, 1),
-
+          Image.asset(
+            assetsPath + "cart_item.png",
+            height: getScreenPercentSize(context, 20),
+          ),
+          SizedBox(
+            height: getScreenPercentSize(context, 3),
+          ),
+          getCustomTextWithFontFamilyWidget(
+              "Your Cart is Empty Yet!",
+              textColor,
+              getScreenPercentSize(context, 2.5),
+              FontWeight.w500,
+              TextAlign.center,
+              1),
+          SizedBox(
+            height: getScreenPercentSize(context, 1),
+          ),
+          getCustomTextWidget(
+              "Explore more and shortlist some pets.",
+              textColor,
+              getScreenPercentSize(context, 2),
+              FontWeight.w400,
+              TextAlign.center,
+              1),
           InkWell(
-            onTap: (){
+            onTap: () {
               PrefData.setIsCart(true);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage(),));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MainPage(),
+                  ));
             },
-            child: getMaterialCell(context,widget: Container(
-                margin: EdgeInsets.only(top: getScreenPercentSize(context, 4)),
-                width: width,
-                height: height,
-                decoration: ShapeDecoration(
-                  color: backgroundColor,
-                  // shadows: [
-                  //   BoxShadow(
-                  //       color: primaryColor.withOpacity(0.1),
-                  //       blurRadius: 5,
-                  //       spreadRadius: 5,
-                  //       offset: Offset(0, 5))
-                  // ],
-                  shape: SmoothRectangleBorder(
-                    side: BorderSide(color: primaryColor, width: 1.5),
-                    borderRadius: SmoothBorderRadius(
-                      cornerRadius: getPercentSize(height, 25),
-                      cornerSmoothing: 0.8,
+            child: getMaterialCell(context,
+                widget: Container(
+                    margin:
+                        EdgeInsets.only(top: getScreenPercentSize(context, 4)),
+                    width: width,
+                    height: height,
+                    decoration: ShapeDecoration(
+                      color: secondaryColor,
+                      // shadows: [
+                      //   BoxShadow(
+                      //       color: primaryColor.withOpacity(0.1),
+                      //       blurRadius: 5,
+                      //       spreadRadius: 5,
+                      //       offset: Offset(0, 5))
+                      // ],
+                      shape: SmoothRectangleBorder(
+                        side: BorderSide(color: primaryColor, width: 1.5),
+                        borderRadius: SmoothBorderRadius(
+                          cornerRadius: getPercentSize(height, 25),
+                          cornerSmoothing: 0.8,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-
-                child: Center(
-                  child: getCustomTextWidget("Go to Shop",
-                      primaryColor, getPercentSize(width, 10), FontWeight.w600, TextAlign.center, 1),
-                )
-            )),
+                    child: Center(
+                      child: getCustomTextWidget(
+                          "Go to Shop",
+                          primaryColor,
+                          getPercentSize(width, 10),
+                          FontWeight.w600,
+                          TextAlign.center,
+                          1),
+                    ))),
           )
-
         ],
       ),
     );
-
   }
 }
 
@@ -271,22 +292,15 @@ class ListItem extends StatefulWidget {
 
   @override
   RoomEditDeleteItemState createState() =>
-      RoomEditDeleteItemState(
-          this.subCategoryModel,
-          this.onChanged);
+      RoomEditDeleteItemState(this.subCategoryModel, this.onChanged);
 }
 
 class RoomEditDeleteItemState extends State<ListItem> {
-  double imageSize=0;
+  double imageSize = 0;
   final Function? onChanged;
   ProductModel? subCategoryModel;
 
-
-
-
-  RoomEditDeleteItemState(
-      this.subCategoryModel,
-      this.onChanged);
+  RoomEditDeleteItemState(this.subCategoryModel, this.onChanged);
 
   @override
   Widget build(BuildContext context) {
@@ -297,157 +311,142 @@ class RoomEditDeleteItemState extends State<ListItem> {
 
     setThemePosition();
     return InkWell(
-      onTap: (){
+      onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) =>
-                    ProductDetailPage(subCategoryModel!)));
+                builder: (context) => ProductDetailPage(subCategoryModel!)));
       },
-      child: getMaterialCell(context,widget: Container(
-
-
-        decoration: getDecoration(radius),
-
-
-        margin: EdgeInsets.symmetric(vertical:getScreenPercentSize(context, 1),horizontal:getHorizontalSpace(context) ),
-        height: height,
-        child: Row(
-          children: [
-            Container(
-              height: imageSize,
-              width: imageSize,
-              margin: EdgeInsets.only(right: margin,left: getPercentSize(height, 5)),
-
-
-              child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadiusDirectional.circular(radius)),
-                clipBehavior: Clip.antiAlias,
-                child: Image.asset(
-                  assetsPath+subCategoryModel!.image!,
-                  fit: BoxFit.fill,
-
+      child: getMaterialCell(context,
+          widget: Container(
+            decoration: getDecoration(radius),
+            margin: EdgeInsets.symmetric(
+                vertical: getScreenPercentSize(context, 1),
+                horizontal: getHorizontalSpace(context)),
+            height: height,
+            child: Row(
+              children: [
+                Container(
+                  height: imageSize,
+                  width: imageSize,
+                  margin: EdgeInsets.only(
+                      right: margin, left: getPercentSize(height, 5)),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadiusDirectional.circular(radius)),
+                    clipBehavior: Clip.antiAlias,
+                    child: Image.asset(
+                      assetsPath + subCategoryModel!.image!,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                 ),
-              ),
-            )
-            ,
-
-
-
-            Expanded(
-              child: Stack(
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                Expanded(
+                  child: Stack(
                     children: [
-
-                      getCustomTextWithFontFamilyWidget(
-                          subCategoryModel!.name!,
-                          textColor,
-                          getPercentSize(height, 16),
-
-                          FontWeight.w500, TextAlign.start,
-                          1),
-
-
-
-                      SizedBox(
-                        height: getPercentSize(height, 2),
-                      ),
-                      getCustomTextWidget(
-                          subCategoryModel!.subTitle!,
-                          textColor,
-                          getPercentSize(height, 12),
-                          FontWeight.w400,
-                          TextAlign.start,
-                          1),
-
-
-                      SizedBox(
-                        height: getPercentSize(height, 10),
-                      ),
-
-                      Row(
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: getCustomTextWithFontFamilyWidget(
-                                subCategoryModel!.price!,
-                                primaryColor,
-                                getPercentSize(height, 15),
-                                FontWeight.w400,
-                                TextAlign.start,
-
-                                1),flex: 1,
+                          getCustomTextWithFontFamilyWidget(
+                              subCategoryModel!.name!,
+                              textColor,
+                              getPercentSize(height, 16),
+                              FontWeight.w500,
+                              TextAlign.start,
+                              1),
+                          SizedBox(
+                            height: getPercentSize(height, 2),
                           ),
+                          getCustomTextWidget(
+                              subCategoryModel!.subTitle!,
+                              textColor,
+                              getPercentSize(height, 12),
+                              FontWeight.w400,
+                              TextAlign.start,
+                              1),
+                          SizedBox(
+                            height: getPercentSize(height, 10),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: getCustomTextWithFontFamilyWidget(
+                                    subCategoryModel!.price!,
+                                    primaryColor,
+                                    getPercentSize(height, 15),
+                                    FontWeight.w400,
+                                    TextAlign.start,
+                                    1),
+                                flex: 1,
+                              ),
 
-                          Padding(
-                            padding: EdgeInsets.only(right: margin),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-
-                                getCartButton(Icons.remove,cellColor,textColor, () {
-                                  setState(() {
-                                    if (subCategoryModel!.quantity > 1) {
-                                      subCategoryModel!.quantity--;
-                                    }
-                                  });
-                                }),
-                                Padding(
-                                  padding:  EdgeInsets.symmetric(horizontal: getWidthPercentSize(context, 2)),
-                                  child: Center(
-                                    child: getTextWithFontFamilyWidget('1', textColor,
-                                        getPercentSize(height, 15),FontWeight.w400,TextAlign.center),
-                                  ),
+                              Padding(
+                                padding: EdgeInsets.only(right: margin),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    getCartButton(
+                                        Icons.remove, cellColor, textColor, () {
+                                      setState(() {
+                                        if (subCategoryModel!.quantity > 1) {
+                                          subCategoryModel!.quantity--;
+                                        }
+                                      });
+                                    }),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal:
+                                              getWidthPercentSize(context, 2)),
+                                      child: Center(
+                                        child: getTextWithFontFamilyWidget(
+                                            '1',
+                                            textColor,
+                                            getPercentSize(height, 15),
+                                            FontWeight.w400,
+                                            TextAlign.center),
+                                      ),
+                                    ),
+                                    getCartButton(
+                                        Icons.add, primaryColor, Colors.white,
+                                        () {
+                                      setState(() {
+                                        subCategoryModel!.quantity++;
+                                      });
+                                    }),
+                                  ],
                                 ),
+                              ),
 
+                              // SizedBox(
+                              //   width: getWidthPercentSize(context, 3),
+                              // ),
 
-                                getCartButton(Icons.add,primaryColor,Colors.white, () {
-                                  setState(() {
-                                    subCategoryModel!.quantity++;
-                                  });
-                                }),
-                              ],
-                            ),
-                          ),
-
-                          // SizedBox(
-                          //   width: getWidthPercentSize(context, 3),
-                          // ),
-
-                          // getLineTextView(subCategoryModel!.offerPrice!, subTextColor,
-                          //     getPercentSize(height, 15)),
+                              // getLineTextView(subCategoryModel!.offerPrice!, subTextColor,
+                              //     getPercentSize(height, 15)),
+                            ],
+                          )
                         ],
+                      ),
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Container(
+                            margin: EdgeInsets.all(getPercentSize(height, 12)),
+                            child: Image.asset(
+                              assetsPath + "trash.png",
+                              height: getPercentSize(height, 17),
+                            )),
                       )
-
-
                     ],
                   ),
-
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                        margin: EdgeInsets.all(getPercentSize(height, 12)),
-                        child: Image.asset(assetsPath+"trash.png",height: getPercentSize(height, 17),)),
-                  )
-                ],
-              ),
+                ),
+              ],
             ),
-
-
-
-
-
-          ],
-        ),
-      )),
+          )),
     );
   }
 
-
-  getCartButton(var icon,var color,var iconColor, Function function) {
+  getCartButton(var icon, var color, var iconColor, Function function) {
     double height1 = getScreenPercentSize(context, 12);
 
     double height = getPercentSize(height1, 20);
@@ -456,14 +455,13 @@ class RoomEditDeleteItemState extends State<ListItem> {
       child: Container(
         height: height,
         width: height,
-
         child: Icon(
           icon,
           size: height,
           color: primaryColor,
         ),
       ),
-      onTap: (){
+      onTap: () {
         function();
       },
     );

@@ -58,15 +58,11 @@ class _ProductDetailPage extends State<ProductDetailPage> {
     return new Future.value(true);
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     double imgHeight = getWidthPercentSize(context, 75);
 
     double margin = getHorizontalSpace(context);
-
-
 
     return WillPopScope(
         onWillPop: () async {
@@ -74,7 +70,7 @@ class _ProductDetailPage extends State<ProductDetailPage> {
           return false;
         },
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
 
           body: SafeArea(
             child: Container(
@@ -82,8 +78,8 @@ class _ProductDetailPage extends State<ProductDetailPage> {
                 children: [
                   getAppBar(context, widget.model.name!, isBack: true,
                       function: () {
-                        _requestPop();
-                      },
+                    _requestPop();
+                  },
                       widget: InkWell(
                           onTap: () {},
                           child: Image.asset(
@@ -99,8 +95,8 @@ class _ProductDetailPage extends State<ProductDetailPage> {
                       padding: EdgeInsets.symmetric(horizontal: margin),
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(getPercentSize(imgHeight, 4)),
-
+                          borderRadius: BorderRadius.circular(
+                              getPercentSize(imgHeight, 4)),
                           child: Image.asset(
                             assetsPath + 'product_detail.png',
                             // assetsPath + widget.model.image!,
@@ -111,7 +107,7 @@ class _ProductDetailPage extends State<ProductDetailPage> {
                         ),
                         SizedBox(height: margin),
                         Padding(
-                          padding: EdgeInsets.symmetric(vertical: (margin/2)),
+                          padding: EdgeInsets.symmetric(vertical: (margin / 2)),
                           child: Row(
                             children: [
                               Expanded(
@@ -148,12 +144,9 @@ class _ProductDetailPage extends State<ProductDetailPage> {
                                     TextAlign.start)),
                           ],
                         ),
-
-
-
                         Container(
-                          margin:
-                          EdgeInsets.only(top: (margin * 1.5), bottom: (margin/2)),
+                          margin: EdgeInsets.only(
+                              top: (margin * 1.5), bottom: (margin / 2)),
                           child: getTextWithFontFamilyWidget(
                               'Description',
                               textColor,
@@ -169,8 +162,8 @@ class _ProductDetailPage extends State<ProductDetailPage> {
                             TextAlign.left,
                             5),
                         Container(
-                          margin:
-                          EdgeInsets.only(top: (margin *1.5), bottom: margin),
+                          margin: EdgeInsets.only(
+                              top: (margin * 1.5), bottom: margin),
                           child: Row(
                             children: [
                               Expanded(
@@ -179,16 +172,16 @@ class _ProductDetailPage extends State<ProductDetailPage> {
                                     textColor,
                                     getScreenPercentSize(context, 2.2),
                                     FontWeight.w500,
-                                    TextAlign.start),flex: 1,
+                                    TextAlign.start),
+                                flex: 1,
                               ),
-
                               Padding(
                                 padding: EdgeInsets.only(right: margin),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-
-                                    getCartButton(Icons.remove,cellColor,textColor, () {
+                                    getCartButton(
+                                        Icons.remove, cellColor, textColor, () {
                                       setState(() {
                                         if (quantity > 1) {
                                           quantity--;
@@ -196,15 +189,21 @@ class _ProductDetailPage extends State<ProductDetailPage> {
                                       });
                                     }),
                                     Padding(
-                                      padding:  EdgeInsets.symmetric(horizontal: getWidthPercentSize(context, 6)),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal:
+                                              getWidthPercentSize(context, 6)),
                                       child: Center(
-                                        child: getTextWithFontFamilyWidget('1', textColor,
-                                            getScreenPercentSize(context, 2),FontWeight.w400,TextAlign.center),
+                                        child: getTextWithFontFamilyWidget(
+                                            '1',
+                                            textColor,
+                                            getScreenPercentSize(context, 2),
+                                            FontWeight.w400,
+                                            TextAlign.center),
                                       ),
                                     ),
-
-
-                                    getCartButton(Icons.add,primaryColor,Colors.white, () {
+                                    getCartButton(
+                                        Icons.add, primaryColor, Colors.white,
+                                        () {
                                       setState(() {
                                         quantity++;
                                       });
@@ -212,20 +211,22 @@ class _ProductDetailPage extends State<ProductDetailPage> {
                                   ],
                                 ),
                               ),
-
                             ],
                           ),
                         ),
-
                       ],
                     ),
                     flex: 1,
                   ),
                   Container(
                     margin: EdgeInsets.only(top: margin),
-                    child: getButtonWidget(context, "Add to Cart",primaryColor,(){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => AddToCartPage(),));
-
+                    child: getButtonWidget(context, "Add to Cart", primaryColor,
+                        () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddToCartPage(),
+                          ));
                     }),
                   )
                 ],
@@ -420,27 +421,21 @@ class _ProductDetailPage extends State<ProductDetailPage> {
 //               ),
 //             ),
 //           ),
-
-
-
         ));
   }
 
+  int quantity = 0;
 
-  int quantity=0;
-  getCartButton(var icon,var color,var iconColor, Function function) {
-
-
+  getCartButton(var icon, var color, var iconColor, Function function) {
     return InkWell(
       child: Icon(
         icon,
-        size: getScreenPercentSize(context,3),
+        size: getScreenPercentSize(context, 3),
         color: primaryColor,
       ),
-      onTap: (){
+      onTap: () {
         function();
       },
     );
   }
-
 }

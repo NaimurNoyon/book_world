@@ -39,24 +39,23 @@ class _PhoneVerification extends State<PhoneVerification> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 0), () {
+    Future.delayed(const Duration(seconds: 0), () {
       setThemePosition(context: context);
       setState(() {});
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    ColorBuilder _solidColor =
-        PinListenColorBuilder(cellColor,cellColor);
+    ColorBuilder _solidColor = PinListenColorBuilder(cellColor, cellColor);
 
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             elevation: 0,
             title: Text(""),
             leading: GestureDetector(
@@ -77,7 +76,6 @@ class _PhoneVerification extends State<PhoneVerification> {
                   SizedBox(
                     height: getScreenPercentSize(context, 3),
                   ),
-
                   getTextWithFontFamilyWidget(
                     "Verify",
                     textColor,
@@ -85,13 +83,9 @@ class _PhoneVerification extends State<PhoneVerification> {
                     FontWeight.w400,
                     TextAlign.left,
                   ),
-
-
-
                   SizedBox(
                     height: getScreenPercentSize(context, 0.7),
                   ),
-
                   getTextWidget(
                     "Enter code send to your mobile number",
                     textColor,
@@ -99,33 +93,27 @@ class _PhoneVerification extends State<PhoneVerification> {
                     FontWeight.w400,
                     TextAlign.left,
                   ),
-
-
-
                   SizedBox(
                     height: getScreenPercentSize(context, 5),
                   ),
                   Center(
-                    child: Container(
+                    child: SizedBox(
                       width: SizeConfig.safeBlockHorizontal! * 70,
                       child: PinInputTextFormField(
                         key: _formKey,
                         pinLength: 4,
-                        decoration: new BoxLooseDecoration(
+                        decoration: BoxLooseDecoration(
                           bgColorBuilder: _solidColor,
                           strokeWidth: 0.5,
-
                           textStyle: TextStyle(
                               color: textColor,
                               fontFamily: fontFamily,
                               fontWeight: FontWeight.bold,
                               fontSize: 18),
-
                           strokeColorBuilder: PinListenColorBuilder(
-                          subTextColor,
+                            subTextColor,
                             subTextColor,
                           ),
-
                           obscureStyle: ObscureStyle(
                             isTextObscure: false,
                             obscureText: '🤪',
@@ -151,12 +139,10 @@ class _PhoneVerification extends State<PhoneVerification> {
                         },
                         validator: (pin) {
                           if (pin!.isEmpty) {
-                            setState(() {
-                            });
+                            setState(() {});
                             return 'Pin cannot empty.';
                           }
-                          setState(() {
-                          });
+                          setState(() {});
                           return null;
                         },
                         cursor: Cursor(
@@ -172,74 +158,69 @@ class _PhoneVerification extends State<PhoneVerification> {
                     height: SizeConfig.safeBlockVertical! * 5,
                   ),
                   Container(
-
                     child: Column(
                       children: [
                         getButtonWithoutSpaceWidget(
                             context, "Next", primaryColor, () {
-
-
-                              if(widget.isSignUp) {
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return CustomDialogBox(
-                                        title: "Account Created!",
-                                        descriptions:
+                          if (widget.isSignUp) {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return CustomDialogBox(
+                                    title: "Account Created!",
+                                    descriptions:
                                         "Your account has\nbeen successfully created!",
-                                        text: "Continue",
-                                        func: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SignInPage(),
-                                              ));
-                                        },
-                                      );
-                                    });
-                              }else{
-                                Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => ResetPasswordPage(),
-                                            ));
-                              }
-
+                                    text: "Continue",
+                                    func: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => SignInPage(),
+                                          ));
+                                    },
+                                  );
+                                });
+                          } else {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ResetPasswordPage(),
+                                ));
+                          }
                         }),
                         SizedBox(
                           height: SizeConfig.safeBlockVertical! * 3,
                         ),
-
-
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: Container(
-                            margin: EdgeInsets.only(bottom: getScreenPercentSize(context, 2)),
+                            margin: EdgeInsets.only(
+                                bottom: getScreenPercentSize(context, 2)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                getTextWidget( "Didn't receive code?", textColor,
-                                    getScreenPercentSize(context, 2),FontWeight.w600,TextAlign.center),
-                                SizedBox(width: 5,),
+                                getTextWidget(
+                                    "Didn't receive code?",
+                                    textColor,
+                                    getScreenPercentSize(context, 2),
+                                    FontWeight.w600,
+                                    TextAlign.center),
+                                SizedBox(
+                                  width: 5,
+                                ),
                                 InkWell(
-
-                                  child:     getTextWidget("Resend", primaryColor,
-                                      getScreenPercentSize(context, 2),FontWeight.w700,TextAlign.center),
-
-                                  onTap: () {
-
-                                  },
+                                  child: getTextWidget(
+                                      "Resend",
+                                      primaryColor,
+                                      getScreenPercentSize(context, 2),
+                                      FontWeight.w700,
+                                      TextAlign.center),
+                                  onTap: () {},
                                 )
                               ],
                             ),
                           ),
-                        )
-
-,
-
-
-
+                        ),
                       ],
                     ),
                   )
@@ -247,7 +228,6 @@ class _PhoneVerification extends State<PhoneVerification> {
               ),
             ),
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 }

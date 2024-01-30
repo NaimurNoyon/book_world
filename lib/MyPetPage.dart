@@ -61,10 +61,11 @@ class _MyPetPage extends State<MyPetPage> {
 
     defMargin=getHorizontalSpace(context);
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             elevation: 0,
             toolbarHeight: 0,
           ),
@@ -102,83 +103,80 @@ class _MyPetPage extends State<MyPetPage> {
               ],
             ),
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 
   emptyWidget() {
     double width = getWidthPercentSize(context, 45);
     double height = getScreenPercentSize(context, 7);
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.asset(
-            assetsPath + "drop.png",
-            height: getScreenPercentSize(context, 20),
-          ),
-          SizedBox(
-            height: getScreenPercentSize(context, 3),
-          ),
-          getCustomTextWithFontFamilyWidget(
-              "No Pets Yet!",
-              textColor,
-              getScreenPercentSize(context, 2.5),
-              FontWeight.w500,
-              TextAlign.center,
-              1),
-          SizedBox(
-            height: getScreenPercentSize(context, 1),
-          ),
-          getCustomTextWidget(
-              "Explore more and shortlist some pets.",
-              textColor,
-              getScreenPercentSize(context, 2),
-              FontWeight.w400,
-              TextAlign.center,
-              1),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddNewPetPage(),
-                  )).then((value) => isDataAvailable());
-            },
-            child: Container(
-                margin: EdgeInsets.only(top: getScreenPercentSize(context, 4)),
-                width: width,
-                height: height,
-                decoration: ShapeDecoration(
-                  color: backgroundColor,
-                  shadows: [
-                    BoxShadow(
-                        color: primaryColor.withOpacity(0.1),
-                        blurRadius: 5,
-                        spreadRadius: 5,
-                        offset: Offset(0, 5))
-                  ],
-                  shape: SmoothRectangleBorder(
-                    side: BorderSide(color: primaryColor, width: 1.5),
-                    borderRadius: SmoothBorderRadius(
-                      cornerRadius: getPercentSize(height, 25),
-                      cornerSmoothing: 0.8,
-                    ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Image.asset(
+          "${assetsPath}drop.png",
+          height: getScreenPercentSize(context, 20),
+        ),
+        SizedBox(
+          height: getScreenPercentSize(context, 3),
+        ),
+        getCustomTextWithFontFamilyWidget(
+            "No Pets Yet!",
+            textColor,
+            getScreenPercentSize(context, 2.5),
+            FontWeight.w500,
+            TextAlign.center,
+            1),
+        SizedBox(
+          height: getScreenPercentSize(context, 1),
+        ),
+        getCustomTextWidget(
+            "Explore more and shortlist some pets.",
+            textColor,
+            getScreenPercentSize(context, 2),
+            FontWeight.w400,
+            TextAlign.center,
+            1),
+        InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddNewPetPage(),
+                )).then((value) => isDataAvailable());
+          },
+          child: Container(
+              margin: EdgeInsets.only(top: getScreenPercentSize(context, 4)),
+              width: width,
+              height: height,
+              decoration: ShapeDecoration(
+                color: secondaryColor,
+                shadows: [
+                  BoxShadow(
+                      color: primaryColor.withOpacity(0.1),
+                      blurRadius: 5,
+                      spreadRadius: 5,
+                      offset: Offset(0, 5))
+                ],
+                shape: SmoothRectangleBorder(
+                  side: BorderSide(color: primaryColor, width: 1.5),
+                  borderRadius: SmoothBorderRadius(
+                    cornerRadius: getPercentSize(height, 25),
+                    cornerSmoothing: 0.8,
                   ),
                 ),
-                child: Center(
-                  child: getCustomTextWidget(
-                      "Add New Pet",
-                      primaryColor,
-                      getPercentSize(width, 10),
-                      FontWeight.w600,
-                      TextAlign.center,
-                      1),
-                )),
-          )
-        ],
-      ),
+              ),
+              child: Center(
+                child: getCustomTextWidget(
+                    "Add New Pet",
+                    primaryColor,
+                    getPercentSize(width, 10),
+                    FontWeight.w600,
+                    TextAlign.center,
+                    1),
+              )),
+        )
+      ],
     );
   }
 

@@ -75,7 +75,7 @@ class _IntroPage extends State<IntroPage> {
               statusBarBrightness: Brightness.light, // For iOS (dark icons)
             ),
           ),
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           body: Stack(
             children: [
               PageView.builder(
@@ -259,7 +259,7 @@ class _IntroPage extends State<IntroPage> {
                                 left: getWidthPercentSize(context, 3)),
                             height: getScreenPercentSize(context, 7),
                             decoration: ShapeDecoration(
-                              color: backgroundColor,
+                              color: secondaryColor,
                               shadows: [
                                 BoxShadow(
                                     color: textColor.withOpacity(0.1),

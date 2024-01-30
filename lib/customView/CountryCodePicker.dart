@@ -32,7 +32,7 @@ class CountryCodePicker extends StatefulWidget {
   final Color? barrierColor;
 
   /// Background color of ModalBottomSheet
-  final Color? backgroundColor;
+  final Color? secondaryColor;
 
   /// BoxDecoration for dialog
   final BoxDecoration? boxDecoration;
@@ -41,7 +41,7 @@ class CountryCodePicker extends StatefulWidget {
   final Size? dialogSize;
 
   /// Background color of selection dialog
-  final Color? dialogBackgroundColor;
+  final Color? dialogsecondaryColor;
 
   /// used to customize the country list
   final List<String>? countryFilter;
@@ -107,14 +107,14 @@ class CountryCodePicker extends StatefulWidget {
     this.enabled = true,
     this.textOverflow = TextOverflow.ellipsis,
     this.barrierColor,
-    this.backgroundColor,
+    this.secondaryColor,
     this.boxDecoration,
     this.comparator,
     this.countryFilter,
     this.hideSearch = false,
     this.showDropDownButton = false,
     this.dialogSize,
-    this.dialogBackgroundColor,
+    this.dialogsecondaryColor,
     this.closeIcon = const Icon(Icons.close),
     this.countryList = codes,
     Key? key,
@@ -284,7 +284,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
     if (!UniversalPlatform.isAndroid && !UniversalPlatform.isIOS) {
       showDialog(
         barrierColor: widget.barrierColor ?? Colors.grey.withOpacity(0.5),
-        // backgroundColor: widget.backgroundColor ?? Colors.transparent,
+        // secondaryColor: widget.secondaryColor ?? Colors.transparent,
         context: context,
         builder: (context) => Center(
           child: Container(
@@ -304,7 +304,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                     : widget.showFlag,
                 flagWidth: widget.flagWidth,
                 size: widget.dialogSize,
-                backgroundColor: widget.dialogBackgroundColor,
+                secondaryColor: widget.dialogsecondaryColor,
                 barrierColor: widget.barrierColor,
                 hideSearch: widget.hideSearch,
                 closeIcon: widget.closeIcon,
@@ -338,14 +338,14 @@ class CountryCodePickerState extends State<CountryCodePicker> {
         flagWidth: widget.flagWidth,
         flagDecoration: widget.flagDecoration,
         size: widget.dialogSize,
-        backgroundColor: widget.dialogBackgroundColor,
+        secondaryColor: widget.dialogsecondaryColor,
         barrierColor: widget.barrierColor,
         hideSearch: widget.hideSearch,
         closeIcon: widget.closeIcon,
       ),));
       // showMaterialModalBottomSheet(
       //   barrierColor: widget.barrierColor ?? Colors.grey.withOpacity(0.5),
-      //   backgroundColor: widget.backgroundColor ?? Colors.transparent,
+      //   secondaryColor: widget.secondaryColor ?? Colors.transparent,
       //   context: context,
       //   builder: (context) => Center(
       //     child: SelectionDialog(
@@ -363,7 +363,7 @@ class CountryCodePickerState extends State<CountryCodePicker> {
       //       flagWidth: widget.flagWidth,
       //       flagDecoration: widget.flagDecoration,
       //       size: widget.dialogSize,
-      //       backgroundColor: widget.dialogBackgroundColor,
+      //       secondaryColor: widget.dialogsecondaryColor,
       //       barrierColor: widget.barrierColor,
       //       hideSearch: widget.hideSearch,
       //       closeIcon: widget.closeIcon,

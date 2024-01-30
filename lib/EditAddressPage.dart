@@ -29,13 +29,14 @@ class _EditAddressPage extends State<EditAddressPage> {
     double leftMargin = MediaQuery.of(context).size.width * 0.05;
 
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
             elevation: 0,
             toolbarHeight: 0,
             centerTitle: true,
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             title: getAppBarText(context, 'address'),
             leading: Builder(
               builder: (BuildContext context) {
@@ -144,8 +145,7 @@ class _EditAddressPage extends State<EditAddressPage> {
               ],
             ),
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 
   int radioPosition = 0;

@@ -7,8 +7,9 @@ import 'PrefData.dart';
 
 Color borderColor = "#E7E4EF".toColor();
 Color primaryColor = "#7A6DB7".toColor();
+Color secondaryColor = "#d5f1f9".toColor();
 Color alphaColor = "#F9F8FF".toColor();
-// Color primaryColor = "#7F3C8A".toColor();
+Color secondaryPrimaryColor = "#FED845".toColor();
 Color lightCellColor = "#EBEFF5".toColor();
 
 Color darkBackgroundColor = "#14181E".toColor();
@@ -46,8 +47,7 @@ setThemePosition({BuildContext? context = null}) async {
     textColor = Colors.white;
     subTextColor = Colors.white70;
     iconColor = Colors.grey.shade500;
-    defBgColor =Colors.black87;
-
+    defBgColor = Colors.black87;
   } else {
     textColor = Colors.black;
     subTextColor = '#79757F'.toColor();

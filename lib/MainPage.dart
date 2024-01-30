@@ -101,14 +101,14 @@ class _MainPage extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-
           appBar: AppBar(
             elevation: 0,
             toolbarHeight: 0,
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: backgroundColor,
+              statusBarColor: secondaryColor,
               statusBarIconBrightness: Brightness.dark,
               // For Android (dark icons)
               statusBarBrightness: Brightness.light, // For iOS (dark icons)
@@ -116,14 +116,13 @@ class _MainPage extends State<MainPage> {
           ),
 
           resizeToAvoidBottomInset: true,
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           bottomNavigationBar: _buildBottomBar(),
           body: SafeArea(
             child: Container(
                 child: getBody()),
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 
   Widget _buildBottomBar() {
@@ -134,7 +133,7 @@ class _MainPage extends State<MainPage> {
     double iconHeight = getPercentSize(height, 28);
     return CustomAnimatedBottomBar(
       containerHeight: height,
-      backgroundColor: backgroundColor,
+      backgroundColor: secondaryColor,
       selectedIndex: _currentIndex,
       showElevation: true,
       itemCornerRadius: 24,

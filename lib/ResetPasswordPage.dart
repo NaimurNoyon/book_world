@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:book_world/utils/Constant.dart';
 import 'package:book_world/utils/CustomWidget.dart';
@@ -8,7 +6,6 @@ import 'package:book_world/utils/SizeConfig.dart';
 import 'SignInPage.dart';
 
 class ResetPasswordPage extends StatefulWidget {
-
   @override
   _ResetPasswordPage createState() {
     return _ResetPasswordPage();
@@ -39,33 +36,30 @@ class _ResetPasswordPage extends State<ResetPasswordPage> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-
-
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             elevation: 0,
             title: Text(""),
             leading: InkWell(
               child: Icon(
                 Icons.keyboard_backspace,
-                color:textColor,
+                color: textColor,
               ),
               onTap: _requestPop,
             ),
           ),
           body: Container(
-            padding: EdgeInsets.symmetric(
-                horizontal: getHorizontalSpace(context)),
+            padding:
+                EdgeInsets.symmetric(horizontal: getHorizontalSpace(context)),
             child: ListView(
               children: [
-
                 SizedBox(
                   height: getScreenPercentSize(context, 3),
                 ),
-
 
                 getTextWithFontFamilyWidget(
                   "Create Password",
@@ -74,8 +68,6 @@ class _ResetPasswordPage extends State<ResetPasswordPage> {
                   FontWeight.w400,
                   TextAlign.left,
                 ),
-
-
 
                 SizedBox(
                   height: getScreenPercentSize(context, 0.7),
@@ -111,7 +103,6 @@ class _ResetPasswordPage extends State<ResetPasswordPage> {
                 //     TextAlign.start,
                 //     ),
 
-
                 SizedBox(
                   height: getScreenPercentSize(context, 2.5),
                 ),
@@ -120,19 +111,17 @@ class _ResetPasswordPage extends State<ResetPasswordPage> {
                 getPasswordTextFiled(
                     context, "New password", textPasswordController),
                 getPasswordTextFiled(
-                    context,
-                   "Confirm Password",
-                    textConfirmPasswordController),
-                SizedBox(height: getScreenPercentSize(context,1.5),),
-                getButtonWithoutSpaceWidget(
-                    context, "Next", primaryColor, () {
+                    context, "Confirm Password", textConfirmPasswordController),
+                SizedBox(
+                  height: getScreenPercentSize(context, 1.5),
+                ),
+                getButtonWithoutSpaceWidget(context, "Next", primaryColor, () {
                   checkValidation();
                 }),
               ],
             ),
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 
   void checkValidation() {
@@ -145,23 +134,16 @@ class _ResetPasswordPage extends State<ResetPasswordPage> {
         context: context,
         builder: (BuildContext context) {
           return ResetPasswordDialogBox(
-
             func: () {
-
-              Navigator.push(context, MaterialPageRoute(builder: (context) => SignInPage(),));
-
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SignInPage(),
+                  ));
             },
           );
         });
-
-
-
-
-
   }
 
-  checkNetwork() async {
-
-  }
-
+  checkNetwork() async {}
 }

@@ -47,7 +47,7 @@ class _LocationTrackMap extends State<LocationTrackMap> {
 
     return WillPopScope(
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
             automaticallyImplyLeading: false,
             elevation: 0,
@@ -61,7 +61,7 @@ class _LocationTrackMap extends State<LocationTrackMap> {
                 color: textColor,
               ),
             ),
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             title: getAppBarText(context,'Track Order'),
 
           ),

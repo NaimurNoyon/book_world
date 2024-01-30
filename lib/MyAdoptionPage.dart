@@ -62,14 +62,15 @@ class _MyAdoptionPage extends State<MyAdoptionPage>
 
 
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
 
             centerTitle: true,
             elevation: 0,
             toolbarHeight: 0,
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
 
           ),
 
@@ -239,8 +240,7 @@ class _MyAdoptionPage extends State<MyAdoptionPage>
             ],
           ),
 
-        ),
-        onWillPop: _requestPop);
+        ));
   }
   emptyWidget() {
     double width = getWidthPercentSize(context, 45);
@@ -289,7 +289,7 @@ class _MyAdoptionPage extends State<MyAdoptionPage>
                 width: width,
                 height: height,
                 decoration: ShapeDecoration(
-                  color: backgroundColor,
+                  color: secondaryColor,
                   // shadows: [
                   //   BoxShadow(
                   //       color: primaryColor.withOpacity(0.1),

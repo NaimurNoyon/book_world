@@ -39,10 +39,11 @@ class _ForgotPasswordPage extends State<ForgotPasswordPage> {
     SizeConfig().init(context);
 
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             elevation: 0,
             title: Text(""),
             leading: InkWell(
@@ -118,8 +119,7 @@ class _ForgotPasswordPage extends State<ForgotPasswordPage> {
               ],
             ),
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 
   void sendPage() {

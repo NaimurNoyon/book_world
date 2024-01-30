@@ -23,7 +23,7 @@ class SelectionDialog extends StatefulWidget {
   final Icon? closeIcon;
 
   /// Background color of SelectionDialog
-  final Color? backgroundColor;
+  final Color? secondaryColor;
 
   final Color? barrierColor;
 
@@ -31,26 +31,26 @@ class SelectionDialog extends StatefulWidget {
   final List<CountryCode> favoriteElements;
 
   SelectionDialog(
-      this.elements,
-      this.favoriteElements, {
-        Key? key,
-        this.showCountryOnly,
-        this.emptySearchBuilder,
-        InputDecoration searchDecoration = const InputDecoration(),
-        this.searchStyle,
-        this.textStyle,
-        this.boxDecoration,
-        this.showFlag,
-        this.flagDecoration,
-        this.flagWidth = 32,
-        this.size,
-        this.backgroundColor,
-        this.barrierColor,
-        this.hideSearch = false,
-        this.closeIcon,
-      })  : this.searchDecoration = searchDecoration.prefixIcon == null
-      ? searchDecoration.copyWith(prefixIcon: Icon(Icons.search))
-      : searchDecoration,
+    this.elements,
+    this.favoriteElements, {
+    Key? key,
+    this.showCountryOnly,
+    this.emptySearchBuilder,
+    InputDecoration searchDecoration = const InputDecoration(),
+    this.searchStyle,
+    this.textStyle,
+    this.boxDecoration,
+    this.showFlag,
+    this.flagDecoration,
+    this.flagWidth = 32,
+    this.size,
+    this.secondaryColor,
+    this.barrierColor,
+    this.hideSearch = false,
+    this.closeIcon,
+  })  : this.searchDecoration = searchDecoration.prefixIcon == null
+            ? searchDecoration.copyWith(prefixIcon: Icon(Icons.search))
+            : searchDecoration,
         super(key: key);
 
   @override
@@ -63,39 +63,26 @@ class _SelectionDialogState extends State<SelectionDialog> {
 
   @override
   Widget build(BuildContext context) {
+    double defMargin = getScreenPercentSize(context, 2);
+    double radius = getScreenPercentSize(context, 1.5);
 
-  double  defMargin = getScreenPercentSize(context, 2);
-  double radius = getScreenPercentSize(context, 1.5);
-
-  return Scaffold(
-      backgroundColor: backgroundColor,
+    return Scaffold(
+      backgroundColor: secondaryColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: backgroundColor,
-
+        backgroundColor: secondaryColor,
         toolbarHeight: 0,
-
-
       ),
       body: SafeArea(
         child: Column(
           children: [
-            getAppBar(context, 'Select a Country',function: (){
+            getAppBar(context, 'Select a Country', function: () {
               Navigator.of(context).pop();
-
             }, isBack: true),
-
             Container(
               margin: EdgeInsets.all(defMargin),
-              decoration:  ShapeDecoration(
-                color: backgroundColor,
-                // shadows: [
-                //   BoxShadow(
-                //       color: subTextColor.withOpacity(0.1),
-                //       blurRadius: 2,
-                //       spreadRadius: 1,
-                //       offset: Offset(0, 1))
-                // ],
+              decoration: ShapeDecoration(
+                color: secondaryColor,
                 shape: SmoothRectangleBorder(
                   side: BorderSide(color: subTextColor, width: 0.5),
                   borderRadius: SmoothBorderRadius(
@@ -112,18 +99,16 @@ class _SelectionDialogState extends State<SelectionDialog> {
                   fontWeight: FontWeight.w400,
                   fontSize: getScreenPercentSize(context, 1.7),
                 ),
-
                 maxLines: 1,
                 textAlignVertical: TextAlignVertical.center,
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(left: defMargin),
                   hintText: 'Search food , accessories..',
-                  // prefixIcon: Icon(Icons.search),
                   prefixIcon: Icon(
                     Icons.search,
                     color: subTextColor,
-                    size: getScreenPercentSize(context,3),
+                    size: getScreenPercentSize(context, 3),
                   ),
                   hintStyle: TextStyle(
                     color: subTextColor,
@@ -140,46 +125,32 @@ class _SelectionDialogState extends State<SelectionDialog> {
                 ),
               ),
             ),
-
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 24),
-            //   child: TextField(
-            //     style: widget.searchStyle,
-            //     decoration: widget.searchDecoration,
-            //     onChanged: _filterElements,
-            //   ),
-            // ),
-
-
-
-
             Expanded(
               child: ListView(
                 children: [
                   widget.favoriteElements.isEmpty
                       ? const DecoratedBox(decoration: BoxDecoration())
                       : Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ...widget.favoriteElements.map(
-                            (f) => SimpleDialogOption(
-                              padding: EdgeInsets.zero,
-
-                              child: _buildOption(f),
-                          onPressed: () {
-                            _selectItem(f);
-                          },
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ...widget.favoriteElements.map(
+                              (f) => SimpleDialogOption(
+                                padding: EdgeInsets.zero,
+                                child: _buildOption(f),
+                                onPressed: () {
+                                  _selectItem(f);
+                                },
+                              ),
+                            ),
+                            const Divider(),
+                          ],
                         ),
-                      ),
-                      const Divider(),
-                    ],
-                  ),
                   if (filteredElements.isEmpty)
                     _buildEmptySearchWidget(context)
                   else
                     ...filteredElements.map(
-                          (e) => SimpleDialogOption(
-                            padding: EdgeInsets.zero,
+                      (e) => SimpleDialogOption(
+                        padding: EdgeInsets.zero,
                         child: _buildOption(e),
                         onPressed: () {
                           _selectItem(e);
@@ -196,55 +167,47 @@ class _SelectionDialogState extends State<SelectionDialog> {
   }
 
   Widget _buildOption(CountryCode e) {
-    double  defMargin = getScreenPercentSize(context, 2);
+    double defMargin = getScreenPercentSize(context, 2);
 
-    double height=getScreenPercentSize(context, 8);
-    return getMaterialCell(context,widget: Container(
-      margin: EdgeInsets.symmetric(horizontal: defMargin,vertical: (defMargin/2)),
-      padding: EdgeInsets.symmetric(horizontal: defMargin),
-
-      height: height,
-      width: double.infinity,
-      decoration: getDecorationWithRadius(getScreenPercentSize(context, 1.5),primaryColor),
-
-      child: Row(
-        // direction: Axis.horizontal,
-        children: <Widget>[
-          if (widget.showFlag!)
-          // Flexible(
-          //   child:
-            Container(
-              margin: const EdgeInsets.only(right: 16.0),
-              decoration: widget.flagDecoration,
-              clipBehavior:
-              widget.flagDecoration == null ? Clip.none : Clip.hardEdge,
-              child: Image.asset(
-                e.flagUri!,
-                package: 'country_code_picker',
-                width: widget.flagWidth,
+    double height = getScreenPercentSize(context, 8);
+    return getMaterialCell(context,
+        widget: Container(
+          margin: EdgeInsets.symmetric(
+              horizontal: defMargin, vertical: (defMargin / 2)),
+          padding: EdgeInsets.symmetric(horizontal: defMargin),
+          height: height,
+          width: double.infinity,
+          decoration: getDecorationWithRadius(
+              getScreenPercentSize(context, 1.5), primaryColor),
+          child: Row(
+            // direction: Axis.horizontal,
+            children: <Widget>[
+              if (widget.showFlag!)
+                Container(
+                  margin: const EdgeInsets.only(right: 16.0),
+                  decoration: widget.flagDecoration,
+                  clipBehavior:
+                      widget.flagDecoration == null ? Clip.none : Clip.hardEdge,
+                  child: Image.asset(
+                    e.flagUri!,
+                    package: 'country_code_picker',
+                    width: widget.flagWidth,
+                  ),
+                ),
+              Expanded(
+                flex: 1,
+                child: getTextWidget(
+                    e.toCountryStringOnly(),
+                    textColor,
+                    getPercentSize(height, 25),
+                    FontWeight.w600,
+                    TextAlign.start),
               ),
-            ),
-          // ),
-          Expanded(
-            flex: 1,
-
-            child: getTextWidget( e.toCountryStringOnly()
-                , textColor,getPercentSize(height, 25),
-                FontWeight.w600, TextAlign.start),
-            // child: Text(
-            //   widget.showCountryOnly!
-            //       ? e.toCountryStringOnly()
-            //       : e.toLongString(),
-            //   overflow: TextOverflow.fade,
-            //   style: widget.textStyle,
-            // ),
+              getTextWidget(e.dialCode!.toString(), textColor,
+                  getPercentSize(height, 25), FontWeight.w600, TextAlign.end),
+            ],
           ),
-          getTextWidget( e.dialCode!.toString()
-              , textColor,getPercentSize(height, 25),
-              FontWeight.w600, TextAlign.end),
-        ],
-      ),
-    ));
+        ));
   }
 
   Widget _buildEmptySearchWidget(BuildContext context) {
@@ -269,9 +232,9 @@ class _SelectionDialogState extends State<SelectionDialog> {
     setState(() {
       filteredElements = widget.elements
           .where((e) =>
-      e.code!.contains(s) ||
-          e.dialCode!.contains(s) ||
-          e.name!.toUpperCase().contains(s))
+              e.code!.contains(s) ||
+              e.dialCode!.contains(s) ||
+              e.name!.toUpperCase().contains(s))
           .toList();
     });
   }

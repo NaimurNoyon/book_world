@@ -12,7 +12,7 @@ import 'PetDetailPage.dart';
 class AllPetPage extends StatefulWidget {
   final Function? function;
 
-  AllPetPage({this.function});
+  const AllPetPage({super.key, this.function});
 
   @override
   _AllPetPage createState() {
@@ -37,7 +37,7 @@ class _AllPetPage extends State<AllPetPage> {
       Navigator.of(context).pop();
     }
 
-    return new Future.value(true);
+    return Future.value(true);
   }
 
   void doNothing(BuildContext context) {}
@@ -51,47 +51,45 @@ class _AllPetPage extends State<AllPetPage> {
 
     defMargin = getHorizontalSpace(context);
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             elevation: 0,
             toolbarHeight: 0,
           ),
-          body: Container(
-            child: Column(
-              children: [
-                getAppBar(context, "All pets", isBack: true, function: () {
-                  _requestPop();
-                },widget: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MyPetPage(),
-                        ));
-                  },
-                  child: getSubMaterialCell(context, widget: Container(
+          body: Column(
+            children: [
+              getAppBar(context, "All pets", isBack: true, function: () {
+                _requestPop();
+              },widget: InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MyPetPage(),
+                      ));
+                },
+                child: getSubMaterialCell(context, widget: Container(
 
-                    height: height,
-                    width: height,
-                    decoration: getDecorationWithColor(
-                        getPercentSize(height, 25), primaryColor),
-                    child: Center(
-                      child: Icon(Icons.add,
-                          color: Colors.white, size: getPercentSize(height, 70)),
-                    ),
-                  ),),
-                )),
-                SizedBox(
-                  height: getScreenPercentSize(context, 1.5),
-                ),
-                Expanded(child: sellerList())
-              ],
-            ),
+                  height: height,
+                  width: height,
+                  decoration: getDecorationWithColor(
+                      getPercentSize(height, 25), primaryColor),
+                  child: Center(
+                    child: Icon(Icons.add,
+                        color: Colors.white, size: getPercentSize(height, 70)),
+                  ),
+                ),),
+              )),
+              SizedBox(
+                height: getScreenPercentSize(context, 1.5),
+              ),
+              Expanded(child: sellerList())
+            ],
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 
   sellerList() {
@@ -130,7 +128,7 @@ class _AllPetPage extends State<AllPetPage> {
             width: width,
             margin: EdgeInsets.symmetric(vertical: (defMargin/1.5)),
             decoration: ShapeDecoration(
-              color: backgroundColor,
+              color: secondaryColor,
 
 
               shape: SmoothRectangleBorder(
@@ -167,7 +165,7 @@ class _AllPetPage extends State<AllPetPage> {
                           height: getPercentSize(imgHeight, 18),
                           width: getPercentSize(imgHeight, 18),
                           decoration: ShapeDecoration(
-                            color: backgroundColor,
+                            color: secondaryColor,
                             shape: SmoothRectangleBorder(
                               side: BorderSide(color: iconColor, width: 0.1),
                               borderRadius: SmoothBorderRadius(
@@ -177,7 +175,7 @@ class _AllPetPage extends State<AllPetPage> {
                             ),
                           ),
                           child: Center(
-                            child: Image.asset(assetsPath + "heart.png",
+                            child: Image.asset("${assetsPath}heart.png",
                                 color: primaryColor,
                                 height: getPercentSize(imgHeight, 10)),
                           ),
@@ -220,7 +218,7 @@ class _AllPetPage extends State<AllPetPage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Image.asset(
-                                assetsPath + "location.png",
+                                "${assetsPath}location.png",
                                 height: getPercentSize(remainHeight, 10),
                               ),
                               SizedBox(
@@ -244,7 +242,7 @@ class _AllPetPage extends State<AllPetPage> {
                           // SizedBox(
                           //   height: getPercentSize(remainHeight, 6),
                           // ),
-                          Expanded(child: Container(),flex: 1,),
+                          Expanded(flex: 1,child: Container(),),
                           Row(
                             children: [
                               Expanded(
@@ -257,17 +255,7 @@ class _AllPetPage extends State<AllPetPage> {
                               SizedBox(
                                 width: getPercentSize(width, 2),
                               ),
-                              // getMaterialWidget(context, Container(
-                              //   height: getPercentSize(remainHeight, 14),
-                              //   width: getPercentSize(remainHeight, 14),
-                              //   decoration: getDecorationWithColor(
-                              //       getPercentSize(remainHeight, 3), primaryColor),
-                              //   child: Center(
-                              //     child: Icon(Icons.add,
-                              //         color: Colors.white,
-                              //         size: getPercentSize(remainHeight, 9)),
-                              //   ),
-                              // ), getPercentSize(remainHeight, 3), getPercentSize(remainHeight, 14))
+
                             ],
                           ),
                         ],

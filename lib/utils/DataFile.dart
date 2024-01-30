@@ -251,7 +251,7 @@ class DataFile {
   static List<IntroModel> getIntroModel() {
     List<IntroModel> introList = [];
 
-    IntroModel mainModel = new IntroModel();
+    IntroModel mainModel = IntroModel();
     mainModel.id = 1;
     mainModel.name = "Lorem ipsum dolor sit amet";
     mainModel.image = "intro_1.png";
@@ -261,7 +261,7 @@ class DataFile {
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
     introList.add(mainModel);
 
-    mainModel = new IntroModel();
+    mainModel = IntroModel();
     mainModel.id = 2;
     mainModel.name = "Lorem ipsum dolor sit amet";
     mainModel.color= "#FED845".toColor();
@@ -271,7 +271,7 @@ class DataFile {
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
     introList.add(mainModel);
 
-    mainModel = new IntroModel();
+    mainModel = IntroModel();
     mainModel.id = 3;
     mainModel.name = "Lorem ipsum dolor sit amet";
     mainModel.color = "#d5f1f9".toColor();

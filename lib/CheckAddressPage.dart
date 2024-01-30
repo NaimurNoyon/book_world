@@ -62,13 +62,14 @@ class _CheckAddressPage extends State<CheckAddressPage> {
 
 
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
             elevation: 0,
             centerTitle: true,
             toolbarHeight: 0,
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             title: getAppBarText(context,'Checkout'),
             leading: Builder(
               builder: (BuildContext context) {
@@ -622,7 +623,6 @@ class _CheckAddressPage extends State<CheckAddressPage> {
               ],
             ),
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 }

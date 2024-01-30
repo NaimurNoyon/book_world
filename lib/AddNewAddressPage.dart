@@ -29,13 +29,14 @@ class _AddNewAddressPage extends State<AddNewAddressPage> {
     double leftMargin = getHorizontalSpace(context);
 
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
             elevation: 0,
             toolbarHeight: 0,
             centerTitle: true,
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             title: getAppBarText(context, 'address'),
             leading: Builder(
               builder: (BuildContext context) {
@@ -51,27 +52,22 @@ class _AddNewAddressPage extends State<AddNewAddressPage> {
           // }),
           body: Column(
             children: [
-              getAppBar(context, 'Add Address', isBack: true,
-                  function: () {
-                    _requestPop();
-                  }),
+              getAppBar(context, 'Add Address', isBack: true, function: () {
+                _requestPop();
+              }),
               Expanded(
                 child: ListView(
                   padding: EdgeInsets.all(leftMargin),
                   children: [
-                    getDefaultTextFiledWithoutIconWidget(context,
-                        'yourName', nameController),
                     getDefaultTextFiledWithoutIconWidget(
-                        context,
-                        'phoneNumber',
-                        phoneNumberController),
+                        context, 'yourName', nameController),
+                    getDefaultTextFiledWithoutIconWidget(
+                        context, 'phoneNumber', phoneNumberController),
                     Row(
                       children: [
                         Expanded(
                           child: getDefaultTextFiledWithoutIconWidget(
-                              context,
-                              'cityDistrict',
-                              cityController),
+                              context, 'cityDistrict', cityController),
                           flex: 1,
                         ),
                         SizedBox(
@@ -79,18 +75,15 @@ class _AddNewAddressPage extends State<AddNewAddressPage> {
                         ),
                         Expanded(
                           child: getDefaultTextFiledWithoutIconWidget(
-                              context,
-                              'zip',
-                              zipController),
+                              context, 'zip', zipController),
                           flex: 1,
                         )
                       ],
                     ),
-                    getPrescriptionDesc(
-                        context, 'address', addController),
-
+                    getPrescriptionDesc(context, 'address', addController),
                     Padding(
-                      padding:  EdgeInsets.only(top: getScreenPercentSize(context, 2)),
+                      padding: EdgeInsets.only(
+                          top: getScreenPercentSize(context, 2)),
                       child: getTextWithFontFamilyWidget(
                           'Type Address',
                           textColor,
@@ -112,16 +105,15 @@ class _AddNewAddressPage extends State<AddNewAddressPage> {
                 flex: 1,
               ),
               Container(
-                margin: EdgeInsets.only(
-                    top: getScreenPercentSize(context, 0.5)),
+                margin:
+                    EdgeInsets.only(top: getScreenPercentSize(context, 0.5)),
                 child: getButtonWidget(context, "Save", primaryColor, () {
                   Navigator.of(context).pop();
                 }),
               )
             ],
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 
   int radioPosition = 0;
@@ -144,13 +136,13 @@ class _AddNewAddressPage extends State<AddNewAddressPage> {
           margin: EdgeInsets.symmetric(
               vertical: getScreenPercentSize(context, 1.2)),
           padding:
-          EdgeInsets.symmetric(horizontal: getWidthPercentSize(context, 2)),
+              EdgeInsets.symmetric(horizontal: getWidthPercentSize(context, 2)),
           alignment: Alignment.centerLeft,
           decoration: ShapeDecoration(
             color: cellColor,
             shape: SmoothRectangleBorder(
               side:
-              BorderSide(color: primaryColor.withOpacity(0.5), width: 0.3),
+                  BorderSide(color: primaryColor.withOpacity(0.5), width: 0.3),
               borderRadius: SmoothBorderRadius(
                 cornerRadius: getPercentSize(cellHeight, 20),
                 cornerSmoothing: 0.8,
@@ -165,7 +157,7 @@ class _AddNewAddressPage extends State<AddNewAddressPage> {
                     : Icons.radio_button_off,
                 size: (fontSize * 1.8),
                 color:
-                (radioPosition == position) ? primaryColor : subTextColor,
+                    (radioPosition == position) ? primaryColor : subTextColor,
               ),
               SizedBox(
                 width: fontSize,
@@ -179,5 +171,4 @@ class _AddNewAddressPage extends State<AddNewAddressPage> {
       ),
     );
   }
-
 }

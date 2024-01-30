@@ -36,7 +36,7 @@ class _OrderTrackMap extends State<OrderTrackMap> {
     double bottomImageHeight = getPercentSize(bottomHeight, 50);
     return WillPopScope(
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
             automaticallyImplyLeading: false,
             elevation: 0,
@@ -49,7 +49,7 @@ class _OrderTrackMap extends State<OrderTrackMap> {
                 color: textColor,
               ),
             ),
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             title: getAppBarText(context,'Track Order'),
 
           ),
@@ -125,7 +125,7 @@ class _OrderTrackMap extends State<OrderTrackMap> {
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(40),
                           topRight: Radius.circular(40)),
-                      color: backgroundColor),
+                      color: secondaryColor),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,

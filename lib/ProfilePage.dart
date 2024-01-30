@@ -8,7 +8,6 @@ import 'package:book_world/utils/DataFile.dart';
 import 'package:book_world/utils/SizeConfig.dart';
 import 'package:image_picker/image_picker.dart';
 
-
 import 'model/AddressModel.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -26,7 +25,6 @@ class _ProfilePage extends State<ProfilePage> {
   TextEditingController mailController = new TextEditingController();
   TextEditingController genderController = new TextEditingController();
   TextEditingController phoneController = new TextEditingController();
-
 
   @override
   void initState() {
@@ -50,11 +48,7 @@ class _ProfilePage extends State<ProfilePage> {
   XFile? _image;
   final picker = ImagePicker();
 
-
-
-
   getProfileImage() {
-
     if (_image != null && _image!.path.isNotEmpty) {
       return Image.file(
         File(_image!.path),
@@ -66,58 +60,36 @@ class _ProfilePage extends State<ProfilePage> {
         fit: BoxFit.cover,
       );
     }
+  }
 
-  }double defaultMargin=0;
+  double defaultMargin = 0;
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-
-
-
     double profileHeight = getScreenPercentSize(context, 12);
-     defaultMargin = getHorizontalSpace(context);
-
-
-
+    defaultMargin = getHorizontalSpace(context);
 
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
             elevation: 0,
             toolbarHeight: 0,
             centerTitle: true,
-            backgroundColor: backgroundColor,
-            // title: getAppBarText(context,S.of(context).editProfiles),
-            // leading: Builder(
-            //   builder: (BuildContext context) {
-            //     return IconButton(
-            //       icon: getAppBarIcon(),
-            //       onPressed: _requestPop,
-            //     );
-            //   },
-            // ),
+            backgroundColor: secondaryColor,
           ),
-
-
-
-          //
-          // bottomNavigationBar: getBottomText(
-          //     context, S.of(context).save, () {
-          //   Navigator.of(context).pop(true);
-          // }),
-
           body: Container(
             child: Column(
               children: [
-
-                getAppBar(context, "Profile",isBack: true,function: (){
+                getAppBar(context, "Profile", isBack: true, function: () {
                   _requestPop();
                 }),
-
-                SizedBox(height: getScreenPercentSize(context, 2),),
+                SizedBox(
+                  height: getScreenPercentSize(context, 2),
+                ),
                 Expanded(
                   child: ListView(
                     padding: EdgeInsets.symmetric(horizontal: defaultMargin),
@@ -128,20 +100,15 @@ class _ProfilePage extends State<ProfilePage> {
                             alignment: Alignment.topCenter,
                             child: Stack(
                               children: <Widget>[
-
-
-
-
                                 Align(
                                   alignment: Alignment.topCenter,
-                                    child: Container(
-                                      margin: EdgeInsets.only(top: defaultMargin),
+                                  child: Container(
+                                    margin: EdgeInsets.only(top: defaultMargin),
                                     height: profileHeight,
                                     width: profileHeight,
                                     decoration: BoxDecoration(
-                                        color: primaryColor,
-                                        shape: BoxShape.circle,
-
+                                      color: primaryColor,
+                                      shape: BoxShape.circle,
                                     ),
                                     child: ClipOval(
                                       child: Material(
@@ -193,55 +160,41 @@ class _ProfilePage extends State<ProfilePage> {
                               ],
                             ),
                           )),
-
-
-                      SizedBox(height: (defaultMargin*2),),
-
-
+                      SizedBox(
+                        height: (defaultMargin * 2),
+                      ),
                       getTitle('First Name'),
-                      getEditProfileTextFiledWidget(context, "First Name",
-                          firstNameController),
-
+                      getEditProfileTextFiledWidget(
+                          context, "First Name", firstNameController),
                       getTitle('Last Name'),
-                      getEditProfileTextFiledWidget(context, "Last Name",
-                          lastNameController),
-
+                      getEditProfileTextFiledWidget(
+                          context, "Last Name", lastNameController),
                       getTitle('Email'),
-
-                      getEditProfileTextFiledWidget(context, "Email",
-                          mailController),
-
+                      getEditProfileTextFiledWidget(
+                          context, "Email", mailController),
                       getTitle('Phone Number'),
-                      getEditProfileTextFiledWidget(context, "Phone Number",
-                          phoneController),
-
-
-
-
-
-
-
+                      getEditProfileTextFiledWidget(
+                          context, "Phone Number", phoneController),
                     ],
                   ),
                   flex: 1,
                 ),
-
-
                 Container(
-                  margin: EdgeInsets.only(top
-                      : (defaultMargin/2)),
-                  child: getButtonWidget(context, "Edit profile",primaryColor, (){
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => EditProfilePage(),));
+                  margin: EdgeInsets.only(top: (defaultMargin / 2)),
+                  child: getButtonWidget(context, "Edit profile", primaryColor,
+                      () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditProfilePage(),
+                        ));
                   }),
                 )
-                
               ],
             ),
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
-
 
   Widget getEditProfileTextFiledWidget(BuildContext context, String s,
       TextEditingController textEditingController) {
@@ -250,30 +203,8 @@ class _ProfilePage extends State<ProfilePage> {
     double fontSize = getPercentSize(height, 27);
 
     return Container(
-
       height: getScreenPercentSize(context, 6),
-
       alignment: Alignment.centerLeft,
-
-      // decoration: ShapeDecoration(
-      //   color: cellColor,
-      //
-      //   // shadows: [BoxShadow(
-      //   //     color: textColor.withOpacity(0.1),
-      //   //     blurRadius: 2,
-      //   //     spreadRadius: 1,
-      //   //     offset: Offset(0, 4))],
-      //   shape: SmoothRectangleBorder(
-      //     side: BorderSide(color: primaryColor.withOpacity(0.5), width: 0.3),
-      //     borderRadius: SmoothBorderRadius(
-      //       cornerRadius: radius,
-      //       cornerSmoothing: 0.8,
-      //     ),
-      //   ),
-      // ),
-
-
-
       child: TextField(
         maxLines: 1,
         controller: textEditingController,
@@ -286,22 +217,13 @@ class _ProfilePage extends State<ProfilePage> {
             fontWeight: FontWeight.w400,
             fontSize: fontSize),
         decoration: InputDecoration(
-            contentPadding:
-            EdgeInsets.zero,
-            // border: InputBorder.none,
-            // focusedBorder: InputBorder.none,
-            // enabledBorder: InputBorder.none,
-            // errorBorder: InputBorder.none,
-            // disabledBorder: InputBorder.none,
-
+            contentPadding: EdgeInsets.zero,
             enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: borderColor,width: 0.5),
+              borderSide: BorderSide(color: borderColor, width: 0.5),
             ),
             focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: borderColor,width: 0.5),
+              borderSide: BorderSide(color: borderColor, width: 0.5),
             ),
-
-
             hintText: s,
             suffixIcon: Icon(
               Icons.add,
@@ -317,14 +239,11 @@ class _ProfilePage extends State<ProfilePage> {
     );
   }
 
-
-
-  getTitle(String string){
+  getTitle(String string) {
     return Container(
-      margin: EdgeInsets.only(top: getScreenPercentSize(context,3)),
-      child: getTextWidget(string, textColor,getScreenPercentSize(context, 1.8),
-          FontWeight.w600, TextAlign.start),
+      margin: EdgeInsets.only(top: getScreenPercentSize(context, 3)),
+      child: getTextWidget(string, textColor,
+          getScreenPercentSize(context, 1.8), FontWeight.w600, TextAlign.start),
     );
   }
-
 }

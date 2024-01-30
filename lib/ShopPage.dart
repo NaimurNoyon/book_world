@@ -17,8 +17,7 @@ class ShopPage extends StatefulWidget {
   }
 }
 
-class _ShopPage extends State<ShopPage>
-    with SingleTickerProviderStateMixin {
+class _ShopPage extends State<ShopPage> with SingleTickerProviderStateMixin {
   double padding = 0;
   double defMargin = 0;
   double height = 0;
@@ -36,45 +35,48 @@ class _ShopPage extends State<ShopPage>
     Navigator.of(context).pop();
     return new Future.value(true);
   }
-  FocusNode myFocusNode=FocusNode();
-  bool isAutoFocus=false;
+
+  FocusNode myFocusNode = FocusNode();
+  bool isAutoFocus = false;
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     padding = getScreenPercentSize(context, 2);
     defMargin = getScreenPercentSize(context, 2);
     height = getScreenPercentSize(context, 6);
- double   bottomHeight = getScreenPercentSize(context, 7.4);
- double   bottomWidth = getWidthPercentSize(context, 48);
+    double bottomHeight = getScreenPercentSize(context, 7.4);
+    double bottomWidth = getWidthPercentSize(context, 48);
 
     double radius = getScreenPercentSize(context, 1.5);
 
     return WillPopScope(
       onWillPop: _requestPop,
       child: Scaffold(
-        backgroundColor: backgroundColor,
+        backgroundColor: secondaryColor,
         body: SafeArea(
           child: GestureDetector(
-            onTap: (){
+            onTap: () {
               setState(() {
-                myFocusNode.canRequestFocus=false;
+                myFocusNode.canRequestFocus = false;
               });
             },
             child: Container(
               width: double.infinity,
-              color: backgroundColor,
-
+              color: secondaryColor,
               child: Stack(
                 children: [
                   Column(
                     children: [
-                      getAppBar(context, "Shop",isBack: true,function: (){
+                      getAppBar(context, "Shop", isBack: true, function: () {
                         _requestPop();
                       }),
                       Expanded(
                         child: ListView(
                           children: [
-                            SizedBox(height: getScreenPercentSize(context, 1.5),),
+                            SizedBox(
+                              height: getScreenPercentSize(context, 1.5),
+                            ),
 
                             Row(
                               children: [
@@ -87,19 +89,22 @@ class _ShopPage extends State<ShopPage>
                                     builder: (context, setState) {
                                       return Container(
                                         height: height,
-                                        margin: EdgeInsets.symmetric(vertical: (defMargin/2)),
-                                        decoration: getDecorationWithBorder(radius,color: isAutoFocus?primaryColor:borderColor),
+                                        margin: EdgeInsets.symmetric(
+                                            vertical: (defMargin / 2)),
+                                        decoration: getDecorationWithBorder(
+                                            radius,
+                                            color: isAutoFocus
+                                                ? primaryColor
+                                                : borderColor),
                                         child: Focus(
-
                                           onFocusChange: (hasFocus) {
-                                            if(hasFocus) {
-
-                                              setState((){
-                                                isAutoFocus=true;
+                                            if (hasFocus) {
+                                              setState(() {
+                                                isAutoFocus = true;
                                               });
-                                            }else{
-                                              setState((){
-                                                isAutoFocus=false;
+                                            } else {
+                                              setState(() {
+                                                isAutoFocus = false;
                                               });
                                             }
                                           },
@@ -110,32 +115,40 @@ class _ShopPage extends State<ShopPage>
                                               fontFamily: fontFamily,
                                               color: textColor,
                                               fontWeight: FontWeight.w400,
-                                              fontSize: getScreenPercentSize(context,2),
+                                              fontSize: getScreenPercentSize(
+                                                  context, 2),
                                             ),
                                             onChanged: (string) {},
                                             maxLines: 1,
-                                            textAlignVertical: TextAlignVertical.center,
+                                            textAlignVertical:
+                                                TextAlignVertical.center,
                                             textAlign: TextAlign.left,
                                             decoration: InputDecoration(
-                                                contentPadding: EdgeInsets.only(left: defMargin),
+                                                contentPadding: EdgeInsets.only(
+                                                    left: defMargin),
                                                 hintText: 'Search...',
                                                 prefixIcon: Icon(
                                                   CupertinoIcons.search,
                                                   color: subTextColor,
-                                                  size: getPercentSize(height, 50),
+                                                  size: getPercentSize(
+                                                      height, 50),
                                                 ),
                                                 hintStyle: TextStyle(
                                                   color: subTextColor,
                                                   fontFamily: fontFamily,
-                                                  fontSize: getScreenPercentSize(context, 2),
+                                                  fontSize:
+                                                      getScreenPercentSize(
+                                                          context, 2),
                                                   fontWeight: FontWeight.w400,
                                                 ),
                                                 filled: true,
-
                                                 fillColor: Colors.transparent,
-                                                disabledBorder: getOutLineBorder(radius),
-                                                enabledBorder: getOutLineBorder(radius),
-                                                focusedBorder: getOutLineBorder(radius),
+                                                disabledBorder:
+                                                    getOutLineBorder(radius),
+                                                enabledBorder:
+                                                    getOutLineBorder(radius),
+                                                focusedBorder:
+                                                    getOutLineBorder(radius),
                                                 isDense: true),
                                           ),
                                         ),
@@ -205,7 +218,9 @@ class _ShopPage extends State<ShopPage>
                             //     ),
                             //   ),
                             // ),
-                            SizedBox(height: (defMargin/2),),
+                            SizedBox(
+                              height: (defMargin / 2),
+                            ),
                             // Padding(
                             //   padding: EdgeInsets.symmetric(horizontal: defMargin),
                             //   child: getTextWithFontFamilyWidget(
@@ -236,68 +251,82 @@ class _ShopPage extends State<ShopPage>
                       ),
                     ],
                   ),
-
-
                   Align(
                     alignment: Alignment.bottomCenter,
-
                     child: Container(
-
                       width: bottomWidth,
                       height: bottomHeight,
-                      margin: EdgeInsets.only(bottom: getScreenPercentSize(context,5)),
-
+                      margin: EdgeInsets.only(
+                          bottom: getScreenPercentSize(context, 5)),
                       decoration: BoxDecoration(
-                        color: primaryColor,
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(getPercentSize(bottomHeight, 65)))
-                      ),
-
+                          color: primaryColor,
+                          borderRadius: BorderRadius.all(Radius.circular(
+                              getPercentSize(bottomHeight, 65)))),
                       child: Row(
                         children: [
-
-
-                          Expanded(child: InkWell(
-                            onTap: (){
-                              filterDialog();
-                            },
-                            child: Container(
-
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-
-                                  Image.asset(assetsPath+"Sort.png",color: Colors.white,
-                                     height: getPercentSize(bottomWidth, 10)   ),
-                                  SizedBox(width: getPercentSize(bottomWidth, 4),),
-                                  getTextWidget("Sort", Colors.white, getPercentSize(bottomWidth, 8),
-                                      FontWeight.w600, TextAlign.center)
-                                ],
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                filterDialog();
+                              },
+                              child: Container(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Image.asset(assetsPath + "Sort.png",
+                                        color: Colors.white,
+                                        height:
+                                            getPercentSize(bottomWidth, 10)),
+                                    SizedBox(
+                                      width: getPercentSize(bottomWidth, 4),
+                                    ),
+                                    getTextWidget(
+                                        "Sort",
+                                        Colors.white,
+                                        getPercentSize(bottomWidth, 8),
+                                        FontWeight.w600,
+                                        TextAlign.center)
+                                  ],
+                                ),
                               ),
-
                             ),
-                          ),flex: 1,),Container(height: double.infinity,
-                          width: 1,
-                          color: Colors.white,),
-                          Expanded(child: InkWell(
-                            onTap: (){
-                              filterDialog1();
-                            },
-                            child: Container(  child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-
-                                Image.asset(assetsPath+"Filter.png",color: Colors.white,
-                                    height: getPercentSize(bottomWidth, 10)   ),
-                                SizedBox(width: getPercentSize(bottomWidth, 4),),
-                                getTextWidget("Filter", Colors.white, getPercentSize(bottomWidth, 8),
-                                    FontWeight.w600, TextAlign.center)
-                              ],
-                            ),),
-                          ),flex: 1,)
-
+                            flex: 1,
+                          ),
+                          Container(
+                            height: double.infinity,
+                            width: 1,
+                            color: Colors.white,
+                          ),
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                filterDialog1();
+                              },
+                              child: Container(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Image.asset(assetsPath + "Filter.png",
+                                        color: Colors.white,
+                                        height:
+                                            getPercentSize(bottomWidth, 10)),
+                                    SizedBox(
+                                      width: getPercentSize(bottomWidth, 4),
+                                    ),
+                                    getTextWidget(
+                                        "Filter",
+                                        Colors.white,
+                                        getPercentSize(bottomWidth, 8),
+                                        FontWeight.w600,
+                                        TextAlign.center)
+                                  ],
+                                ),
+                              ),
+                            ),
+                            flex: 1,
+                          )
                         ],
                       ),
                     ),
@@ -312,8 +341,6 @@ class _ShopPage extends State<ShopPage>
   }
 
   int selectedCategory = 0;
-
-
 
   // sellerList() {
   //   defMargin = getScreenPercentSize(context, 1.5);
@@ -354,7 +381,7 @@ class _ShopPage extends State<ShopPage>
   //           margin: EdgeInsets.only(
   //               top: defMargin, bottom: (defMargin)),
   //           decoration: ShapeDecoration(
-  //             color: backgroundColor,
+  //             color: secondaryColor,
   //             // shadows: [
   //             //   BoxShadow(
   //             //       color: primaryColor.withOpacity(0.1),
@@ -396,7 +423,7 @@ class _ShopPage extends State<ShopPage>
   //                         height: getPercentSize(imgHeight, 18),
   //                         width: getPercentSize(imgHeight, 18),
   //                         decoration: ShapeDecoration(
-  //                           color: backgroundColor,
+  //                           color: secondaryColor,
   //                           shape: SmoothRectangleBorder(
   //                             side: BorderSide(color: iconColor, width: 0.1),
   //                             borderRadius: SmoothBorderRadius(
@@ -503,7 +530,6 @@ class _ShopPage extends State<ShopPage>
   // }
 
   sellerList() {
-
     defMargin = getScreenPercentSize(context, 1.5);
 
     var height = getScreenPercentSize(context, 35);
@@ -525,10 +551,10 @@ class _ShopPage extends State<ShopPage>
     return GridView.count(
       crossAxisCount: _crossAxisCount,
       shrinkWrap: true,
-      padding: EdgeInsets.symmetric(horizontal: (defMargin*1.2)),
+      padding: EdgeInsets.symmetric(horizontal: (defMargin * 1.2)),
       scrollDirection: Axis.vertical,
       primary: false,
-      crossAxisSpacing: (defMargin*2),
+      crossAxisSpacing: (defMargin * 2),
       mainAxisSpacing: 0,
       childAspectRatio: _aspectRatio,
       children: List.generate(productList.length, (index) {
@@ -537,10 +563,9 @@ class _ShopPage extends State<ShopPage>
         return InkWell(
           child: Container(
             width: width,
-            margin: EdgeInsets.only(
-                top: defMargin, bottom: (defMargin)),
+            margin: EdgeInsets.only(top: defMargin, bottom: (defMargin)),
             decoration: ShapeDecoration(
-              color: backgroundColor,
+              color: secondaryColor,
               shadows: [
                 BoxShadow(
                     color: subTextColor.withOpacity(0.1),
@@ -562,16 +587,18 @@ class _ShopPage extends State<ShopPage>
                 Container(
                   height: imgHeight,
                   // color: Colors.red,
-                  margin: EdgeInsets.only(top: getPercentSize(width, 7),bottom: getPercentSize(width, 5)),
+                  margin: EdgeInsets.only(
+                      top: getPercentSize(width, 7),
+                      bottom: getPercentSize(width, 5)),
                   child: Stack(
                     children: [
                       Center(
                         child:
-                        // ClipRRect(
-                        //   borderRadius: BorderRadius.circular(radius),
-                        //
-                        //   child:
-                        Image.asset(
+                            // ClipRRect(
+                            //   borderRadius: BorderRadius.circular(radius),
+                            //
+                            //   child:
+                            Image.asset(
                           assetsPath + model.icon!,
                           height: getPercentSize(imgHeight, 75),
                           // fit: BoxFit.fill,
@@ -581,13 +608,14 @@ class _ShopPage extends State<ShopPage>
                       Align(
                         alignment: Alignment.topRight,
                         child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: getPercentSize(imgHeight, 9),
+                          margin: EdgeInsets.symmetric(
+                            horizontal: getPercentSize(imgHeight, 9),
                             // vertical: getPercentSize(imgHeight, 6)
                           ),
                           height: getPercentSize(imgHeight, 18),
                           width: getPercentSize(imgHeight, 18),
                           // decoration: ShapeDecoration(
-                          // color: backgroundColor,
+                          // color: secondaryColor,
                           // shape: SmoothRectangleBorder(
                           //   side: BorderSide(color: iconColor, width: 0.1),
                           //   borderRadius: SmoothBorderRadius(
@@ -608,91 +636,94 @@ class _ShopPage extends State<ShopPage>
                 ),
                 Expanded(
                     child: Container(
-                      margin: EdgeInsets.symmetric(
-                          horizontal: getPercentSize(width, 5)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                  margin: EdgeInsets.symmetric(
+                      horizontal: getPercentSize(width, 5)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
                         children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: getCustomTextWidget(
-                                      model.subText!,
-                                      textColor,
-                                      getPercentSize(remainHeight, 8),
-                                      FontWeight.bold,
-                                      TextAlign.start,1)),
-
-                            ],
-                          ),
-                          // SizedBox(
-                          //   height: getPercentSize(remainHeight, 4),
-                          // ),
-                          SizedBox(
-                            height: getPercentSize(remainHeight, 5),
-                          ),
-                          Row(
-                            children: [
-                              Image.asset(
-                                assetsPath + "star.png",
-                                height: getPercentSize(remainHeight, 9),
-                              ),
-                              SizedBox(
-                                width: getPercentSize(width, 2),
-                              ),
-                              getTextWidget(
-                                  '4.5',
-                                  subTextColor,
+                          Expanded(
+                              child: getCustomTextWidget(
+                                  model.subText!,
+                                  textColor,
                                   getPercentSize(remainHeight, 8),
-                                  FontWeight.w400,
-                                  TextAlign.start),
-
-                              SizedBox(
-                                width: getPercentSize(width, 4.5),
-                              ),
-                              Expanded(
-                                child: getTextWidget(
-                                    '19 Reviews',
-                                    subTextColor,
-                                    getPercentSize(remainHeight, 8),
-                                    FontWeight.w400,
-                                    TextAlign.start),
-                              )
-                            ],
+                                  FontWeight.bold,
+                                  TextAlign.start,
+                                  1)),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   height: getPercentSize(remainHeight, 4),
+                      // ),
+                      SizedBox(
+                        height: getPercentSize(remainHeight, 5),
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            assetsPath + "star.png",
+                            height: getPercentSize(remainHeight, 9),
                           ),
                           SizedBox(
-                            height: getPercentSize(remainHeight, 5),
+                            width: getPercentSize(width, 2),
                           ),
-                          Row(
-                            children: [
-                              Expanded(
-                                  child:   getTextWithFontFamilyWidget(
-                                      model.price!,
-                                      primaryColor,
-                                      getPercentSize(remainHeight, 12),
-                                      FontWeight.w400,
-                                      TextAlign.start)),
-                              SizedBox(
-                                width: getPercentSize(width, 2),
-                              ),
-                              getAddMaterialWidget(context, Container(
+                          getTextWidget(
+                              '4.5',
+                              subTextColor,
+                              getPercentSize(remainHeight, 8),
+                              FontWeight.w400,
+                              TextAlign.start),
+                          SizedBox(
+                            width: getPercentSize(width, 4.5),
+                          ),
+                          Expanded(
+                            child: getTextWidget(
+                                '19 Reviews',
+                                subTextColor,
+                                getPercentSize(remainHeight, 8),
+                                FontWeight.w400,
+                                TextAlign.start),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: getPercentSize(remainHeight, 5),
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                              child: getTextWithFontFamilyWidget(
+                                  model.price!,
+                                  primaryColor,
+                                  getPercentSize(remainHeight, 12),
+                                  FontWeight.w400,
+                                  TextAlign.start)),
+                          SizedBox(
+                            width: getPercentSize(width, 2),
+                          ),
+                          getAddMaterialWidget(
+                              context,
+                              Container(
                                 height: getPercentSize(remainHeight, 15),
                                 width: getPercentSize(remainHeight, 15),
                                 decoration: getDecorationWithColor(
-                                    getPercentSize(remainHeight, 3), primaryColor),
+                                    getPercentSize(remainHeight, 3),
+                                    primaryColor),
                                 child: Center(
                                   child: Icon(Icons.add,
                                       color: Colors.white,
                                       size: getPercentSize(remainHeight, 15)),
                                 ),
-                              ), getPercentSize(remainHeight, 3), getPercentSize(remainHeight, 16))
-
-                            ],
-                          ),
+                              ),
+                              getPercentSize(remainHeight, 3),
+                              getPercentSize(remainHeight, 16))
                         ],
                       ),
-                    )),
+                    ],
+                  ),
+                )),
               ],
             ),
           ),
@@ -744,7 +775,7 @@ class _ShopPage extends State<ShopPage>
     //           margin: EdgeInsets.symmetric(vertical: (defMargin/2)),
     //
     //           decoration: ShapeDecoration(
-    //             color: backgroundColor,
+    //             color: secondaryColor,
     //             // shadows: [
     //             //   BoxShadow(
     //             //       color: primaryColor.withOpacity(0.1),
@@ -786,7 +817,7 @@ class _ShopPage extends State<ShopPage>
     //                         height: getPercentSize(imgHeight, 18),
     //                         width: getPercentSize(imgHeight, 18),
     //                         decoration: ShapeDecoration(
-    //                           color: backgroundColor,
+    //                           color: secondaryColor,
     //                           shape: SmoothRectangleBorder(
     //                             side: BorderSide(color: iconColor, width: 0.1),
     //                             borderRadius: SmoothBorderRadius(
@@ -888,7 +919,6 @@ class _ShopPage extends State<ShopPage>
     //   ),
     // );
   }
-
 
   getCategoryList() {
     double height = getScreenPercentSize(context, 7);
@@ -1024,8 +1054,6 @@ class _ShopPage extends State<ShopPage>
               );
             }));
   }
-
-
 
   // getCategoryList() {
   //   double height = getScreenPercentSize(context, 6);
@@ -1170,7 +1198,7 @@ class _ShopPage extends State<ShopPage>
                 topLeft: Radius.circular(radius),
                 topRight: Radius.circular(radius))),
         builder: (context) {
-          return  FractionallySizedBox(
+          return FractionallySizedBox(
             heightFactor: 0.6,
             child: StatefulBuilder(
               builder: (context, setState) {
@@ -1179,9 +1207,11 @@ class _ShopPage extends State<ShopPage>
                   // padding: EdgeInsets.symmetric(horizontal: getScreenPercentSize(context, 2)),
                   child: ListView(
                     children: <Widget>[
-                      SizedBox(height: getScreenPercentSize(context, 2),),
+                      SizedBox(
+                        height: getScreenPercentSize(context, 2),
+                      ),
                       Padding(
-                        padding:  EdgeInsets.symmetric(horizontal: margin),
+                        padding: EdgeInsets.symmetric(horizontal: margin),
                         child: Row(
                           children: [
                             Expanded(
@@ -1209,7 +1239,7 @@ class _ShopPage extends State<ShopPage>
                         height: getPercentSize(height, 1),
                       ),
                       Padding(
-                        padding:  EdgeInsets.symmetric(horizontal: margin),
+                        padding: EdgeInsets.symmetric(horizontal: margin),
                         child: getTextWidget(
                             'Arrange based on the following types',
                             subTextColor,
@@ -1228,15 +1258,16 @@ class _ShopPage extends State<ShopPage>
                           return InkWell(
                             onTap: () {
                               setState(() {
-                              position=index;
-                              // Navigator.of(context).pop();
-                              // filterDialog1();
+                                position = index;
+                                // Navigator.of(context).pop();
+                                // filterDialog1();
                               });
                             },
                             child: Container(
                               height: subHeight,
                               margin: EdgeInsets.symmetric(
-                                  vertical: getPercentSize(height, 1.5),horizontal: margin),
+                                  vertical: getPercentSize(height, 1.5),
+                                  horizontal: margin),
                               padding: EdgeInsets.symmetric(
                                   horizontal: getWidthPercentSize(context, 3)),
                               decoration: ShapeDecoration(
@@ -1276,65 +1307,59 @@ class _ShopPage extends State<ShopPage>
                           );
                         },
                       ),
-
                       SizedBox(
                         height: getPercentSize(height, 6),
                       ),
-
                       Container(
                         margin: EdgeInsets.symmetric(horizontal: margin),
                         child: Row(
-
                           children: [
-
                             Expanded(
                               child: InkWell(
-                                onTap: (){
+                                onTap: () {
                                   // Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage(),));
 
                                   Navigator.of(context).pop();
-
-
                                 },
-                                child: getMaterialCell(context,widget: Container(
-                                  margin: EdgeInsets.only(right: getWidthPercentSize(context,2)),
-                                  height: getScreenPercentSize(context,7),
-
-                                  decoration: ShapeDecoration(
-
-                                    color: alphaColor,
-                                    // shadows: [
-                                    //   BoxShadow(
-                                    //       color: textColor.withOpacity(0.1),
-                                    //       blurRadius: 2,
-                                    //       spreadRadius: 1,
-                                    //       offset: Offset(0, 4))
-                                    // ],
-                                    shape: SmoothRectangleBorder(
-                                      side: BorderSide(color: primaryColor,width: 2),
-                                      borderRadius: SmoothBorderRadius(
-                                        cornerRadius: getScreenPercentSize(context, 1.8),
-                                        cornerSmoothing: 0.8,
+                                child: getMaterialCell(context,
+                                    widget: Container(
+                                      margin: EdgeInsets.only(
+                                          right:
+                                              getWidthPercentSize(context, 2)),
+                                      height: getScreenPercentSize(context, 7),
+                                      decoration: ShapeDecoration(
+                                        color: alphaColor,
+                                        // shadows: [
+                                        //   BoxShadow(
+                                        //       color: textColor.withOpacity(0.1),
+                                        //       blurRadius: 2,
+                                        //       spreadRadius: 1,
+                                        //       offset: Offset(0, 4))
+                                        // ],
+                                        shape: SmoothRectangleBorder(
+                                          side: BorderSide(
+                                              color: primaryColor, width: 2),
+                                          borderRadius: SmoothBorderRadius(
+                                            cornerRadius: getScreenPercentSize(
+                                                context, 1.8),
+                                            cornerSmoothing: 0.8,
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-
-
-
-
-
-                                  child: Center(
-                                    child: getTextWidget('Reset', textColor, getScreenPercentSize(context, 2),
-                                        FontWeight.bold, TextAlign.center),
-                                  ),
-                                )),
+                                      child: Center(
+                                        child: getTextWidget(
+                                            'Reset',
+                                            textColor,
+                                            getScreenPercentSize(context, 2),
+                                            FontWeight.bold,
+                                            TextAlign.center),
+                                      ),
+                                    )),
                               ),
                             ),
-
-
                             Expanded(
                               child: InkWell(
-                                onTap: (){
+                                onTap: () {
                                   Navigator.of(context).pop();
                                   // if(_position==3){
                                   //   PrefData.setIsIntro(false);
@@ -1350,44 +1375,41 @@ class _ShopPage extends State<ShopPage>
                                   //   }
                                   // }
                                 },
-                                child: getMaterialCell(context,widget: Container(
-                                  margin: EdgeInsets.only(left: getWidthPercentSize(context,2)),
-                                  height: getScreenPercentSize(context,7),
-
-                                  decoration: ShapeDecoration(
-
-                                    color: primaryColor,
-                                    // shadows: [BoxShadow(
-                                    //     color: textColor.withOpacity(0.1),
-                                    //     blurRadius: 2,
-                                    //     spreadRadius: 1,
-                                    //     offset: Offset(0, 4))],
-                                    shape: SmoothRectangleBorder(
-                                      borderRadius: SmoothBorderRadius(
-                                        cornerRadius: getScreenPercentSize(context, 1.8),
-                                        cornerSmoothing: 0.8,
+                                child: getMaterialCell(context,
+                                    widget: Container(
+                                      margin: EdgeInsets.only(
+                                          left:
+                                              getWidthPercentSize(context, 2)),
+                                      height: getScreenPercentSize(context, 7),
+                                      decoration: ShapeDecoration(
+                                        color: primaryColor,
+                                        // shadows: [BoxShadow(
+                                        //     color: textColor.withOpacity(0.1),
+                                        //     blurRadius: 2,
+                                        //     spreadRadius: 1,
+                                        //     offset: Offset(0, 4))],
+                                        shape: SmoothRectangleBorder(
+                                          borderRadius: SmoothBorderRadius(
+                                            cornerRadius: getScreenPercentSize(
+                                                context, 1.8),
+                                            cornerSmoothing: 0.8,
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-
-
-
-
-
-                                  child: Center(
-                                    child: getTextWidget('Apply', Colors.white, getScreenPercentSize(context, 2),
-                                        FontWeight.bold, TextAlign.center),
-                                  ),
-                                )),
+                                      child: Center(
+                                        child: getTextWidget(
+                                            'Apply',
+                                            Colors.white,
+                                            getScreenPercentSize(context, 2),
+                                            FontWeight.bold,
+                                            TextAlign.center),
+                                      ),
+                                    )),
                               ),
                             )
                           ],
                         ),
                       ),
-
-
-
-
                     ],
                   ),
                 );
@@ -1397,10 +1419,19 @@ class _ShopPage extends State<ShopPage>
         });
   }
 
+  List<String> materialList = [
+    'King',
+    'Pedigree',
+    'Baker',
+    'Whiskies',
+    'Chomp',
+    'Pet Toys',
+    'Meow',
+    'Bash',
+    'Domino'
+  ];
 
-  List<String> materialList = ['King','Pedigree','Baker','Whiskies','Chomp','Pet Toys','Meow','Bash','Domino'];
-
-  int materialPosition=0;
+  int materialPosition = 0;
 
   RangeValues _currentRangeValues = const RangeValues(100, 1000);
 
@@ -1410,27 +1441,26 @@ class _ShopPage extends State<ShopPage>
     double margin = getScreenPercentSize(context, 2);
 
     showModalBottomSheet(
-
         isScrollControlled: true,
         context: context,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(radius),
                 topRight: Radius.circular(radius))),
-
         builder: (context) {
           return StatefulBuilder(
             builder: (context, setState) {
               return FractionallySizedBox(
                 heightFactor: 0.6,
                 child: Container(
-
                   // padding: EdgeInsets.symmetric(ver: getScreenPercentSize(context, 2)),
                   child: ListView(
                     children: <Widget>[
-                      SizedBox(height:margin ,),
+                      SizedBox(
+                        height: margin,
+                      ),
                       Padding(
-                        padding:  EdgeInsets.symmetric(horizontal: margin),
+                        padding: EdgeInsets.symmetric(horizontal: margin),
                         child: Row(
                           children: [
                             Expanded(
@@ -1458,7 +1488,7 @@ class _ShopPage extends State<ShopPage>
                         height: getPercentSize(height, 1),
                       ),
                       Padding(
-                        padding:  EdgeInsets.symmetric(horizontal: margin),
+                        padding: EdgeInsets.symmetric(horizontal: margin),
                         child: getTextWidget(
                             'Filter products with more specific types',
                             subTextColor,
@@ -1470,7 +1500,7 @@ class _ShopPage extends State<ShopPage>
                         height: getPercentSize(height, 4),
                       ),
                       Padding(
-                        padding:  EdgeInsets.symmetric(horizontal: margin),
+                        padding: EdgeInsets.symmetric(horizontal: margin),
                         child: getTextWithFontFamilyWidget(
                             'Price',
                             textColor,
@@ -1495,16 +1525,24 @@ class _ShopPage extends State<ShopPage>
                       ),
 
                       Padding(
-                        padding:  EdgeInsets.symmetric(horizontal: margin),
+                        padding: EdgeInsets.symmetric(horizontal: margin),
                         child: Row(
                           children: [
                             Expanded(
-                              child: getTextWidget("\$50", primaryColor, getScreenPercentSize(context, 2),
-                                  FontWeight.w600, TextAlign.start),),
+                              child: getTextWidget(
+                                  "\$50",
+                                  primaryColor,
+                                  getScreenPercentSize(context, 2),
+                                  FontWeight.w600,
+                                  TextAlign.start),
+                            ),
 
-
-                            getTextWidget("\$250", primaryColor, getScreenPercentSize(context, 2),
-                                FontWeight.w600, TextAlign.start),
+                            getTextWidget(
+                                "\$250",
+                                primaryColor,
+                                getScreenPercentSize(context, 2),
+                                FontWeight.w600,
+                                TextAlign.start),
 
                             // getTextWidget(
                             //     '\$1000',
@@ -1521,7 +1559,7 @@ class _ShopPage extends State<ShopPage>
                       ),
 
                       Padding(
-                        padding:  EdgeInsets.symmetric(horizontal: margin),
+                        padding: EdgeInsets.symmetric(horizontal: margin),
                         child: getTextWithFontFamilyWidget(
                             'Brand',
                             textColor,
@@ -1533,67 +1571,62 @@ class _ShopPage extends State<ShopPage>
                         height: getPercentSize(height, 2),
                       ),
 
-
-                      Padding(padding: EdgeInsets.symmetric(horizontal: margin),
-                          child: getGrid(setState))
-                      ,
+                      Padding(
+                          padding: EdgeInsets.symmetric(horizontal: margin),
+                          child: getGrid(setState)),
                       SizedBox(
                         height: getPercentSize(height, 10),
                       ),
                       Container(
                         margin: EdgeInsets.symmetric(horizontal: margin),
                         child: Row(
-
                           children: [
-
                             Expanded(
                               child: InkWell(
-                                onTap: (){
+                                onTap: () {
                                   // Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage(),));
 
                                   Navigator.of(context).pop();
-
-
                                 },
-                                child: getMaterialCell(context,widget: Container(
-                                  margin: EdgeInsets.only(right: getWidthPercentSize(context,3)),
-                                  height: getScreenPercentSize(context,7),
-
-                                  decoration: ShapeDecoration(
-
-                                    color: alphaColor,
-                                    // shadows: [
-                                    //   BoxShadow(
-                                    //       color: textColor.withOpacity(0.1),
-                                    //       blurRadius: 2,
-                                    //       spreadRadius: 1,
-                                    //       offset: Offset(0, 4))
-                                    // ],
-                                    shape: SmoothRectangleBorder(
-                                      side: BorderSide(color: primaryColor,width: 2),
-                                      borderRadius: SmoothBorderRadius(
-                                        cornerRadius: getScreenPercentSize(context, 1.8),
-                                        cornerSmoothing: 0.8,
+                                child: getMaterialCell(context,
+                                    widget: Container(
+                                      margin: EdgeInsets.only(
+                                          right:
+                                              getWidthPercentSize(context, 3)),
+                                      height: getScreenPercentSize(context, 7),
+                                      decoration: ShapeDecoration(
+                                        color: alphaColor,
+                                        // shadows: [
+                                        //   BoxShadow(
+                                        //       color: textColor.withOpacity(0.1),
+                                        //       blurRadius: 2,
+                                        //       spreadRadius: 1,
+                                        //       offset: Offset(0, 4))
+                                        // ],
+                                        shape: SmoothRectangleBorder(
+                                          side: BorderSide(
+                                              color: primaryColor, width: 2),
+                                          borderRadius: SmoothBorderRadius(
+                                            cornerRadius: getScreenPercentSize(
+                                                context, 1.8),
+                                            cornerSmoothing: 0.8,
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-
-
-
-
-
-                                  child: Center(
-                                    child: getTextWidget('Reset', textColor, getScreenPercentSize(context, 2),
-                                        FontWeight.bold, TextAlign.center),
-                                  ),
-                                )),
+                                      child: Center(
+                                        child: getTextWidget(
+                                            'Reset',
+                                            textColor,
+                                            getScreenPercentSize(context, 2),
+                                            FontWeight.bold,
+                                            TextAlign.center),
+                                      ),
+                                    )),
                               ),
                             ),
-
-
                             Expanded(
                               child: InkWell(
-                                onTap: (){
+                                onTap: () {
                                   Navigator.of(context).pop();
                                   // if(_position==3){
                                   //   PrefData.setIsIntro(false);
@@ -1609,35 +1642,36 @@ class _ShopPage extends State<ShopPage>
                                   //   }
                                   // }
                                 },
-                                child: getMaterialCell(context,widget: Container(
-                                  margin: EdgeInsets.only(left: getWidthPercentSize(context,3)),
-                                  height: getScreenPercentSize(context,7),
-
-                                  decoration: ShapeDecoration(
-
-                                    color: primaryColor,
-                                    // shadows: [BoxShadow(
-                                    //     color: textColor.withOpacity(0.1),
-                                    //     blurRadius: 2,
-                                    //     spreadRadius: 1,
-                                    //     offset: Offset(0, 4))],
-                                    shape: SmoothRectangleBorder(
-                                      borderRadius: SmoothBorderRadius(
-                                        cornerRadius: getScreenPercentSize(context, 1.8),
-                                        cornerSmoothing: 0.8,
+                                child: getMaterialCell(context,
+                                    widget: Container(
+                                      margin: EdgeInsets.only(
+                                          left:
+                                              getWidthPercentSize(context, 3)),
+                                      height: getScreenPercentSize(context, 7),
+                                      decoration: ShapeDecoration(
+                                        color: primaryColor,
+                                        // shadows: [BoxShadow(
+                                        //     color: textColor.withOpacity(0.1),
+                                        //     blurRadius: 2,
+                                        //     spreadRadius: 1,
+                                        //     offset: Offset(0, 4))],
+                                        shape: SmoothRectangleBorder(
+                                          borderRadius: SmoothBorderRadius(
+                                            cornerRadius: getScreenPercentSize(
+                                                context, 1.8),
+                                            cornerSmoothing: 0.8,
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-
-
-
-
-
-                                  child: Center(
-                                    child: getTextWidget('Apply', Colors.white, getScreenPercentSize(context, 2),
-                                        FontWeight.bold, TextAlign.center),
-                                  ),
-                                )),
+                                      child: Center(
+                                        child: getTextWidget(
+                                            'Apply',
+                                            Colors.white,
+                                            getScreenPercentSize(context, 2),
+                                            FontWeight.bold,
+                                            TextAlign.center),
+                                      ),
+                                    )),
                               ),
                             )
                           ],
@@ -1647,7 +1681,6 @@ class _ShopPage extends State<ShopPage>
                       SizedBox(
                         height: getPercentSize(height, 10),
                       ),
-
 
                       // FlutterSlider(
                       //   handlerHeight: getScreenPercentSize(context, 1),
@@ -1749,15 +1782,15 @@ class _ShopPage extends State<ShopPage>
             child: Container(
               width: cellHeight,
               child: Container(
-                margin: EdgeInsets.only(top: getPercentSize(cellHeight, 3),bottom: 1),
+                margin: EdgeInsets.only(
+                    top: getPercentSize(cellHeight, 3), bottom: 1),
                 height: double.infinity,
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(
                     horizontal: getWidthPercentSize(context, 3)),
                 decoration: ShapeDecoration(
-                  color: (materialPosition == index)
-                      ? primaryColor
-                      : alphaColor,
+                  color:
+                      (materialPosition == index) ? primaryColor : alphaColor,
                   // shadows: [
                   //   BoxShadow(
                   //       color: primaryColor.withOpacity(0.3),
@@ -1784,10 +1817,10 @@ class _ShopPage extends State<ShopPage>
                 child: Center(
                   child: getTextWidget(
                     materialList[index],
-                    (index == materialPosition) ? Colors.white : textColor,getPercentSize(cellHeight, 30),
+                    (index == materialPosition) ? Colors.white : textColor,
+                    getPercentSize(cellHeight, 30),
                     FontWeight.w500,
                     TextAlign.center,
-
                   ),
                 ),
               ),
@@ -1797,5 +1830,4 @@ class _ShopPage extends State<ShopPage>
       ),
     );
   }
-
 }

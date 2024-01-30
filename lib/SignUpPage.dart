@@ -22,56 +22,49 @@ class _SignUpPage extends State<SignUpPage> {
   TextEditingController textNameController = new TextEditingController();
   TextEditingController textPasswordController = new TextEditingController();
 
-
-
-
-
   Future<bool> _requestPop() {
     Navigator.of(context).pop();
 
     // Navigator.push(context, MaterialPageRoute(builder: (context) => SignInPage(),));
-    return new Future.value(false);
+    return Future.value(false);
   }
-
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 0), () {
+    Future.delayed(const Duration(seconds: 0), () {
       setThemePosition(context: context);
       setState(() {});
     });
   }
 
-  FocusNode myFocusNode=FocusNode();
-  bool isAutoFocus=false;
+  FocusNode myFocusNode = FocusNode();
+  bool isAutoFocus = false;
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
     double height = getScreenPercentSize(context, 7);
 
-
     double radius = getPercentSize(height, 20);
 
-
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             elevation: 0,
             systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: backgroundColor,
+              statusBarColor: secondaryColor,
               statusBarIconBrightness: Brightness.dark,
               // For Android (dark icons)
               statusBarBrightness: Brightness.light, // For iOS (dark icons)
             ),
             title: Text(""),
             leading: GestureDetector(
-
-              onTap: (){
+              onTap: () {
                 _requestPop();
               },
               child: Icon(
@@ -81,20 +74,14 @@ class _SignUpPage extends State<SignUpPage> {
             ),
           ),
           body: Container(
-            padding: EdgeInsets.symmetric(
-                horizontal: getHorizontalSpace(context)),
+            padding:
+                EdgeInsets.symmetric(horizontal: getHorizontalSpace(context)),
             child: Column(
               children: [
                 Expanded(
+                  flex: 1,
                   child: ListView(
                     children: [
-                      // getTextWidget(
-                      //     "Sign Up!",
-                      //   textColor, getScreenPercentSize(context, 4.2),   FontWeight.bold,
-                      //     TextAlign.left,
-                      //
-                      //    ),
-
                       SizedBox(
                         height: getScreenPercentSize(context, 3),
                       ),
@@ -105,7 +92,6 @@ class _SignUpPage extends State<SignUpPage> {
                         FontWeight.w400,
                         TextAlign.left,
                       ),
-
 
                       SizedBox(
                         height: getScreenPercentSize(context, 1),
@@ -119,31 +105,28 @@ class _SignUpPage extends State<SignUpPage> {
                         TextAlign.left,
                       ),
 
-
-
                       SizedBox(
                         height: getScreenPercentSize(context, 2.5),
                       ),
 
-                      getDefaultTextFiledWidget(
-                          context,"Phone Name",Icons.account_circle_outlined, textNameController),
+                      getDefaultTextFiledWidget(context, "Phone Name",
+                          Icons.account_circle_outlined, textNameController),
 
-                      getDefaultTextFiledWidget(
-                          context,"Phone Email",Icons.mail_outline,  textEmailController),
-
+                      getDefaultTextFiledWidget(context, "Phone Email",
+                          Icons.mail_outline, textEmailController),
 
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: getScreenPercentSize(context, 1.2)),
+                        padding: EdgeInsets.symmetric(
+                            vertical: getScreenPercentSize(context, 1.2)),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Container(
-                              height :height,
+                              height: height,
                               margin: EdgeInsets.only(right: 7),
                               padding: EdgeInsets.symmetric(horizontal: 5),
 
                               decoration: ShapeDecoration(
-
                                 color: cellColor,
 
                                 // shadows: [BoxShadow(
@@ -152,8 +135,8 @@ class _SignUpPage extends State<SignUpPage> {
                                 //     spreadRadius: 1,
                                 //     offset: Offset(0, 4))],
                                 shape: SmoothRectangleBorder(
-                                  side: BorderSide(color: borderColor,width:1),
-
+                                  side:
+                                      BorderSide(color: borderColor, width: 1),
                                   borderRadius: SmoothBorderRadius(
                                     cornerRadius: radius,
                                     cornerSmoothing: 0.8,
@@ -173,23 +156,17 @@ class _SignUpPage extends State<SignUpPage> {
                               child: CountryCodePicker(
                                 boxDecoration: BoxDecoration(
                                   color: cellColor,
-
                                 ),
                                 closeIcon: Icon(Icons.close,
                                     size: getScreenPercentSize(context, 3),
                                     color: textColor),
-
-                                onChanged: (value) {
-
-                                },
+                                onChanged: (value) {},
                                 initialSelection: 'IN',
                                 searchStyle: TextStyle(
-                                    color: textColor,
-                                    fontFamily: fontFamily),
+                                    color: textColor, fontFamily: fontFamily),
                                 searchDecoration: InputDecoration(
                                     border: UnderlineInputBorder(
-                                      borderSide:
-                                      BorderSide(color: textColor),
+                                      borderSide: BorderSide(color: textColor),
                                     ),
                                     hintStyle: TextStyle(
                                         color: textColor,
@@ -200,14 +177,11 @@ class _SignUpPage extends State<SignUpPage> {
                                 dialogTextStyle: TextStyle(
                                     color: subTextColor,
                                     fontFamily: fontFamily),
-
                                 showFlagDialog: true,
                                 hideSearch: true,
-                                comparator: (a, b) => b.name!.compareTo(a.name!),
-
-                                onInit: (code) {
-
-                                },
+                                comparator: (a, b) =>
+                                    b.name!.compareTo(a.name!),
+                                onInit: (code) {},
                               ),
                             ),
                             Expanded(
@@ -220,7 +194,6 @@ class _SignUpPage extends State<SignUpPage> {
                                     alignment: Alignment.centerLeft,
 
                                     decoration: ShapeDecoration(
-
                                       color: cellColor,
 
                                       // shadows: [BoxShadow(
@@ -229,8 +202,11 @@ class _SignUpPage extends State<SignUpPage> {
                                       //     spreadRadius: 1,
                                       //     offset: Offset(0, 4))],
                                       shape: SmoothRectangleBorder(
-                                        side: BorderSide(color: isAutoFocus?primaryColor:borderColor, width: 1),
-
+                                        side: BorderSide(
+                                            color: isAutoFocus
+                                                ? primaryColor
+                                                : borderColor,
+                                            width: 1),
                                         borderRadius: SmoothBorderRadius(
                                           cornerRadius: radius,
                                           cornerSmoothing: 0.8,
@@ -250,26 +226,25 @@ class _SignUpPage extends State<SignUpPage> {
                                     // ),
                                     child: Focus(
                                       onFocusChange: (hasFocus) {
-                                        if(hasFocus) {
-
-                                          setState((){
-                                            isAutoFocus=true;
+                                        if (hasFocus) {
+                                          setState(() {
+                                            isAutoFocus = true;
                                           });
-                                        }else{
-                                          setState((){
-                                            isAutoFocus=false;
+                                        } else {
+                                          setState(() {
+                                            isAutoFocus = false;
                                           });
                                         }
                                       },
                                       child: TextField(
                                         focusNode: myFocusNode,
                                         onChanged: (value) async {
-                                          try {} catch (e) {
-                                          }
+                                          try {} catch (e) {}
                                         },
                                         decoration: InputDecoration(
-                                            contentPadding:
-                                            EdgeInsets.only(left: getWidthPercentSize(context, 2)),
+                                            contentPadding: EdgeInsets.only(
+                                                left: getWidthPercentSize(
+                                                    context, 2)),
                                             isDense: true,
                                             border: InputBorder.none,
                                             focusedBorder: InputBorder.none,
@@ -281,12 +256,14 @@ class _SignUpPage extends State<SignUpPage> {
                                                 fontFamily: fontFamily,
                                                 color: subTextColor,
                                                 fontWeight: FontWeight.w400,
-                                                fontSize: getPercentSize(height, 25))),
+                                                fontSize: getPercentSize(
+                                                    height, 25))),
                                         style: TextStyle(
                                             fontFamily: fontFamily,
                                             color: textColor,
                                             fontWeight: FontWeight.w400,
-                                            fontSize: getPercentSize(height, 25)),
+                                            fontSize:
+                                                getPercentSize(height, 25)),
                                         keyboardType: TextInputType.number,
                                         inputFormatters: <TextInputFormatter>[
                                           FilteringTextInputFormatter.digitsOnly
@@ -302,23 +279,21 @@ class _SignUpPage extends State<SignUpPage> {
                         ),
                       ),
 
-
                       getPasswordTextFiled(
                           context, "Password", textPasswordController),
                       SizedBox(
                         height: getScreenPercentSize(context, 1.5),
                       ),
 
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           InkWell(
-                            onTap: (){
+                            onTap: () {
                               setState(() {
-                                if(isTermsCondition){
-                                  isTermsCondition=false;
-                                }else {
+                                if (isTermsCondition) {
+                                  isTermsCondition = false;
+                                } else {
                                   isTermsCondition = true;
                                 }
                               });
@@ -326,134 +301,117 @@ class _SignUpPage extends State<SignUpPage> {
                             child: Container(
                               height: getScreenPercentSize(context, 3),
                               width: getScreenPercentSize(context, 3),
-
                               decoration: BoxDecoration(
-                                  border: Border.all(color: primaryColor.withOpacity(0.4),width: 1),
-                                  color: (isTermsCondition) ? primaryColor : Colors.transparent,
-                                  borderRadius: BorderRadius.all(Radius.circular(getScreenPercentSize(context, 0.5)))
-                              ),
+                                  border: Border.all(
+                                      color: primaryColor.withOpacity(0.4),
+                                      width: 1),
+                                  color: (isTermsCondition)
+                                      ? primaryColor
+                                      : Colors.transparent,
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(
+                                          getScreenPercentSize(context, 0.5)))),
                               child: Center(
                                 child: Icon(
                                   Icons.check,
                                   size: getScreenPercentSize(context, 2.5),
-                                  color:
-                                  (isTermsCondition) ? Colors.white : Colors.transparent,
+                                  color: (isTermsCondition)
+                                      ? Colors.white
+                                      : Colors.transparent,
                                 ),
                               ),
                             ),
-                          ), SizedBox(width: 5,),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
 
-                          getTextWidget('I agree with ', textColor,
-                              getScreenPercentSize(context, 1.8),FontWeight.w600,TextAlign.center),
-                          SizedBox(width: 5,),
-                          getTextWidget("Terms", primaryColor,
-                              getScreenPercentSize(context, 1.8),FontWeight.w600,TextAlign.center),
+                          getTextWidget(
+                              'I agree with ',
+                              textColor,
+                              getScreenPercentSize(context, 1.8),
+                              FontWeight.w600,
+                              TextAlign.center),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          getTextWidget(
+                              "Terms",
+                              primaryColor,
+                              getScreenPercentSize(context, 1.8),
+                              FontWeight.w600,
+                              TextAlign.center),
 
-                          getTextWidget(" & ", textColor,
-                              getScreenPercentSize(context, 1.8),FontWeight.w600,TextAlign.center),
-                          getTextWidget("Condition", primaryColor,
-                              getScreenPercentSize(context, 1.8),FontWeight.w600,TextAlign.center),
-
-                          // InkWell(
-                          //
-                          //   child:     getTextWidget("Terms", primaryColor,
-                          //       getScreenPercentSize(context, 1.8),FontWeight.w700,TextAlign.center),
-                          //
-                          //   onTap: () {
-                          //     Navigator.push(
-                          //         context,
-                          //         MaterialPageRoute(
-                          //             builder: (context) => SignInPage()));
-                          //   },
-                          // )
+                          getTextWidget(
+                              " & ",
+                              textColor,
+                              getScreenPercentSize(context, 1.8),
+                              FontWeight.w600,
+                              TextAlign.center),
+                          getTextWidget(
+                              "Condition",
+                              primaryColor,
+                              getScreenPercentSize(context, 1.8),
+                              FontWeight.w600,
+                              TextAlign.center),
                         ],
                       ),
                       SizedBox(
                         height: getScreenPercentSize(context, 3),
                       ),
 
-                      getButtonWithoutSpaceWidget(context,"Sign Up",
-                          primaryColor, () {
-                            Navigator.pop(context);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => PhoneVerification(true),
-                                ));
+                      getButtonWithoutSpaceWidget(
+                          context, "Sign Up", primaryColor, () {
+                        Navigator.pop(context);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PhoneVerification(true),
+                            ));
                       }),
-
-
-
-
-
-
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //
-                      //     getTextWidget(
-                      //         S.of(context).youHaveAnAlreadyAccount,
-                      //         textColor, getScreenPercentSize(context, 1.8),
-                      //         FontWeight.w500,
-                      //         TextAlign.left,
-                      //        ),
-                      //
-                      //     SizedBox(
-                      //       width: getScreenPercentSize(context, 0.5),
-                      //     ),
-                      //     InkWell(
-                      //       child: getTextWidget(
-                      //           "Sign In",
-                      //           primaryColor,getScreenPercentSize(context, 2),
-                      //           FontWeight.bold, TextAlign.start,
-                      //           ),onTap: (){
-                      //       Navigator.push(context, MaterialPageRoute(builder: (context) => SignInPage(),));
-                      //     },
-                      //     )
-                      //
-                      //   ],
-                      // )
-
-
-
                     ],
                   ),
-                  flex: 1,
                 ),
-
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                    margin: EdgeInsets.only(bottom: getScreenPercentSize(context, 2)),
+                    margin: EdgeInsets.only(
+                        bottom: getScreenPercentSize(context, 2)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        getTextWidget('youHaveAnAlreadyAccount', textColor,
-                            getScreenPercentSize(context, 2),FontWeight.w400,TextAlign.center),
-                        SizedBox(width: 5,),
+                        getTextWidget(
+                            'You have already an account?',
+                            textColor,
+                            getScreenPercentSize(context, 2),
+                            FontWeight.w400,
+                            TextAlign.center),
+                        const SizedBox(
+                          width: 5,
+                        ),
                         InkWell(
-
-                          child:     getTextWidget("Sign In", primaryColor,
-                              getScreenPercentSize(context, 2),FontWeight.w700,TextAlign.center),
-
+                          child: getTextWidget(
+                              "Sign In",
+                              primaryColor,
+                              getScreenPercentSize(context, 2),
+                              FontWeight.w700,
+                              TextAlign.center),
                           onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SignInPage()));
+                                    builder: (context) => const SignInPage()));
                           },
                         )
                       ],
                     ),
                   ),
                 )
-
               ],
             ),
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 
-  bool isTermsCondition=false;
+  bool isTermsCondition = false;
 }

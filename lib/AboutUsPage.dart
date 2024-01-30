@@ -4,8 +4,6 @@ import 'package:book_world/utils/CustomWidget.dart';
 import 'package:book_world/utils/DataFile.dart';
 import 'package:book_world/utils/SizeConfig.dart';
 
-
-
 class AboutUsPage extends StatefulWidget {
   @override
   _AboutUsPage createState() {
@@ -30,19 +28,17 @@ class _AboutUsPage extends State<AboutUsPage> {
     SizeConfig().init(context);
     setThemePosition();
 
-    double margin = getScreenPercentSize(context,1.5);
-
+    double margin = getScreenPercentSize(context, 1.5);
 
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
             elevation: 0,
-            backgroundColor: backgroundColor,
-
+            backgroundColor: secondaryColor,
             toolbarHeight: 0,
-            title: getAppBarText(context,'aboutUs'),
-
+            title: getAppBarText(context, 'aboutUs'),
             leading: Builder(
               builder: (BuildContext context) {
                 return IconButton(
@@ -54,26 +50,24 @@ class _AboutUsPage extends State<AboutUsPage> {
           ),
           body: Column(
             children: [
-              getAppBar(context, 'aboutUs',function: (){
+              getAppBar(context, 'aboutUs', function: () {
                 _requestPop();
               }, isBack: true),
-              Expanded(flex: 1,
+              Expanded(
+                flex: 1,
                 child: SingleChildScrollView(
                     child: Container(
-                        margin: EdgeInsets.all(margin),
-
-
-
-                        child: getSpaceTextWidget(loremText,
-
-                            textColor,TextAlign.start, FontWeight.w400, getScreenPercentSize(context, 2)),
-
-
-                    )),
+                  margin: EdgeInsets.all(margin),
+                  child: getSpaceTextWidget(
+                      loremText,
+                      textColor,
+                      TextAlign.start,
+                      FontWeight.w400,
+                      getScreenPercentSize(context, 2)),
+                )),
               ),
             ],
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 }

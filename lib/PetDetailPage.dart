@@ -42,7 +42,7 @@ class _PetDetailPage extends State<PetDetailPage> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    defMargin= getHorizontalSpace(context);
+    defMargin = getHorizontalSpace(context);
 
     double imgHeight = getWidthPercentSize(context, 75);
     double margin = getWidthPercentSize(context, 3);
@@ -50,10 +50,11 @@ class _PetDetailPage extends State<PetDetailPage> {
     double height = getScreenPercentSize(context, 7);
 
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             elevation: 0,
             toolbarHeight: 0,
           ),
@@ -79,7 +80,8 @@ class _PetDetailPage extends State<PetDetailPage> {
                     padding: EdgeInsets.symmetric(horizontal: defMargin),
                     children: [
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(getPercentSize(imgHeight, 4)),
+                        borderRadius:
+                            BorderRadius.circular(getPercentSize(imgHeight, 4)),
                         child: Image.asset(
                           assetsPath + 'pet_detail.png',
                           // assetsPath + widget.model.image!,
@@ -110,8 +112,13 @@ class _PetDetailPage extends State<PetDetailPage> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){
-                          Navigator.push(context,MaterialPageRoute(builder: (context) => LocationTrackMap(widget.model),));
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    LocationTrackMap(widget.model),
+                              ));
                         },
                         child: Row(
                           children: [
@@ -149,8 +156,8 @@ class _PetDetailPage extends State<PetDetailPage> {
                         ],
                       ),
                       Container(
-                        margin:
-                            EdgeInsets.only(top: (margin * 2.5), bottom: margin),
+                        margin: EdgeInsets.only(
+                            top: (margin * 2.5), bottom: margin),
                         child: getTextWithFontFamilyWidget(
                             'Description',
                             textColor,
@@ -174,13 +181,14 @@ class _PetDetailPage extends State<PetDetailPage> {
                   child: Row(
                     children: [
                       Container(
-
-                        
                           width: height,
                           height: height,
-                          margin: EdgeInsets.only(left: defMargin,bottom:getHorizontalSpace(context) ,top:getScreenPercentSize(context, 1.2)),
+                          margin: EdgeInsets.only(
+                              left: defMargin,
+                              bottom: getHorizontalSpace(context),
+                              top: getScreenPercentSize(context, 1.2)),
                           decoration: ShapeDecoration(
-                            color: backgroundColor,
+                            color: secondaryColor,
                             shadows: [
                               BoxShadow(
                                   color: primaryColor.withOpacity(0.1),
@@ -205,10 +213,14 @@ class _PetDetailPage extends State<PetDetailPage> {
                           )),
                       // SizedBox(width: margin,),
                       Expanded(
-                        child: getButtonWidget(context, "Adopt Now",primaryColor,(){
-
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => AdoptionFormPage(widget.model),));
-
+                        child: getButtonWidget(
+                            context, "Adopt Now", primaryColor, () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    AdoptionFormPage(widget.model),
+                              ));
                         }),
                         flex: 1,
                       )
@@ -218,30 +230,34 @@ class _PetDetailPage extends State<PetDetailPage> {
               ],
             ),
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 
   getCell(String s, String s1) {
     return Expanded(
-      child: getMaterialCell(context,widget: Container(
-        padding:
-        EdgeInsets.symmetric(vertical: getScreenPercentSize(context, 2)),
-        decoration: getDecorationWithColor(getScreenPercentSize(context, 1.3),backgroundColor),
-        child: Column(
-          children: [
-            getTextWidget(s, primaryColor, getScreenPercentSize(context, 1.8),
-                FontWeight.w500, TextAlign.start),
-            SizedBox(
-              height: getScreenPercentSize(context, 1),
-            ),
-            getTextWidget(s1, textColor, getScreenPercentSize(context, 2),
-                FontWeight.w400, TextAlign.start),
-          ],
-        ),
-      )),
       flex: 1,
+      child: getMaterialCell(context,
+          widget: Container(
+            padding: EdgeInsets.symmetric(
+                vertical: getScreenPercentSize(context, 2)),
+            decoration: getDecorationWithColor(
+                getScreenPercentSize(context, 1.3), secondaryColor),
+            child: Column(
+              children: [
+                getTextWidget(
+                    s,
+                    primaryColor,
+                    getScreenPercentSize(context, 1.8),
+                    FontWeight.w500,
+                    TextAlign.start),
+                SizedBox(
+                  height: getScreenPercentSize(context, 1),
+                ),
+                getTextWidget(s1, textColor, getScreenPercentSize(context, 2),
+                    FontWeight.w400, TextAlign.start),
+              ],
+            ),
+          )),
     );
   }
-
 }

@@ -1,4 +1,3 @@
-
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:book_world/model/ProductModel.dart';
@@ -54,128 +53,99 @@ class _AddNewPetPage extends State<AddNewPetPage> {
     cellHeight = getScreenPercentSize(context, 6.5);
     defMargin = getHorizontalSpace(context);
 
-     fontSize = getPercentSize(cellHeight, 28);
-
+    fontSize = getPercentSize(cellHeight, 28);
 
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             elevation: 0,
             toolbarHeight: 0,
           ),
-          body: Container(
-            child: Column(
-              children: [
-                getAppBar(context, "Add New Pet", isBack: true, function: () {
-                  _requestPop();
-                }),
-                SizedBox(
-                  height: getScreenPercentSize(context, 1.5),
-                ),
-                Expanded(
-                  child: ListView(
-                    shrinkWrap: true,
-                    primary: true,
-                    padding: EdgeInsets.symmetric(horizontal: defMargin),
-                    children: [
-                      SizedBox(
-                        height: margin,
-                      ),
-                      getTextWithFontFamilyWidget(
-                          'Edit your new furry friends',
-                          textColor,
-                          getScreenPercentSize(context, 1.7),
-                          FontWeight.w500,
-                          TextAlign.start),
-                      SizedBox(
-                        height: margin,
-                      ),
-
-                      Container(
-                        height: height,
-
-                        decoration: getShapeDecoration(),
-
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              assetsPath + "camera fill.png",
-                              height: getPercentSize(height, 15),
-                              color: primaryColor,
-                            ),
-                            SizedBox(width: getWidthPercentSize(context, 2),),
-                            getTextWithFontFamilyWidget('Add Photo', primaryColor,
-                                getPercentSize(height, 12)  , FontWeight.w500,TextAlign.center)
-
-
-                            // Image.asset(
-                            //   assetsPath + "new_pet.png",
-                            //   height: height,
-                            //   width: double.infinity,
-                            // ),
-                            // Align(
-                            //   alignment: Alignment.bottomRight,
-                            //   child: Container(
-                            //     height: getPercentSize(height, 15),
-                            //     width: getPercentSize(height, 15),
-                            //     margin: EdgeInsets.all(
-                            //         getScreenPercentSize(context, 1.5)),
-                            //     padding:
-                            //     EdgeInsets.all(getPercentSize(height, 3)),
-                            //     decoration: BoxDecoration(
-                            //         shape: BoxShape.circle,
-                            //         color: Colors.black38),
-                            //     child: Center(
-                            //       child: Image.asset(
-                            //         assetsPath + "edit.png",
-                            //         color: Colors.white,
-                            //       ),
-                            //     ),
-                            //   ),
-                            // )
-                          ],
-                        ),
-                      ),
-
-                      SizedBox(
-                        height: margin,
-                      ),
-
-                      getTextFiledWidget(context, "", textEditingController),
-                      getDropDownWidget(context),
-                      getDropDownWidget1(context),
-                      getCalendar(),
-                      Row(
+          body: Column(
+            children: [
+              getAppBar(context, "Add New Pet", isBack: true, function: () {
+                _requestPop();
+              }),
+              SizedBox(
+                height: getScreenPercentSize(context, 1.5),
+              ),
+              Expanded(
+                flex: 1,
+                child: ListView(
+                  shrinkWrap: true,
+                  primary: true,
+                  padding: EdgeInsets.symmetric(horizontal: defMargin),
+                  children: [
+                    SizedBox(
+                      height: margin,
+                    ),
+                    getTextWithFontFamilyWidget(
+                        'Edit your new furry friends',
+                        textColor,
+                        getScreenPercentSize(context, 1.7),
+                        FontWeight.w500,
+                        TextAlign.start),
+                    SizedBox(
+                      height: margin,
+                    ),
+                    Container(
+                      height: height,
+                      decoration: getShapeDecoration(),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          getRadioButton(context, "Male", 0),
-                          SizedBox(
-                            width: (margin),
+                          Image.asset(
+                            assetsPath + "camera fill.png",
+                            height: getPercentSize(height, 15),
+                            color: primaryColor,
                           ),
-                          getRadioButton(context, "Female", 1),
+                          SizedBox(
+                            width: getWidthPercentSize(context, 2),
+                          ),
+                          getTextWithFontFamilyWidget(
+                              'Add Photo',
+                              primaryColor,
+                              getPercentSize(height, 12),
+                              FontWeight.w500,
+                              TextAlign.center)
                         ],
                       ),
-                      getTextFiledWidget(context, "", textWeightController),
-                      getDescTextFiledWidget(context, "", textDescController),
-                    ],
-                  ),
-                  flex: 1,
+                    ),
+                    SizedBox(
+                      height: margin,
+                    ),
+                    getTextFiledWidget(context, "", textEditingController),
+                    getDropDownWidget(context),
+                    getDropDownWidget1(context),
+                    getCalendar(),
+                    Row(
+                      children: [
+                        getRadioButton(context, "Male", 0),
+                        SizedBox(
+                          width: (margin),
+                        ),
+                        getRadioButton(context, "Female", 1),
+                      ],
+                    ),
+                    getTextFiledWidget(context, "", textWeightController),
+                    getDescTextFiledWidget(context, "", textDescController),
+                  ],
                 ),
-                getButtonWidget(context, "Save", primaryColor, () {
-                  PrefData.setIsPet(true);
-                  _requestPop();
-                }),
-                SizedBox(
-                  height: margin,
-                )
-              ],
-            ),
+              ),
+              getButtonWidget(context, "Save", primaryColor, () {
+                PrefData.setIsPet(true);
+                _requestPop();
+              }),
+              SizedBox(
+                height: margin,
+              )
+            ],
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 
   getShapeDecoration() {
@@ -195,8 +165,6 @@ class _AddNewPetPage extends State<AddNewPetPage> {
 
   Widget getDescTextFiledWidget(BuildContext context, String s,
       TextEditingController textEditingController) {
-    
-
     return Container(
       margin:
           EdgeInsets.symmetric(vertical: getScreenPercentSize(context, 1.2)),
@@ -244,15 +212,13 @@ class _AddNewPetPage extends State<AddNewPetPage> {
   int radioPosition = 0;
 
   Widget getCalendar() {
-    
-
     return InkWell(
       onTap: () {},
       child: Container(
         height: cellHeight,
         width: double.infinity,
-        margin: EdgeInsets.symmetric(
-            vertical: getScreenPercentSize(context, 1.2)),
+        margin:
+            EdgeInsets.symmetric(vertical: getScreenPercentSize(context, 1.2)),
         padding:
             EdgeInsets.symmetric(horizontal: getWidthPercentSize(context, 2)),
         alignment: Alignment.centerLeft,
@@ -266,7 +232,7 @@ class _AddNewPetPage extends State<AddNewPetPage> {
               width: fontSize,
             ),
             Image.asset(
-              assetsPath+"calender.png",
+              "${assetsPath}calender.png",
               height: (fontSize * 1.3),
               color: textColor,
             ),
@@ -277,8 +243,6 @@ class _AddNewPetPage extends State<AddNewPetPage> {
   }
 
   Widget getRadioButton(BuildContext context, String s, int position) {
-    
-
     return Expanded(
       flex: 1,
       child: InkWell(
@@ -322,8 +286,6 @@ class _AddNewPetPage extends State<AddNewPetPage> {
   Widget getDropDownWidget1(
     BuildContext context,
   ) {
-    
-
     return Container(
       height: cellHeight,
       width: double.infinity,
@@ -337,11 +299,11 @@ class _AddNewPetPage extends State<AddNewPetPage> {
         value: dropdownValue1,
         isDense: true,
         isExpanded: true,
-        icon: Image.asset(assetsPath+"down-arrow.png",color: textColor,height: fontSize,),
-        // icon: Icon(
-        //   Icons.keyboard_arrow_down,
-        //   color: textColor,
-        // ),
+        icon: Image.asset(
+          "${assetsPath}down-arrow.png",
+          color: textColor,
+          height: fontSize,
+        ),
         elevation: 16,
         style: TextStyle(
             fontFamily: fontFamily,
@@ -373,9 +335,9 @@ class _AddNewPetPage extends State<AddNewPetPage> {
     );
   }
 
-  Widget getDropDownWidget(BuildContext context,) {
-    
-
+  Widget getDropDownWidget(
+    BuildContext context,
+  ) {
     return Container(
       height: cellHeight,
       width: double.infinity,
@@ -389,7 +351,11 @@ class _AddNewPetPage extends State<AddNewPetPage> {
         value: dropdownValue,
         isDense: true,
         isExpanded: true,
-        icon: Image.asset(assetsPath+"down-arrow.png",color: textColor,height: fontSize,),
+        icon: Image.asset(
+          "${assetsPath}down-arrow.png",
+          color: textColor,
+          height: fontSize,
+        ),
         elevation: 16,
         style: TextStyle(
             fontFamily: fontFamily,
@@ -423,8 +389,6 @@ class _AddNewPetPage extends State<AddNewPetPage> {
 
   Widget getTextFiledWidget(BuildContext context, String s,
       TextEditingController textEditingController) {
-    
-
     return Container(
       height: cellHeight,
       margin:

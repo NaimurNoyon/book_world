@@ -31,13 +31,14 @@ class _WriteReviewPage extends State<WriteReviewPage> {
     double margin = getHorizontalSpace(context);
     double icon = getScreenPercentSize(context, 3.5);
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
             elevation: 0,
             centerTitle: true,
             toolbarHeight: 0,
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             title: getAppBarText(context, 'writeReviewPage'),
             leading: Builder(
               builder: (BuildContext context) {
@@ -57,11 +58,9 @@ class _WriteReviewPage extends State<WriteReviewPage> {
                   bottom: MediaQuery.of(context).size.width * 0.01),
               child: ListView(
                 children: [
-
-                  getAppBar(context, 'writeReviewPage',function: (){
+                  getAppBar(context, 'writeReviewPage', function: () {
                     _requestPop();
                   }, isBack: true),
-
                   Align(
                     alignment: Alignment.center,
                     child: Image.asset(
@@ -93,109 +92,105 @@ class _WriteReviewPage extends State<WriteReviewPage> {
                       ),
                     ),
                   ),
-                  getMaterialCell(context,widget: Container(
-                    padding: EdgeInsets.all(margin),
-                    margin: EdgeInsets.symmetric(vertical: margin,horizontal: margin),
-
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                            Radius.circular(getScreenPercentSize(context, 1.2))),
-                        
-                        
-                        color: backgroundColor),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                            padding: EdgeInsets.only(top: margin),
-                            child: Align(
-                              alignment: Alignment.topLeft,
-                              child: getCustomTextWidget(
-                                  'yourName',
-                                  textColor,
-                                  getScreenPercentSize(context, 1.8),
-                                  FontWeight.bold,
-                                  TextAlign.start,
-                                  1),
-                            )),
-                        Container(
-                          margin: EdgeInsets.only(bottom: margin),
-                          child: TextField(
-                            maxLines: 1,
-                            style: TextStyle(
-                                fontFamily: fontFamily,
-                                color: textColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: getScreenPercentSize(context,  1.5)),
-                            decoration: InputDecoration(
-                              contentPadding:
-                              EdgeInsets.only(top: 3, left: (margin / 2)),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: textColor),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: subTextColor),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                            padding: EdgeInsets.only(top: margin),
-                            child: Align(
-                              alignment: Alignment.topLeft,
-                              child: getCustomTextWidget(
-                                  'writeYourReview',
-                                  textColor,
-                                  getScreenPercentSize(context, 1.8),
-                                  FontWeight.bold,
-                                  TextAlign.start,
-                                  1),
-                            )),
-                        Container(
-                          margin: EdgeInsets.only(bottom: margin),
-                          child: TextField(
-                            maxLines: 1,
-                            style: TextStyle(
-                                fontFamily: fontFamily,
-                                color: textColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: getScreenPercentSize(context, 1.5)),
-                            decoration: InputDecoration(
-                              contentPadding:
-                              EdgeInsets.only(top: 3, left: (margin / 2)),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: subTextColor),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
+                  getMaterialCell(context,
+                      widget: Container(
+                        padding: EdgeInsets.all(margin),
+                        margin: EdgeInsets.symmetric(
+                            vertical: margin, horizontal: margin),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(
+                                getScreenPercentSize(context, 1.2))),
+                            color: secondaryColor),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                                padding: EdgeInsets.only(top: margin),
+                                child: Align(
+                                  alignment: Alignment.topLeft,
+                                  child: getCustomTextWidget(
+                                      'yourName',
+                                      textColor,
+                                      getScreenPercentSize(context, 1.8),
+                                      FontWeight.bold,
+                                      TextAlign.start,
+                                      1),
+                                )),
+                            Container(
+                              margin: EdgeInsets.only(bottom: margin),
+                              child: TextField(
+                                maxLines: 1,
+                                style: TextStyle(
+                                    fontFamily: fontFamily,
+                                    color: textColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize:
+                                        getScreenPercentSize(context, 1.5)),
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.only(
+                                      top: 3, left: (margin / 2)),
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(color: textColor),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(color: subTextColor),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            Padding(
+                                padding: EdgeInsets.only(top: margin),
+                                child: Align(
+                                  alignment: Alignment.topLeft,
+                                  child: getCustomTextWidget(
+                                      'writeYourReview',
+                                      textColor,
+                                      getScreenPercentSize(context, 1.8),
+                                      FontWeight.bold,
+                                      TextAlign.start,
+                                      1),
+                                )),
+                            Container(
+                              margin: EdgeInsets.only(bottom: margin),
+                              child: TextField(
+                                maxLines: 1,
+                                style: TextStyle(
+                                    fontFamily: fontFamily,
+                                    color: textColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize:
+                                        getScreenPercentSize(context, 1.5)),
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.only(
+                                      top: 3, left: (margin / 2)),
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(color: subTextColor),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            getCustomTextWidget(
+                                'minimumCharacter',
+                                subTextColor,
+                                getScreenPercentSize(context, 1.8),
+                                FontWeight.w400,
+                                TextAlign.start,
+                                1)
+                          ],
                         ),
-                        getCustomTextWidget(
-                            'minimumCharacter',
-                            subTextColor,
-                            getScreenPercentSize(context, 1.8),
-                            FontWeight.w400,
-                            TextAlign.start,
-                            1)
-                      ],
-                    ),
-                  )),
-
+                      )),
                   Container(
-                    margin: EdgeInsets.only(top: (margin/2)),
-                    child: getButtonWidget(context, "Submit", primaryColor, (){
-
-                    }),
+                    margin: EdgeInsets.only(top: (margin / 2)),
+                    child:
+                        getButtonWidget(context, "Submit", primaryColor, () {}),
                   )
-
-
                 ],
               ),
             ),
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 }

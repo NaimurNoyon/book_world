@@ -49,13 +49,14 @@ class _ShippingAddressPage extends State<ShippingAddressPage> {
     double cellHeight = MediaQuery.of(context).size.width * 0.2;
     double topMargin = getScreenPercentSize(context, 1);
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
             elevation: 0,
             centerTitle: true,
             toolbarHeight: 0,
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             title: getAppBarText(context, 'Shipping Address'),
             leading: Builder(
               builder: (BuildContext context) {
@@ -95,8 +96,7 @@ class _ShippingAddressPage extends State<ShippingAddressPage> {
                   Expanded(
                     child: Container(
                       margin: EdgeInsets.only(top: (defaultMargin)),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: leftMargin),
+                      padding: EdgeInsets.symmetric(horizontal: leftMargin),
                       child: Container(
                           child: isData
                               ? ListView.builder(
@@ -104,105 +104,110 @@ class _ShippingAddressPage extends State<ShippingAddressPage> {
                                   physics: NeverScrollableScrollPhysics(),
                                   itemCount: addressList.length,
                                   itemBuilder: (context, index) {
-                                    return getMaterialCell(context,widget: InkWell(
-                                      child: Container(
-                                        margin: EdgeInsets.only(
-                                            bottom: getWidthPercentSize(
-                                                context, 3)),
-                                        padding: EdgeInsets.all(
-                                            getPercentSize(cellHeight, 10)),
-
-                                        decoration: getDecorationWithRadius(
-                                            getPercentSize(cellHeight, 10),
-                                            primaryColor),
-
-                                        height: cellHeight,
-
-                                        child: Column(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                                children: [
-                                                  Expanded(
-                                                    flex: 1,
-                                                    child: Column(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .center,
-                                                      crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .start,
-                                                      children: [
-                                                        getCustomTextWithoutAlignWithFontFamily(
-                                                            addressList[index]
-                                                                .name!,
-                                                            textColor,
-                                                            FontWeight.w500,
-                                                            getPercentSize(
-                                                                cellHeight,
-                                                                20)),
-                                                        Padding(
-                                                          padding:
-                                                          EdgeInsets.only(
-                                                              top:
-                                                              (topMargin /
-                                                                  2)),
-                                                          child: getCustomTextWidget(
-                                                              addressList[index]
-                                                                  .location!,
-                                                              textColor,
-                                                              getPercentSize(
-                                                                  cellHeight,
-                                                                  15),
-                                                              FontWeight.w400,
-                                                              TextAlign.start,
-                                                              2),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                    Alignment.centerRight,
-                                                    child: Padding(
-                                                      padding: EdgeInsets.only(
-                                                          right: 3),
-                                                      child: Icon(
-                                                        (index ==
-                                                            _selectedAddress)
-                                                            ? Icons
-                                                            .radio_button_checked
-                                                            : Icons
-                                                            .radio_button_unchecked,
-                                                        color: (index ==
-                                                            _selectedAddress)
-                                                            ? primaryColor
-                                                            : subTextColor,
-                                                        size: getPercentSize(
-                                                            cellHeight, 25),
+                                    return getMaterialCell(context,
+                                        widget: InkWell(
+                                          child: Container(
+                                            margin: EdgeInsets.only(
+                                                bottom: getWidthPercentSize(
+                                                    context, 3)),
+                                            padding: EdgeInsets.all(
+                                                getPercentSize(cellHeight, 10)),
+                                            decoration: getDecorationWithRadius(
+                                                getPercentSize(cellHeight, 10),
+                                                primaryColor),
+                                            height: cellHeight,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Expanded(
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            getCustomTextWithoutAlignWithFontFamily(
+                                                                addressList[
+                                                                        index]
+                                                                    .name!,
+                                                                textColor,
+                                                                FontWeight.w500,
+                                                                getPercentSize(
+                                                                    cellHeight,
+                                                                    20)),
+                                                            Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      top: (topMargin /
+                                                                          2)),
+                                                              child: getCustomTextWidget(
+                                                                  addressList[
+                                                                          index]
+                                                                      .location!,
+                                                                  textColor,
+                                                                  getPercentSize(
+                                                                      cellHeight,
+                                                                      15),
+                                                                  FontWeight
+                                                                      .w400,
+                                                                  TextAlign
+                                                                      .start,
+                                                                  2),
+                                                            )
+                                                          ],
+                                                        ),
                                                       ),
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                              flex: 1,
+                                                      Align(
+                                                        alignment: Alignment
+                                                            .centerRight,
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  right: 3),
+                                                          child: Icon(
+                                                            (index ==
+                                                                    _selectedAddress)
+                                                                ? Icons
+                                                                    .radio_button_checked
+                                                                : Icons
+                                                                    .radio_button_unchecked,
+                                                            color: (index ==
+                                                                    _selectedAddress)
+                                                                ? primaryColor
+                                                                : subTextColor,
+                                                            size:
+                                                                getPercentSize(
+                                                                    cellHeight,
+                                                                    25),
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                  flex: 1,
+                                                ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                      onTap: () {
-                                        _selectedAddress = index;
-                                        setState(() {});
-                                      },
-                                    ));
+                                          ),
+                                          onTap: () {
+                                            _selectedAddress = index;
+                                            setState(() {});
+                                          },
+                                        ));
                                   })
                               : emptyWidget()),
                     ),
@@ -212,8 +217,6 @@ class _ShippingAddressPage extends State<ShippingAddressPage> {
                     visible: isData,
                     child: Container(
                       margin: EdgeInsets.only(
-
-
                           top: getScreenPercentSize(context, 0.5)),
                       child: getButtonWidget(
                           context, "Add New Address", primaryColor, () {
@@ -229,22 +232,21 @@ class _ShippingAddressPage extends State<ShippingAddressPage> {
               ),
             ),
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 
   emptyWidget() {
     PrefData.setIsOrder(true);
     double width = getWidthPercentSize(context, 45);
     double height = getScreenPercentSize(context, 7);
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
-            assetsPath + "locations1.png",
+            "${assetsPath}locations1.png",
             height: getScreenPercentSize(context, 20),
           ),
           SizedBox(
@@ -281,7 +283,7 @@ class _ShippingAddressPage extends State<ShippingAddressPage> {
                 width: width,
                 height: height,
                 decoration: ShapeDecoration(
-                  color: backgroundColor,
+                  color: secondaryColor,
                   shadows: [
                     BoxShadow(
                         color: primaryColor.withOpacity(0.1),

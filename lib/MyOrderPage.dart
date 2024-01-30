@@ -70,14 +70,15 @@ class _MyOrderPage extends State<MyOrderPage>
 
 
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
 
             centerTitle: true,
             elevation: 0,
             toolbarHeight: 0,
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
 
           ),
 
@@ -256,21 +257,20 @@ class _MyOrderPage extends State<MyOrderPage>
           ),
 
 
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 
   emptyWidget(){
     PrefData.setIsOrder(true);
     double width=getWidthPercentSize(context, 45);
     double height=getScreenPercentSize(context, 7);
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(assetsPath+"no_orders.png",height: getScreenPercentSize(context, 20),),
+          Image.asset("${assetsPath}no_orders.png",height: getScreenPercentSize(context, 20),),
           SizedBox(height: getScreenPercentSize(context, 3),),
           getCustomTextWithFontFamilyWidget("No Orders Yet!",
               textColor, getScreenPercentSize(context, 2.5), FontWeight.w500, TextAlign.center, 1),
@@ -289,7 +289,7 @@ class _MyOrderPage extends State<MyOrderPage>
                 width: width,
                 height: height,
                 decoration: ShapeDecoration(
-                  color: backgroundColor,
+                  color: secondaryColor,
                   shadows: [
                     BoxShadow(
                         color: primaryColor.withOpacity(0.1),

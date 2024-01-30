@@ -147,7 +147,7 @@ class MeasureLine extends StatelessWidget {
             //   height: size,
             //   width: size,
             //   // decoration: BoxDecoration(
-            //   //   color: backgroundColor,
+            //   //   color: secondaryColor,
             //   //   shape: BoxShape.circle,
             //   // ),
             //   child: Icon(
@@ -161,7 +161,7 @@ class MeasureLine extends StatelessWidget {
               height: size,
               width: size,
               decoration: BoxDecoration(
-                color: backgroundColor,
+                color: secondaryColor,
                 shape: BoxShape.circle,
               ),
               child: Icon(
@@ -175,7 +175,7 @@ class MeasureLine extends StatelessWidget {
               height: size,
               width: size,
               decoration: BoxDecoration(
-                color: backgroundColor,
+                color: secondaryColor,
                 shape: BoxShape.circle,
               ),
               child: Image.asset(

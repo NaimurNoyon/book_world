@@ -38,13 +38,14 @@ class _MySavedCardsPage extends State<MySavedCardsPage> {
 
 
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
             elevation: 0,
             toolbarHeight: 0,
             centerTitle: true,
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
 
             title: getAppBarText(context,'mySavedCards'),
 
@@ -95,7 +96,7 @@ _requestPop();
 
 
                               // decoration: BoxDecoration(
-                              //     color: backgroundColor,
+                              //     color: secondaryColor,
                               //     borderRadius: BorderRadius.circular(
                               //         getScreenPercentSize(
                               //             context, 1.5)),
@@ -197,7 +198,7 @@ _requestPop();
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AddNewCardPage(),
+                          builder: (context) => const AddNewCardPage(),
                         ));
 
                     }),
@@ -207,7 +208,6 @@ _requestPop();
               ),
             ),
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 }

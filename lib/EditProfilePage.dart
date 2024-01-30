@@ -92,31 +92,15 @@ class _EditProfilePage extends State<EditProfilePage> {
 
 
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
             elevation: 0,
             toolbarHeight: 0,
             centerTitle: true,
-            backgroundColor: backgroundColor,
-            // title: getAppBarText(context,S.of(context).editProfiles),
-            // leading: Builder(
-            //   builder: (BuildContext context) {
-            //     return IconButton(
-            //       icon: getAppBarIcon(),
-            //       onPressed: _requestPop,
-            //     );
-            //   },
-            // ),
+            backgroundColor: secondaryColor,
           ),
-
-
-
-          //
-          // bottomNavigationBar: getBottomText(
-          //     context, S.of(context).save, () {
-          //   Navigator.of(context).pop(true);
-          // }),
 
           body: GestureDetector(
             onTap: (){
@@ -248,8 +232,7 @@ class _EditProfilePage extends State<EditProfilePage> {
               ),
             ),
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 
 

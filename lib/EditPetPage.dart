@@ -28,11 +28,6 @@ class _EditPetPage extends State<EditPetPage> {
   @override
   void initState() {
     super.initState();
-    // setState(() {
-    //   textEditingController.text = "Mack";
-    //   textDescController.text = loremText;
-    //   textWeightController.text = "3.5 Kg";
-    // });
   }
 
   Future<bool> _requestPop() {
@@ -58,10 +53,11 @@ class _EditPetPage extends State<EditPetPage> {
 
 
     return WillPopScope(
+        onWillPop: _requestPop,
         child: Scaffold(
-          backgroundColor: backgroundColor,
+          backgroundColor: secondaryColor,
           appBar: AppBar(
-            backgroundColor: backgroundColor,
+            backgroundColor: secondaryColor,
             elevation: 0,
             toolbarHeight: 0,
           ),
@@ -165,8 +161,7 @@ class _EditPetPage extends State<EditPetPage> {
               ],
             ),
           ),
-        ),
-        onWillPop: _requestPop);
+        ));
   }
 
   getShapeDecoration() {
