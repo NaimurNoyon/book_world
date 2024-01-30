@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:book_world/AddToCartPage.dart';
 import 'package:book_world/tabWidget/HomeWidget.dart';
-
 import 'package:book_world/tabWidget/ProfileWidget.dart';
 import 'package:book_world/tabWidget/SearchWidget.dart';
 import 'package:book_world/utils/Constant.dart';
 import 'package:book_world/utils/CustomWidget.dart';
-
 import 'AllPetPage.dart';
 import 'customView/CustomAnimatedBottomBar.dart';
 import 'main.dart';
@@ -15,7 +13,7 @@ import 'main.dart';
 class MainPage extends StatefulWidget {
 
   final int? tabPosition;
-  MainPage({this.tabPosition});
+  const MainPage({super.key, this.tabPosition});
 
 
   @override
@@ -36,7 +34,7 @@ class _MainPage extends State<MainPage> {
     } else {
       exitApp();
     }
-    return new Future.value(false);
+    return Future.value(false);
   }
 
   Widget getBody() {
@@ -67,7 +65,7 @@ class _MainPage extends State<MainPage> {
       ProfileWidget((){
         myTheme.switchTheme();
 
-        Future.delayed(Duration(seconds:  1), () {
+        Future.delayed(const Duration(seconds:  1), () {
           setThemePosition(context: context);
           setState(() {});
         });
@@ -83,15 +81,13 @@ class _MainPage extends State<MainPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
     if(widget.tabPosition!=null){
       setState(() {
         _currentIndex = widget.tabPosition!;
       });
     }
-    Future.delayed(Duration(seconds: 0), () {
+    Future.delayed(const Duration(seconds: 0), () {
       setThemePosition(context: context);
       setState(() {});
     });
@@ -126,8 +122,8 @@ class _MainPage extends State<MainPage> {
   }
 
   Widget _buildBottomBar() {
-    final _inactiveColor = iconColor;
-    final _activeColor = primaryColor;
+    final inactiveColor = iconColor;
+    final activeColor = primaryColor;
 
     double height = getScreenPercentSize(context, 7.5);
     double iconHeight = getPercentSize(height, 28);
@@ -143,8 +139,8 @@ class _MainPage extends State<MainPage> {
 
         BottomNavyBarItem(
           title: 'Home',
-          activeColor: _activeColor,
-          inactiveColor: _inactiveColor,
+          activeColor: activeColor,
+          inactiveColor: inactiveColor,
           textAlign: TextAlign.center,
           iconSize: iconHeight,
           imageName: "home bold.png",
@@ -152,8 +148,8 @@ class _MainPage extends State<MainPage> {
 
         BottomNavyBarItem(
           title: 'Search',
-          activeColor: _activeColor,
-          inactiveColor: _inactiveColor,
+          activeColor: activeColor,
+          inactiveColor: inactiveColor,
           textAlign: TextAlign.center,
           iconSize: iconHeight,
           imageName: "search.png",
@@ -163,8 +159,8 @@ class _MainPage extends State<MainPage> {
 
         BottomNavyBarItem(
           title: 'Cart',
-          activeColor: _activeColor,
-          inactiveColor: _inactiveColor,
+          activeColor: activeColor,
+          inactiveColor: inactiveColor,
           textAlign: TextAlign.center,
           iconSize: iconHeight,
           imageName: "orders.png",
@@ -172,8 +168,8 @@ class _MainPage extends State<MainPage> {
 
         BottomNavyBarItem(
           title: 'All Pets',
-          activeColor: _activeColor,
-          inactiveColor: _inactiveColor,
+          activeColor: activeColor,
+          inactiveColor: inactiveColor,
           textAlign: TextAlign.center,
           iconSize: iconHeight,
           imageName: "pet.png",
@@ -186,9 +182,9 @@ class _MainPage extends State<MainPage> {
         BottomNavyBarItem(
           iconSize: iconHeight,
           title: 'Profile',
-          activeColor: _activeColor,
+          activeColor: activeColor,
           imageName: "more.png",
-          inactiveColor: _inactiveColor,
+          inactiveColor: inactiveColor,
           textAlign: TextAlign.center
         ),
       ],

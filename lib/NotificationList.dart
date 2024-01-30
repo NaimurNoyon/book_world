@@ -44,7 +44,7 @@ class _NotificationList extends State<NotificationList> {
             toolbarHeight: 0,
             centerTitle: true,
           ),
-          body: Container(
+          body: SizedBox(
             width: double.infinity,
             height: double.infinity,
             child: Column(

@@ -217,18 +217,18 @@ class DataFile {
   static List<DataModel> getCategoryData() {
     List<DataModel> introList = [];
 
-    introList.add(DataModel("pet_1.png", "Dog"));
-    introList.add(DataModel("pet_2.png", "Cat"));
-    introList.add(DataModel("pet_3.png", "Parrot"));
-    introList.add(DataModel("pet_4.png", "Cat"));
-    introList.add(DataModel("pet_1.png", "Parrot"));
-    introList.add(DataModel("pet_2.png", "Dog"));
-    introList.add(DataModel("pet_3.png", "Dog"));
-    introList.add(DataModel("pet_4.png", "Dog"));
-    introList.add(DataModel("pet_1.png", "Dog"));
-    introList.add(DataModel("pet_2.png", "Dog"));
-    introList.add(DataModel("pet_3.png", "Dog"));
-    introList.add(DataModel("pet_4.png", "Dog"));
+    introList.add(DataModel("pet_1.png", "Mystery"));
+    introList.add(DataModel("pet_2.png", "Thriller"));
+    introList.add(DataModel("pet_3.png", "Science fiction"));
+    introList.add(DataModel("pet_4.png", "Romance"));
+    introList.add(DataModel("pet_1.png", "Adventure"));
+    introList.add(DataModel("pet_2.png", "Graphic novel"));
+    introList.add(DataModel("pet_3.png", "Cookbook"));
+    introList.add(DataModel("pet_4.png", "Fantasy"));
+    introList.add(DataModel("pet_1.png", "Autobiography"));
+    introList.add(DataModel("pet_2.png", "Classics"));
+    introList.add(DataModel("pet_3.png", "Novels"));
+    introList.add(DataModel("pet_4.png", "Adults"));
 
     return introList;
   }

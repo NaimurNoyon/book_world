@@ -670,7 +670,7 @@ getAppBar(BuildContext context, String s,
     elevation: getScreenPercentSize(context, 1.5),
     shadowColor: primaryColor.withOpacity(0.1),
     child: Container(
-      color: backgroundColor,
+      color: secondaryColor,
       height: getScreenPercentSize(context, 7),
       width: double.infinity,
       child: Stack(
@@ -683,7 +683,6 @@ getAppBar(BuildContext context, String s,
                 FontWeight.w500,
                 TextAlign.center),
           ),
-          //
           Visibility(
             visible: (isBack != null),
             child: Positioned.fill(
@@ -699,7 +698,7 @@ getAppBar(BuildContext context, String s,
                           }
                         },
                         child: Image.asset(
-                          assetsPath + "back.png",
+                          "${assetsPath}back.png",
                           height: getScreenPercentSize(context, 2.5),
                           color: textColor,
                         ))),

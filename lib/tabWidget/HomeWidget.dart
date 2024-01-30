@@ -18,7 +18,7 @@ class HomeWidget extends StatefulWidget {
   final Function? functionViewAll;
   final Function? functionAdoptionAll;
 
-  HomeWidget(this.function, {this.functionViewAll,this.functionAdoptionAll});
+  const HomeWidget(this.function, {super.key, this.functionViewAll,this.functionAdoptionAll});
 
   @override
   _HomeWidget createState() {
@@ -39,15 +39,13 @@ class _HomeWidget extends State<HomeWidget> {
   @override
   Widget build(BuildContext context) {
     defMargin = getHorizontalSpace(context);
-    // defMargin = getScreenPercentSize(context, 2.5);
     padding = getScreenPercentSize(context, 2);
     height = getScreenPercentSize(context, 5.7);
-    // height = getScreenPercentSize(context, 5.5);
     double radius = getScreenPercentSize(context, 1.5);
     double btnHeight = getScreenPercentSize(context, 13);
 
     return Container(
-      color: backgroundColor,
+      color: secondaryColor,
       padding: EdgeInsets.only(top: getScreenPercentSize(context, 2)),
       child: GestureDetector(
         onTap: () {
@@ -65,16 +63,6 @@ class _HomeWidget extends State<HomeWidget> {
                   SizedBox(
                     height: defMargin,
                   ),
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(horizontal: defMargin),
-                  //   child: getCustomTextWithFontFamilyWidget(
-                  //       'Adopt a Friend',
-                  //       textColor,
-                  //       getScreenPercentSize(context, 2.5),
-                  //       FontWeight.w500,
-                  //       TextAlign.start,
-                  //       1),
-                  // ),
                   Row(
                     children: [
                       SizedBox(
@@ -143,30 +131,6 @@ class _HomeWidget extends State<HomeWidget> {
                           },
                         ),
                       ),
-                      // SizedBox(
-                      //   width: (defMargin / 2),
-                      // ),
-                      // InkWell(
-                      //   onTap: () {
-                      //     filterDialog();
-                      //   },
-                      //   child: getMaterialWidget(
-                      //       context,
-                      //       Container(
-                      //         height: height,
-                      //         width: height,
-                      //         decoration:
-                      //             getDecorationWithColor(radius, primaryColor),
-                      //         child: Center(
-                      //           child: Image.asset(
-                      //               assetsPath + "filter bold.png",
-                      //               color: Colors.white,
-                      //               height: getPercentSize(height, 55)),
-                      //         ),
-                      //       ),
-                      //       radius,
-                      //       height),
-                      // ),
                       SizedBox(
                         width: (defMargin),
                       ),
@@ -176,6 +140,7 @@ class _HomeWidget extends State<HomeWidget> {
                   Row(
                     children: [
                       Expanded(
+                        flex: 1,
                         child: InkWell(
                           onTap: () {
                             Navigator.push(
@@ -197,7 +162,7 @@ class _HomeWidget extends State<HomeWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Image.asset(
-                                    assetsPath + "Group 33638.png",
+                                    "${assetsPath}Group 33638.png",
                                     height: getPercentSize(btnHeight, 40),
                                   ),
                                   SizedBox(
@@ -214,9 +179,9 @@ class _HomeWidget extends State<HomeWidget> {
                             ),
                           ),
                         ),
-                        flex: 1,
                       ),
                       Expanded(
+                        flex: 1,
                         child: InkWell(
                           onTap: () {
                             widget.function();
@@ -234,7 +199,7 @@ class _HomeWidget extends State<HomeWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Image.asset(
-                                    assetsPath + "dog-4 1.png",
+                                    "${assetsPath}dog-4 1.png",
                                     height: getPercentSize(btnHeight, 40),
                                   ),
                                   SizedBox(
@@ -251,7 +216,6 @@ class _HomeWidget extends State<HomeWidget> {
                             ),
                           ),
                         ),
-                        flex: 1,
                       )
                     ],
                   ),
@@ -284,7 +248,7 @@ class _HomeWidget extends State<HomeWidget> {
 
     double radius = getPercentSize(height, 5);
 
-    return Container(
+    return SizedBox(
       height: height,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -301,13 +265,6 @@ class _HomeWidget extends State<HomeWidget> {
                       left: defMargin, top: defMargin, bottom: defMargin),
                   decoration: ShapeDecoration(
                     color: backgroundColor,
-                    // shadows: [
-                    //   BoxShadow(
-                    //       color: primaryColor.withOpacity(0.1),
-                    //       blurRadius: 5,
-                    //       spreadRadius: 5,
-                    //       offset: Offset(0, 3))
-                    // ],
                     shape: SmoothRectangleBorder(
                       // side: BorderSide(color: iconColor, width: 0.1),
                       borderRadius: SmoothBorderRadius(
@@ -361,18 +318,6 @@ class _HomeWidget extends State<HomeWidget> {
                           ],
                         ),
                       ),
-                      // Container(
-                      //
-                      //   height: width,
-                      //   color: Colors.red,
-                      //   margin: EdgeInsets.symmetric(horizontal: getPercentSize(width, 5),
-                      //       ),
-                      //
-                      //
-                      //   child: Image.asset(
-                      //     assetsPath + model.image!,
-                      //   ),
-                      // ),
                       Expanded(
                           child: Container(
                         margin: EdgeInsets.symmetric(
@@ -408,7 +353,7 @@ class _HomeWidget extends State<HomeWidget> {
                               children: [
 
                                 Image.asset(
-                                  assetsPath + "location.png",
+                                  "${assetsPath}location.png",
                                   height: getPercentSize(remainHeight, 11),
                                 ),
                                 SizedBox(
@@ -421,21 +366,6 @@ class _HomeWidget extends State<HomeWidget> {
                                         getPercentSize(remainHeight, 10),
                                         FontWeight.w400,
                                         TextAlign.start,1)),
-
-                                // Image.asset(
-                                //       assetsPath + "location.png",
-                                //       height: getPercentSize(remainHeight, 10),
-                                //     ),
-                                //   SizedBox(
-                                //     width: getPercentSize(width, 2),
-                                //   ),
-                                //   Expanded(
-                                //       child: getTextWidget(
-                                //           model.address!,
-                                //           textColor,
-                                //           getPercentSize(remainHeight, 10),
-                                //           FontWeight.w400,
-                                //           TextAlign.start)),
                               ],
                             ),
                             SizedBox(
@@ -453,38 +383,8 @@ class _HomeWidget extends State<HomeWidget> {
                                 SizedBox(
                                   width: getPercentSize(width, 2),
                                 ),
-                                // getMaterialWidget(context, Container(
-                                //   height: getPercentSize(remainHeight, 14),
-                                //   width: getPercentSize(remainHeight, 14),
-                                //   decoration: getDecorationWithColor(
-                                //       getPercentSize(remainHeight, 3),
-                                //       primaryColor),
-                                //   child: Center(
-                                //     child: Icon(Icons.add,
-                                //         color: Colors.white,
-                                //         size: getPercentSize(remainHeight, 9)),
-                                //   ),
-                                // ), getPercentSize(remainHeight, 3), getPercentSize(remainHeight, 14))
                               ],
                             ),
-                            // getTextWidget(
-                            //     model.subTitle!,
-                            //     subTextColor,
-                            //     getPercentSize(remainHeight, 10),
-                            //     FontWeight.w300,
-                            //     TextAlign.center),
-
-                            //
-                            // SizedBox(
-                            //   height: getPercentSize(remainHeight, 5),
-                            //
-                            // ),
-                            // getTextWidget(
-                            //     model.price!,
-                            //     primaryColor,
-                            //     getPercentSize(remainHeight, 18),
-                            //     FontWeight.bold,
-                            //     TextAlign.center),
                           ],
                         ),
                       )),
@@ -536,13 +436,13 @@ class _HomeWidget extends State<HomeWidget> {
                     Row(
                       children: [
                         Expanded(
+                          flex: 1,
                           child: getTextWithFontFamilyWidget(
                               'Sort By',
                               textColor,
                               getPercentSize(height, 5),
                               FontWeight.w500,
                               TextAlign.start),
-                          flex: 1,
                         ),
                         InkWell(
                             onTap: () {
@@ -570,7 +470,7 @@ class _HomeWidget extends State<HomeWidget> {
                     ListView.builder(
                       shrinkWrap: true,
                       itemCount: list.length,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {
@@ -601,13 +501,13 @@ class _HomeWidget extends State<HomeWidget> {
                             child: Row(
                               children: [
                                 Expanded(
+                                  flex: 1,
                                   child: getTextWidget(
                                       list[index],
                                       textColor,
                                       getPercentSize(subHeight, 27),
                                       FontWeight.w400,
                                       TextAlign.start),
-                                  flex: 1,
                                 ),
                                 Visibility(
                                   visible: (position == index),
@@ -651,294 +551,204 @@ class _HomeWidget extends State<HomeWidget> {
             builder: (context, setState) {
               return FractionallySizedBox(
                 heightFactor: 0.6,
-                child: Container(
-                  // padding: EdgeInsets.symmetric(ver: getScreenPercentSize(context, 2)),
-                  child: ListView(
-                    children: <Widget>[
-                      SizedBox(
-                        height: margin,
+                child: ListView(
+                  children: <Widget>[
+                    SizedBox(
+                      height: margin,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: margin),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: getTextWithFontFamilyWidget(
+                                'Filter',
+                                textColor,
+                                getPercentSize(height, 5),
+                                FontWeight.w500,
+                                TextAlign.start),
+                          ),
+                          InkWell(
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Icon(
+                                Icons.close,
+                                size: getPercentSize(height, 6),
+                                color: textColor,
+                              )),
+                        ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: margin),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: getTextWithFontFamilyWidget(
-                                  'Filter',
-                                  textColor,
-                                  getPercentSize(height, 5),
-                                  FontWeight.w500,
-                                  TextAlign.start),
-                              flex: 1,
-                            ),
-                            InkWell(
-                                onTap: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Icon(
-                                  Icons.close,
-                                  size: getPercentSize(height, 6),
-                                  color: textColor,
-                                )),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: getPercentSize(height, 1),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: margin),
-                        child: getTextWidget(
-                            'Filter products with more specific types',
-                            subTextColor,
-                            getPercentSize(height, 3.5),
-                            FontWeight.w400,
-                            TextAlign.start),
-                      ),
-                      SizedBox(
-                        height: getPercentSize(height, 4),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: margin),
-                        child: getTextWithFontFamilyWidget(
-                            'Price',
-                            textColor,
-                            getPercentSize(height, 4),
-                            FontWeight.w500,
-                            TextAlign.start),
-                      ),
-                      SizedBox(
-                        height: getPercentSize(height, 2),
-                      ),
-                      RangeSlider(
-                        values: _currentRangeValues,
-                        min: 10,
-                        max: 1000,
-                        activeColor: primaryColor,
-                        inactiveColor: primaryColor.withOpacity(0.5),
-                        onChanged: (RangeValues values) {
-                          setState(() {
-                            _currentRangeValues = values;
-                          });
-                        },
-                      ),
+                    ),
+                    SizedBox(
+                      height: getPercentSize(height, 1),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: margin),
+                      child: getTextWidget(
+                          'Filter products with more specific types',
+                          subTextColor,
+                          getPercentSize(height, 3.5),
+                          FontWeight.w400,
+                          TextAlign.start),
+                    ),
+                    SizedBox(
+                      height: getPercentSize(height, 4),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: margin),
+                      child: getTextWithFontFamilyWidget(
+                          'Price',
+                          textColor,
+                          getPercentSize(height, 4),
+                          FontWeight.w500,
+                          TextAlign.start),
+                    ),
+                    SizedBox(
+                      height: getPercentSize(height, 2),
+                    ),
+                    RangeSlider(
+                      values: _currentRangeValues,
+                      min: 10,
+                      max: 1000,
+                      activeColor: primaryColor,
+                      inactiveColor: primaryColor.withOpacity(0.5),
+                      onChanged: (RangeValues values) {
+                        setState(() {
+                          _currentRangeValues = values;
+                        });
+                      },
+                    ),
 
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: margin),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: getTextWidget(
-                                  "\$50",
-                                  primaryColor,
-                                  getScreenPercentSize(context, 2),
-                                  FontWeight.w600,
-                                  TextAlign.start),
-                            ),
-
-                            getTextWidget(
-                                "\$250",
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: margin),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: getTextWidget(
+                                "\$50",
                                 primaryColor,
                                 getScreenPercentSize(context, 2),
                                 FontWeight.w600,
                                 TextAlign.start),
+                          ),
 
-                            // getTextWidget(
-                            //     '\$1000',
-                            //     disableIconColor,
-                            //     TextAlign.start,
-                            //     FontWeight.w600,
-                            //     getScreenPercentSize(context, 2))
-                          ],
-                        ),
+                          getTextWidget(
+                              "\$250",
+                              primaryColor,
+                              getScreenPercentSize(context, 2),
+                              FontWeight.w600,
+                              TextAlign.start),
+                        ],
                       ),
+                    ),
 
-                      SizedBox(
-                        height: getScreenPercentSize(context, 3),
-                      ),
+                    SizedBox(
+                      height: getScreenPercentSize(context, 3),
+                    ),
 
-                      Padding(
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: margin),
+                      child: getTextWithFontFamilyWidget(
+                          'Brand',
+                          textColor,
+                          getPercentSize(height, 4),
+                          FontWeight.w500,
+                          TextAlign.start),
+                    ),
+                    SizedBox(
+                      height: getPercentSize(height, 2),
+                    ),
+
+                    Padding(
                         padding: EdgeInsets.symmetric(horizontal: margin),
-                        child: getTextWithFontFamilyWidget(
-                            'Brand',
-                            textColor,
-                            getPercentSize(height, 4),
-                            FontWeight.w500,
-                            TextAlign.start),
-                      ),
-                      SizedBox(
-                        height: getPercentSize(height, 2),
-                      ),
-
-                      Padding(
-                          padding: EdgeInsets.symmetric(horizontal: margin),
-                          child: getGrid(setState)),
-                      SizedBox(
-                        height: getPercentSize(height, 10),
-                      ),
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: margin),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: InkWell(
-                                onTap: () {
-                                  // Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage(),));
-                                },
-                                child: getMaterialCell(context,
-                                    widget: Container(
-                                      margin: EdgeInsets.only(
-                                          right:
-                                              getWidthPercentSize(context, 3)),
-                                      height: getScreenPercentSize(context, 7),
-                                      decoration: ShapeDecoration(
-                                        color: alphaColor,
-                                        // shadows: [
-                                        //   BoxShadow(
-                                        //       color: textColor.withOpacity(0.1),
-                                        //       blurRadius: 2,
-                                        //       spreadRadius: 1,
-                                        //       offset: Offset(0, 4))
-                                        // ],
-                                        shape: SmoothRectangleBorder(
-                                          side: BorderSide(
-                                              color: primaryColor, width: 2),
-                                          borderRadius: SmoothBorderRadius(
-                                            cornerRadius: getScreenPercentSize(
-                                                context, 1.8),
-                                            cornerSmoothing: 0.8,
-                                          ),
+                        child: getGrid(setState)),
+                    SizedBox(
+                      height: getPercentSize(height, 10),
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: margin),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+                              },
+                              child: getMaterialCell(context,
+                                  widget: Container(
+                                    margin: EdgeInsets.only(
+                                        right:
+                                            getWidthPercentSize(context, 3)),
+                                    height: getScreenPercentSize(context, 7),
+                                    decoration: ShapeDecoration(
+                                      color: alphaColor,
+                                      shape: SmoothRectangleBorder(
+                                        side: BorderSide(
+                                            color: primaryColor, width: 2),
+                                        borderRadius: SmoothBorderRadius(
+                                          cornerRadius: getScreenPercentSize(
+                                              context, 1.8),
+                                          cornerSmoothing: 0.8,
                                         ),
                                       ),
-                                      child: Center(
-                                        child: getTextWidget(
-                                            'Reset',
-                                            textColor,
-                                            getScreenPercentSize(context, 2),
-                                            FontWeight.bold,
-                                            TextAlign.center),
-                                      ),
-                                    )),
-                              ),
+                                    ),
+                                    child: Center(
+                                      child: getTextWidget(
+                                          'Reset',
+                                          textColor,
+                                          getScreenPercentSize(context, 2),
+                                          FontWeight.bold,
+                                          TextAlign.center),
+                                    ),
+                                  )),
                             ),
-                            Expanded(
-                              child: InkWell(
-                                onTap: () {
-                                  // if(_position==3){
-                                  //   PrefData.setIsIntro(false);
-                                  //   Navigator.push(context, MaterialPageRoute(builder: (context) => SignInPage(),));
-                                  // }else {
-                                  //   if (_position < (introModelList.length - 1)) {
-                                  //     setState(() {
-                                  //       _position = _position + 1;
-                                  //       controller.jumpToPage(_position);
-                                  //     });
-                                  //   } else {
-                                  //     skip();
-                                  //   }
-                                  // }
-                                },
-                                child: getMaterialCell(context,
-                                    widget: Container(
-                                      margin: EdgeInsets.only(
-                                          left:
-                                              getWidthPercentSize(context, 3)),
-                                      height: getScreenPercentSize(context, 7),
-                                      decoration: ShapeDecoration(
-                                        color: primaryColor,
-                                        // shadows: [BoxShadow(
-                                        //     color: textColor.withOpacity(0.1),
-                                        //     blurRadius: 2,
-                                        //     spreadRadius: 1,
-                                        //     offset: Offset(0, 4))],
-                                        shape: SmoothRectangleBorder(
-                                          borderRadius: SmoothBorderRadius(
-                                            cornerRadius: getScreenPercentSize(
-                                                context, 1.8),
-                                            cornerSmoothing: 0.8,
-                                          ),
+                          ),
+                          Expanded(
+                            child: InkWell(
+                              onTap: () {
+
+                              },
+                              child: getMaterialCell(context,
+                                  widget: Container(
+                                    margin: EdgeInsets.only(
+                                        left:
+                                            getWidthPercentSize(context, 3)),
+                                    height: getScreenPercentSize(context, 7),
+                                    decoration: ShapeDecoration(
+                                      color: primaryColor,
+                                      // shadows: [BoxShadow(
+                                      //     color: textColor.withOpacity(0.1),
+                                      //     blurRadius: 2,
+                                      //     spreadRadius: 1,
+                                      //     offset: Offset(0, 4))],
+                                      shape: SmoothRectangleBorder(
+                                        borderRadius: SmoothBorderRadius(
+                                          cornerRadius: getScreenPercentSize(
+                                              context, 1.8),
+                                          cornerSmoothing: 0.8,
                                         ),
                                       ),
-                                      child: Center(
-                                        child: getTextWidget(
-                                            'Apply',
-                                            Colors.white,
-                                            getScreenPercentSize(context, 2),
-                                            FontWeight.bold,
-                                            TextAlign.center),
-                                      ),
-                                    )),
-                              ),
-                            )
-                          ],
-                        ),
+                                    ),
+                                    child: Center(
+                                      child: getTextWidget(
+                                          'Apply',
+                                          Colors.white,
+                                          getScreenPercentSize(context, 2),
+                                          FontWeight.bold,
+                                          TextAlign.center),
+                                    ),
+                                  )),
+                            ),
+                          )
+                        ],
                       ),
+                    ),
 
-                      SizedBox(
-                        height: getPercentSize(height, 10),
-                      ),
-
-                      // FlutterSlider(
-                      //   handlerHeight: getScreenPercentSize(context, 1),
-                      //   values: [_lowerValue, _upperValue],
-                      //   rangeSlider: true,
-                      //   max: 300,
-                      //   min: 0,
-                      //   step: FlutterSliderStep(step: 1),
-                      //   jump: false,
-                      //   trackBar: FlutterSliderTrackBar(
-                      //       activeTrackBarHeight:
-                      //           getScreenPercentSize(context, 1.2),
-                      //       activeTrackBar: BoxDecoration(
-                      //           borderRadius: BorderRadius.circular(
-                      //               getScreenPercentSize(context, 2)),
-                      //           color: primaryColor),
-                      //       inactiveTrackBarHeight:
-                      //           getScreenPercentSize(context, 1.2),
-                      //       inactiveTrackBar: BoxDecoration(
-                      //           borderRadius: BorderRadius.circular(
-                      //               getScreenPercentSize(context, 2)),
-                      //           color: subTextColor.withOpacity(0.5))),
-                      //   tooltip: FlutterSliderTooltip(
-                      //       disableAnimation: true,
-                      //       alwaysShowTooltip: true,
-                      //       boxStyle: FlutterSliderTooltipBox(
-                      //           decoration:
-                      //               BoxDecoration(color: Colors.transparent)),
-                      //       textStyle: TextStyle(
-                      //           fontFamily: fontFamily,
-                      //           fontWeight: FontWeight.w800,
-                      //           fontSize: 0,
-                      //           color: Colors.transparent),
-                      //       format: (String value) {
-                      //         return '\$' + value;
-                      //       }),
-                      //   handler: FlutterSliderHandler(
-                      //     decoration: BoxDecoration(),
-                      //     child: Container(),
-                      //   ),
-                      //   rightHandler: FlutterSliderHandler(
-                      //     decoration: BoxDecoration(),
-                      //     child: Container(
-                      //       height: 78,
-                      //       width: 78,
-                      //       decoration: BoxDecoration(
-                      //         shape: BoxShape.circle,
-                      //         color: Colors.red,
-                      //       ),
-                      //       padding:
-                      //           EdgeInsets.all(getScreenPercentSize(context, 2)),
-                      //     ),
-                      //   ),
-                      //   disabled: false,
-                      //   onDragging: (handlerIndex, lowerValue, upperValue) {
-                      //     _lowerValue = lowerValue;
-                      //     _upperValue = upperValue;
-                      //     setState(() {});
-                      //   },
-                      // ),
-                    ],
-                  ),
+                    SizedBox(
+                      height: getPercentSize(height, 10),
+                    ),
+                  ],
                 ),
               );
             },
@@ -973,7 +783,7 @@ class _HomeWidget extends State<HomeWidget> {
     var _aspectRatio = _width / cellHeight;
 
     return Container(
-      margin: EdgeInsets.only(right: 1),
+      margin: const EdgeInsets.only(right: 1),
       child: GridView.count(
         crossAxisCount: _crossAxisCount,
         shrinkWrap: true,
@@ -989,7 +799,7 @@ class _HomeWidget extends State<HomeWidget> {
                 materialPosition = index;
               });
             },
-            child: Container(
+            child: SizedBox(
               width: cellHeight,
               child: Container(
                 margin: EdgeInsets.only(
@@ -1001,13 +811,6 @@ class _HomeWidget extends State<HomeWidget> {
                 decoration: ShapeDecoration(
                   color:
                       (materialPosition == index) ? primaryColor : alphaColor,
-                  // shadows: [
-                  //   BoxShadow(
-                  //       color: primaryColor.withOpacity(0.3),
-                  //       blurRadius: 2,
-                  //       spreadRadius: 1,
-                  //       offset: Offset(0, 1))
-                  // ],
                   shape: SmoothRectangleBorder(
                     side: BorderSide(color: iconColor, width: 0.3),
                     borderRadius: SmoothBorderRadius(
@@ -1016,14 +819,6 @@ class _HomeWidget extends State<HomeWidget> {
                     ),
                   ),
                 ),
-                // decoration: BoxDecoration(
-                //     color: (materialPosition == index)
-                //         ? primaryColor
-                //         : alphaColor,
-                //
-                //
-                //     borderRadius: BorderRadius.all(
-                //         Radius.circular(getPercentSize(cellHeight, 15)))),
                 child: Center(
                   child: getTextWidget(
                     materialList[index],
@@ -1040,123 +835,6 @@ class _HomeWidget extends State<HomeWidget> {
       ),
     );
   }
-
-  // gridList() {
-  //   double margin = getScreenPercentSize(context, 1);
-  //   var height = getScreenPercentSize(context, 32);
-  //
-  //   double width = getWidthPercentSize(context, 50);
-  //   double sideMargin = margin * 1.2;
-  //   double imgHeight = getPercentSize(height, 55);
-  //   double remainHeight = height - imgHeight;
-  //
-  //   double radius = getPercentSize(height, 5);
-  //
-  //
-  //
-  //   double _crossAxisSpacing = 0;
-  //   var _screenWidth = MediaQuery.of(context).size.width;
-  //   var _crossAxisCount = 2;
-  //   var _width = (_screenWidth - ((_crossAxisCount - 1) * _crossAxisSpacing)) /
-  //       _crossAxisCount;
-  //
-  //   var _aspectRatio = _width / height;
-  //
-  //
-  //
-  //   return GridView.count(
-  //     crossAxisCount: _crossAxisCount,
-  //     shrinkWrap: true,
-  //
-  //     padding: EdgeInsets.symmetric(vertical: getScreenPercentSize(context, 2),horizontal: defMargin),
-  //     scrollDirection: Axis.vertical,
-  //     primary: false,
-  //     crossAxisSpacing: defMargin,
-  //     mainAxisSpacing: defMargin,
-  //     childAspectRatio: _aspectRatio,
-  //     children: List.generate(productList.length, (index) {
-  //       ProductModel model = productList[index];
-  //
-  //       return InkWell(
-  //         child: Container(
-  //           // margin: EdgeInsets.only(
-  //           //     left: defMargin, top: margin, bottom: margin),
-  //
-  //           decoration: getDecoration(radius),
-  //           child: Column(
-  //             crossAxisAlignment: CrossAxisAlignment.center,
-  //             children: [
-  //               Container(
-  //
-  //                 height: imgHeight,
-  //                 margin: EdgeInsets.all(getPercentSize(width, 2)),
-  //
-  //                 // decoration: BoxDecoration(
-  //                 //     color: cellColor,
-  //                 //     borderRadius:
-  //                 //     BorderRadius.all(Radius.circular(radius))),
-  //                 child: Center(
-  //                     child: Image.asset(
-  //                       assetsPath + model.image!,
-  //                     )),
-  //               ),
-  //               Expanded(
-  //                   child: Column(
-  //                     mainAxisAlignment: MainAxisAlignment.center,
-  //                     crossAxisAlignment: CrossAxisAlignment.center,
-  //                     children: [
-  //                       getTextWidget(
-  //                           model.name!,
-  //                           textColor,
-  //                           getPercentSize(remainHeight, 13),
-  //                           FontWeight.w500,
-  //                           TextAlign.start),
-  //                       SizedBox(
-  //                         height: getPercentSize(remainHeight, 5),
-  //
-  //                       ),
-  //                       getTextWidget(
-  //                           model.subTitle!,
-  //                           subTextColor,
-  //                           getPercentSize(remainHeight, 10),
-  //                           FontWeight.w300,
-  //                           TextAlign.center)
-  //
-  //                       ,
-  //
-  //
-  //                       SizedBox(
-  //                         height: getPercentSize(remainHeight, 5),
-  //
-  //                       ),
-  //                       getTextWidget(
-  //                           model.price!,
-  //                           primaryColor,
-  //                           getPercentSize(remainHeight, 18),
-  //                           FontWeight.bold,
-  //                           TextAlign.center),
-  //                     ],
-  //                   )),
-  //               // getTextWidget(
-  //               //     model.price!,
-  //               //     primaryColor,
-  //               //     getPercentSize(height, 25),
-  //               //     FontWeight.bold,
-  //               //     TextAlign.center),
-  //             ],
-  //           ),
-  //         ),
-  //         onTap: () {
-  //           Navigator.push(
-  //               context,
-  //               MaterialPageRoute(
-  //                   builder: (context) => ProductDetailPage(model)));
-  //         },
-  //       );
-  //
-  //     }),
-  //   );
-  // }
 
   int selectedCategory = 0;
 
@@ -1194,15 +872,13 @@ class _HomeWidget extends State<HomeWidget> {
                   margin: EdgeInsets.only(
                       left: index == 0 ? (defMargin) : (defMargin / 1.5)),
                   child: Container(
-                    margin: EdgeInsets.all(1),
+                    margin: const EdgeInsets.all(1),
 
                     width: width,
 
                     decoration: ShapeDecoration(
                       color: color,
                       shape: SmoothRectangleBorder(
-                        // side: BorderSide(color: primaryColor,width: selectedCategory==index?1:0),
-
                         borderRadius: SmoothBorderRadius(
                           cornerRadius: getPercentSize(height, 50),
                           cornerSmoothing: 0.8,
@@ -1214,7 +890,7 @@ class _HomeWidget extends State<HomeWidget> {
                         Container(
                           height: height,
                           width: height,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.white54,
                             shape: BoxShape.circle,
                           ),
@@ -1238,48 +914,6 @@ class _HomeWidget extends State<HomeWidget> {
                                 1))
                       ],
                     ),
-
-                    // child: Container(
-                    //   margin: EdgeInsets.only(left: defMargin),
-                    //   child: Stack(
-                    //     children: [
-                    //       Container(
-                    //         height: imageSize,
-                    //         width: imageSize,
-                    //         decoration: BoxDecoration(
-                    //           color: cellColor,
-                    //           shape: BoxShape.circle,
-                    //         ),
-                    //         child: Center(
-                    //           child: Image.asset(
-                    //             assetsPath + dataList[index].image!,
-                    //             height: getPercentSize(imageSize, 90),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //       Visibility(
-                    //         visible: (selectedCategory == index),
-                    //         child: Container(
-                    //           height: imageSize,
-                    //           width: imageSize,
-                    //           decoration: BoxDecoration(
-                    //             color: primaryColor.withOpacity(0.4),
-                    //             shape: BoxShape.circle,
-                    //           ),
-                    //           child: Center(
-                    //             child: getCustomTextWidget(
-                    //                 dataList[index].name!,
-                    //                 Colors.white,
-                    //                 getPercentSize(imageSize, 20),
-                    //                 FontWeight.w500,
-                    //                 TextAlign.center,
-                    //                 1),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
                   ),
                 ),
                 onTap: () {
@@ -1331,15 +965,10 @@ class _HomeWidget extends State<HomeWidget> {
       margin: EdgeInsets.symmetric(horizontal: defMargin),
       child: Row(
         children: [
-          // Image.asset(
-          //   assetsPath + "menu.png",
-          //   height: getScreenPercentSize(context, 2.5),
-          //   color: textColor,
-          // ),
 
           Expanded(
             child: getCustomTextWithFontFamilyWidget(
-                'Adopt a Friend',
+                "Find your books",
                 textColor,
                 getScreenPercentSize(context, 2.5),
                 FontWeight.w500,
@@ -1348,40 +977,14 @@ class _HomeWidget extends State<HomeWidget> {
           ),
           InkWell(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder:  (context) => NotificationList(),));
+              Navigator.push(context, MaterialPageRoute(builder:  (context) => const NotificationList(),));
             },
             child: Image.asset(
-              assetsPath + "notifications.png",
+              "${assetsPath}notifications.png",
               height: getScreenPercentSize(context, 2.5),
               color: textColor,
             ),
           ),
-
-          // Icon(
-          //   Icons.shopping_bag_outlined,
-          //   color: Colors.lightGreen,
-          //   size: getScreenPercentSize(context, 3),
-          // ),
-          // InkWell(
-          //   onTap: () {
-          //     Navigator.push(
-          //         context,
-          //         MaterialPageRoute(
-          //           builder: (context) => AddNewPetPage(),
-          //         ));
-          //   },
-          //   child: Container(
-          //     margin: EdgeInsets.only(left: getWidthPercentSize(context, 2)),
-          //     height: height,
-          //     width: height,
-          //     decoration: getDecorationWithColor(
-          //         getPercentSize(height, 25), primaryColor),
-          //     child: Center(
-          //       child: Icon(Icons.add,
-          //           color: Colors.white, size: getPercentSize(height, 70)),
-          //     ),
-          //   ),
-          // )
         ],
       ),
     );
@@ -1389,8 +992,7 @@ class _HomeWidget extends State<HomeWidget> {
 
   getSlider() {
     double sliderHeight = getScreenPercentSize(context, 22);
-
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: sliderHeight,
       child: CarouselSlider.builder(
@@ -1405,13 +1007,12 @@ class _HomeWidget extends State<HomeWidget> {
           } else if (index % 2 == 1) {
             color = Colors.orangeAccent.shade100;
           }
-
           if (index == 0) {
-            return getBanner(sliderHeight, 'pet_3.png');
+            return getBanner(sliderHeight, 'banner_book2.png');
           } else if (index == 1) {
             return getSliderCell(sliderHeight, color);
           } else {
-            return getBanner(sliderHeight, 'pet_6.png', color: color);
+            return getBanner(sliderHeight, 'banner_book1.png', color: color);
           }
         },
       ),
@@ -1426,7 +1027,6 @@ class _HomeWidget extends State<HomeWidget> {
   }
 
   getSliderCell(double height, Color color) {
-    // Color color = "#A193E2".toColor();
     double width = double.infinity;
 
     double radius = getPercentSize(height, 7);
@@ -1454,7 +1054,7 @@ class _HomeWidget extends State<HomeWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   getCustomTextWithFontFamilyWidget(
-                      "Pet Adoption\nMade Easy",
+                      "Lorem ipsum\ndolor sit.",
                       Colors.white,
                       getPercentSize(height, 11),
                       FontWeight.w500,
@@ -1485,9 +1085,8 @@ class _HomeWidget extends State<HomeWidget> {
               alignment: Alignment.centerLeft,
               child: Container(
                 padding: EdgeInsets.all(getPercentSize(height, 5)),
-                // margin: EdgeInsets.all(getPercentSize(height, 5)),
                 child: Image.asset(
-                  assetsPath + 'pet_3.png',
+                  '${assetsPath}banner_book2.png',
                   width: getScreenPercentSize(context, 20),
                 ),
               ),
@@ -1499,9 +1098,7 @@ class _HomeWidget extends State<HomeWidget> {
   }
 
   getBanner(double height, String img, {Color? color}) {
-    if (color == null) {
-      color = "#A193E2".toColor();
-    }
+    color ??= "#A193E2".toColor();
     double width = double.infinity;
 
     double radius = getPercentSize(height, 7);
@@ -1543,7 +1140,7 @@ class _HomeWidget extends State<HomeWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   getCustomTextWithFontFamilyWidget(
-                      "Pet Adoption\nMade Easy",
+                      "Lorem ipsum\ndolor sit.",
                       Colors.white,
                       getPercentSize(height, 11),
                       FontWeight.w500,
