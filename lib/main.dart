@@ -10,8 +10,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'IntroPage.dart';
 import 'MainPage.dart';
 import 'SignInPage.dart';
+import 'SplashScreen.dart';
 
-MyTheme myTheme = new MyTheme();
+MyTheme myTheme = MyTheme();
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +23,7 @@ void main() {
 
   SharedPreferences.getInstance().then((instance) async {
     setThemePosition();
-    runApp(MyApp());
+    runApp(const MyApp());
   });
 }
 
@@ -51,18 +52,15 @@ class _MyApp extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    print("ass---true---${myTheme.currentTheme()}");
-
     return MaterialApp(
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
       debugShowCheckedModeBanner: false,
-      supportedLocales: [
-        const Locale('en', 'US'), // English US
-        const Locale('en', 'GB'), // English UK
-        // ... other locales the app supports
+      supportedLocales: const [
+        Locale('en', 'US'), // English US
+        Locale('en', 'GB'), // English UK
       ],
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -72,7 +70,8 @@ class _MyApp extends State<MyApp> {
           dialogBackgroundColor: lightCellColor,
           brightness: Brightness.light,
           splashColor: Colors.transparent,
-          backgroundColor: Colors.white),
+          backgroundColor: Colors.white,
+      ),
       themeMode: myTheme.currentTheme(),
       darkTheme: ThemeData(
         splashFactory: NoSplash.splashFactory,
@@ -82,103 +81,9 @@ class _MyApp extends State<MyApp> {
         dialogBackgroundColor: darkCellColor,
         backgroundColor: darkBackgroundColor,
       ),
-      home: IntroPage(),
+      home: const SplashScreen(),
     );
   }
 }
 
 
-class SplashScreen extends StatefulWidget {
-  @override
-  _SplashScreen createState() => _SplashScreen();
-}
-
-class _SplashScreen extends State<SplashScreen> {
-  bool _isSignIn = false;
-  bool _isIntro = false;
-
-  // bool _isFirstTime = false;
-
-  @override
-  void initState() {
-    super.initState();
-    signInValue();
-    Future.delayed(Duration(seconds: 0), () {
-      setThemePosition(context: context);
-      setState(() {});
-    });
-
-    Timer(Duration(seconds: 3), () {
-      if (_isIntro) {
-        Navigator.pushReplacement(
-
-            context, MaterialPageRoute(builder: (context) => IntroPage()));
-      } else if (!_isSignIn) {
-        print("intro----$_isSignIn");
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SignInPage(),
-            ));
-      } else {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => MainPage(),
-            ));
-      }
-    });
-  }
-
-  void signInValue() async {
-    _isIntro = await PrefData.getIsIntro();
-    _isSignIn = await PrefData.getIsSignIn();
-    setState(() {});
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // setThemePosition(context: context);
-    return Scaffold(
-      backgroundColor: primaryColor,
-      appBar: AppBar(
-        backgroundColor: primaryColor,
-        elevation: 0,
-        toolbarHeight: 0,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: primaryColor,
-          statusBarIconBrightness: Brightness.dark,
-          // For Android (dark icons)
-          statusBarBrightness: Brightness.light, // For iOS (dark icons)
-        ),
-      ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: primaryColor,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              assetsPath + "splash_icon.png",
-              height: getScreenPercentSize(context, 12),
-              color: Colors.white,
-            ),
-            SizedBox(height: getScreenPercentSize(context, 1.2),),
-            Center(
-              child: getSplashTextWidget(
-                  "Petshops",
-                  Colors.white,
-                  getScreenPercentSize(context, 4),
-                  FontWeight.w500,
-                  TextAlign.center),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

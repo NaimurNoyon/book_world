@@ -9,6 +9,8 @@ import 'PhoneVerification.dart';
 import 'SignInPage.dart';
 
 class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+
   @override
   _SignUpPage createState() {
     return _SignUpPage();
@@ -18,14 +20,12 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPage extends State<SignUpPage> {
   bool isRemember = false;
   int themeMode = 0;
-  TextEditingController textEmailController = new TextEditingController();
-  TextEditingController textNameController = new TextEditingController();
-  TextEditingController textPasswordController = new TextEditingController();
+  TextEditingController textEmailController = TextEditingController();
+  TextEditingController textNameController = TextEditingController();
+  TextEditingController textPasswordController = TextEditingController();
 
   Future<bool> _requestPop() {
     Navigator.of(context).pop();
-
-    // Navigator.push(context, MaterialPageRoute(builder: (context) => SignInPage(),));
     return Future.value(false);
   }
 
@@ -58,11 +58,12 @@ class _SignUpPage extends State<SignUpPage> {
             elevation: 0,
             systemOverlayStyle: SystemUiOverlayStyle(
               statusBarColor: secondaryColor,
+              systemNavigationBarColor: secondaryColor,
               statusBarIconBrightness: Brightness.dark,
               // For Android (dark icons)
               statusBarBrightness: Brightness.light, // For iOS (dark icons)
             ),
-            title: Text(""),
+            title: const Text(""),
             leading: GestureDetector(
               onTap: () {
                 _requestPop();
@@ -92,11 +93,9 @@ class _SignUpPage extends State<SignUpPage> {
                         FontWeight.w400,
                         TextAlign.left,
                       ),
-
                       SizedBox(
                         height: getScreenPercentSize(context, 1),
                       ),
-
                       getTextWidget(
                         "Create Account for meet now Friends!",
                         textColor,
@@ -104,17 +103,13 @@ class _SignUpPage extends State<SignUpPage> {
                         FontWeight.w400,
                         TextAlign.left,
                       ),
-
                       SizedBox(
                         height: getScreenPercentSize(context, 2.5),
                       ),
-
                       getDefaultTextFiledWidget(context, "Phone Name",
                           Icons.account_circle_outlined, textNameController),
-
                       getDefaultTextFiledWidget(context, "Phone Email",
                           Icons.mail_outline, textEmailController),
-
                       Padding(
                         padding: EdgeInsets.symmetric(
                             vertical: getScreenPercentSize(context, 1.2)),
@@ -123,17 +118,11 @@ class _SignUpPage extends State<SignUpPage> {
                           children: [
                             Container(
                               height: height,
-                              margin: EdgeInsets.only(right: 7),
-                              padding: EdgeInsets.symmetric(horizontal: 5),
-
+                              margin: const EdgeInsets.only(right: 7),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 5),
                               decoration: ShapeDecoration(
                                 color: cellColor,
-
-                                // shadows: [BoxShadow(
-                                //     color: textColor.withOpacity(0.1),
-                                //     blurRadius: 2,
-                                //     spreadRadius: 1,
-                                //     offset: Offset(0, 4))],
                                 shape: SmoothRectangleBorder(
                                   side:
                                       BorderSide(color: borderColor, width: 1),
@@ -143,16 +132,6 @@ class _SignUpPage extends State<SignUpPage> {
                                   ),
                                 ),
                               ),
-
-                              // decoration: BoxDecoration(
-                              //   color: cellColor,      border: Border.all(color: subTextColor,width: 0.3),
-                              //
-                              //
-                              //
-                              //   borderRadius: BorderRadius.all(
-                              //     Radius.circular(radius),
-                              //   ),
-                              // ),
                               child: CountryCodePicker(
                                 boxDecoration: BoxDecoration(
                                   color: cellColor,
@@ -185,22 +164,16 @@ class _SignUpPage extends State<SignUpPage> {
                               ),
                             ),
                             Expanded(
+                              flex: 1,
                               child: StatefulBuilder(
                                 builder: (context, setState) {
                                   return Container(
                                     height: height,
-                                    padding: EdgeInsets.only(left: 7),
-                                    margin: EdgeInsets.only(left: 7),
+                                    padding: const EdgeInsets.only(left: 7),
+                                    margin: const EdgeInsets.only(left: 7),
                                     alignment: Alignment.centerLeft,
-
                                     decoration: ShapeDecoration(
                                       color: cellColor,
-
-                                      // shadows: [BoxShadow(
-                                      //     color: textColor.withOpacity(0.1),
-                                      //     blurRadius: 2,
-                                      //     spreadRadius: 1,
-                                      //     offset: Offset(0, 4))],
                                       shape: SmoothRectangleBorder(
                                         side: BorderSide(
                                             color: isAutoFocus
@@ -213,17 +186,6 @@ class _SignUpPage extends State<SignUpPage> {
                                         ),
                                       ),
                                     ),
-
-                                    // decoration: BoxDecoration(
-                                    //   color: cellColor,
-                                    //   border: Border.all(color: subTextColor,width: 0.3),
-                                    //
-                                    //
-                                    //
-                                    //   borderRadius: BorderRadius.all(
-                                    //     Radius.circular(radius),
-                                    //   ),
-                                    // ),
                                     child: Focus(
                                       onFocusChange: (hasFocus) {
                                         if (hasFocus) {
@@ -273,18 +235,15 @@ class _SignUpPage extends State<SignUpPage> {
                                   );
                                 },
                               ),
-                              flex: 1,
                             )
                           ],
                         ),
                       ),
-
                       getPasswordTextFiled(
                           context, "Password", textPasswordController),
                       SizedBox(
                         height: getScreenPercentSize(context, 1.5),
                       ),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -322,17 +281,16 @@ class _SignUpPage extends State<SignUpPage> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
-
                           getTextWidget(
                               'I agree with ',
                               textColor,
                               getScreenPercentSize(context, 1.8),
                               FontWeight.w600,
                               TextAlign.center),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           getTextWidget(
@@ -341,7 +299,6 @@ class _SignUpPage extends State<SignUpPage> {
                               getScreenPercentSize(context, 1.8),
                               FontWeight.w600,
                               TextAlign.center),
-
                           getTextWidget(
                               " & ",
                               textColor,
@@ -359,7 +316,6 @@ class _SignUpPage extends State<SignUpPage> {
                       SizedBox(
                         height: getScreenPercentSize(context, 3),
                       ),
-
                       getButtonWithoutSpaceWidget(
                           context, "Sign Up", primaryColor, () {
                         Navigator.pop(context);

@@ -12,6 +12,9 @@ Color alphaColor = "#F9F8FF".toColor();
 Color secondaryPrimaryColor = "#FED845".toColor();
 Color lightCellColor = "#EBEFF5".toColor();
 
+Color whiteColor = "#ffffff".toColor();
+Color blackColor = "#000000".toColor();
+
 Color darkBackgroundColor = "#14181E".toColor();
 Color darkCellColor = "#2B2B2B".toColor();
 Color themePrimaryColor = "#E4E6ED".toColor();
@@ -21,7 +24,6 @@ Color textColor = Colors.black87;
 Color subTextColor = "#746F7A".toColor();
 Color backgroundColor = Colors.grey.shade500;
 Color cellColor = "#F9F9FC".toColor();
-// Color cellColor = "#E2E7F1".toColor();
 Color accentColor = "#7F3C8A".toColor();
 Color iconColor = "#7F3C8A".toColor();
 Color defBgColor = "#F4F4F4".toColor();
@@ -29,10 +31,12 @@ String fontFamily = "SansSerif";
 String customFontFamily = "Gilroy";
 String assetsPath = "assets/images/";
 
+
+
 const double avatarRadius = 40;
 const double padding = 20;
 
-setThemePosition({BuildContext? context = null}) async {
+setThemePosition({BuildContext? context}) async {
   bool isNightMode = await PrefData.getNightTheme();
 
   if (context != null) {
@@ -58,9 +62,9 @@ setThemePosition({BuildContext? context = null}) async {
 
 extension ColorExtension on String {
   toColor() {
-    var hexColor = this.replaceAll("#", "");
+    var hexColor = replaceAll("#", "");
     if (hexColor.length == 6) {
-      hexColor = "FF" + hexColor;
+      hexColor = "FF$hexColor";
     }
     if (hexColor.length == 8) {
       return Color(int.parse("0x$hexColor"));

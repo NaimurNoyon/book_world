@@ -50,6 +50,7 @@ class _SignInPage extends State<SignInPage> {
             elevation: 0,
             systemOverlayStyle: SystemUiOverlayStyle(
               statusBarColor: secondaryColor,
+              systemNavigationBarColor: secondaryColor,
               statusBarIconBrightness: Brightness.dark,
               statusBarBrightness: Brightness.light, // For iOS (dark icons)
             ),

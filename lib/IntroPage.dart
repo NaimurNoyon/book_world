@@ -8,7 +8,6 @@ import 'package:book_world/utils/DataFile.dart';
 import 'package:book_world/utils/PrefData.dart';
 import 'package:book_world/utils/SizeConfig.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import 'MainPage.dart';
 import 'SignInPage.dart';
 import 'model/IntroModel.dart';
@@ -28,7 +27,7 @@ class _IntroPage extends State<IntroPage> {
   Future<bool> _requestPop() {
     exitApp();
 
-    return new Future.value(false);
+    return Future.value(false);
   }
 
   final controller = PageController();
@@ -46,7 +45,7 @@ class _IntroPage extends State<IntroPage> {
     // TODO: implement initState
     super.initState();
     introModelList = DataFile.getIntroModel();
-    Future.delayed(Duration(seconds: 0), () {
+    Future.delayed(const Duration(seconds: 0), () {
       setThemePosition(context: context);
       setState(() {});
     });
@@ -72,7 +71,9 @@ class _IntroPage extends State<IntroPage> {
               statusBarColor: introModelList[_position].color!,
               statusBarIconBrightness: Brightness.dark,
               // For Android (dark icons)
-              statusBarBrightness: Brightness.light, // For iOS (dark icons)
+              statusBarBrightness: Brightness.light, // For iOS (dark icons),\
+              systemNavigationBarColor: introModelList[_position].color!,
+              systemNavigationBarIconBrightness: Brightness.dark,
             ),
           ),
           backgroundColor: secondaryColor,
@@ -82,8 +83,6 @@ class _IntroPage extends State<IntroPage> {
                 controller: controller,
                 itemBuilder: (context, position) {
                   return Container(
-                    // color: introModelList[position].color!,
-
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
                             begin: Alignment.topRight,
@@ -173,6 +172,7 @@ class _IntroPage extends State<IntroPage> {
                       Visibility(
                         visible: (_position <= 2),
                         child: Expanded(
+                          flex: 1,
                           child: InkWell(
                             onTap: () {
                               skip();
@@ -184,7 +184,6 @@ class _IntroPage extends State<IntroPage> {
                                 FontWeight.bold,
                                 TextAlign.start),
                           ),
-                          flex: 1,
                         ),
                       ),
                       Visibility(
@@ -195,7 +194,7 @@ class _IntroPage extends State<IntroPage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SignUpPage(),
+                                    builder: (context) => const SignInPage(),
                                   ));
                             },
                             child: Container(
@@ -209,11 +208,11 @@ class _IntroPage extends State<IntroPage> {
                                       color: textColor.withOpacity(0.1),
                                       blurRadius: 2,
                                       spreadRadius: 1,
-                                      offset: Offset(0, 4))
+                                      offset: const Offset(0, 4))
                                 ],
                                 shape: SmoothRectangleBorder(
                                   side:
-                                      BorderSide(color: Colors.white, width: 2),
+                                      const BorderSide(color: Colors.white, width: 2),
                                   borderRadius: SmoothBorderRadius(
                                     cornerRadius:
                                         getScreenPercentSize(context, 1.8),
@@ -241,7 +240,7 @@ class _IntroPage extends State<IntroPage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SignInPage(),
+                                    builder: (context) => SignUpPage(),
                                   ));
                             } else {
                               if (_position < (introModelList.length - 1)) {
@@ -259,13 +258,13 @@ class _IntroPage extends State<IntroPage> {
                                 left: getWidthPercentSize(context, 3)),
                             height: getScreenPercentSize(context, 7),
                             decoration: ShapeDecoration(
-                              color: secondaryColor,
+                              color: whiteColor,
                               shadows: [
                                 BoxShadow(
                                     color: textColor.withOpacity(0.1),
                                     blurRadius: 2,
                                     spreadRadius: 1,
-                                    offset: Offset(0, 4))
+                                    offset: const Offset(0, 4))
                               ],
                               shape: SmoothRectangleBorder(
                                 borderRadius: SmoothBorderRadius(
